@@ -1,0 +1,522 @@
+// !$*UTF8*$!
+{
+	archiveVersion = 1;
+	classes = {
+	};
+	objectVersion = 46;
+	objects = {
+
+/* Begin PBXBuildFile section */
+		8614E8071CA5F39600DF48EA /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8614E8061CA5F39600DF48EA /* AppDelegate.swift */; };
+		8614E8091CA5F39600DF48EA /* ViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8614E8081CA5F39600DF48EA /* ViewController.swift */; };
+		8614E80C1CA5F39600DF48EA /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 8614E80A1CA5F39600DF48EA /* Main.storyboard */; };
+		8614E80F1CA5F39600DF48EA /* Tweed.xcdatamodeld in Sources */ = {isa = PBXBuildFile; fileRef = 8614E80D1CA5F39600DF48EA /* Tweed.xcdatamodeld */; };
+		8614E8111CA5F39600DF48EA /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 8614E8101CA5F39600DF48EA /* Assets.xcassets */; };
+		8614E8141CA5F39600DF48EA /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 8614E8121CA5F39600DF48EA /* LaunchScreen.storyboard */; };
+		8614E81F1CA5F39600DF48EA /* TweedTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8614E81E1CA5F39600DF48EA /* TweedTests.swift */; };
+		8614E82A1CA5F39600DF48EA /* TweedUITests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8614E8291CA5F39600DF48EA /* TweedUITests.swift */; };
+/* End PBXBuildFile section */
+
+/* Begin PBXContainerItemProxy section */
+		8614E81B1CA5F39600DF48EA /* PBXContainerItemProxy */ = {
+			isa = PBXContainerItemProxy;
+			containerPortal = 8614E7FB1CA5F39600DF48EA /* Project object */;
+			proxyType = 1;
+			remoteGlobalIDString = 8614E8021CA5F39600DF48EA;
+			remoteInfo = Tweed;
+		};
+		8614E8261CA5F39600DF48EA /* PBXContainerItemProxy */ = {
+			isa = PBXContainerItemProxy;
+			containerPortal = 8614E7FB1CA5F39600DF48EA /* Project object */;
+			proxyType = 1;
+			remoteGlobalIDString = 8614E8021CA5F39600DF48EA;
+			remoteInfo = Tweed;
+		};
+/* End PBXContainerItemProxy section */
+
+/* Begin PBXFileReference section */
+		8614E8031CA5F39600DF48EA /* Tweed.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = Tweed.app; sourceTree = BUILT_PRODUCTS_DIR; };
+		8614E8061CA5F39600DF48EA /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
+		8614E8081CA5F39600DF48EA /* ViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ViewController.swift; sourceTree = "<group>"; };
+		8614E80B1CA5F39600DF48EA /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/Main.storyboard; sourceTree = "<group>"; };
+		8614E80E1CA5F39600DF48EA /* Tweed.xcdatamodel */ = {isa = PBXFileReference; lastKnownFileType = wrapper.xcdatamodel; path = Tweed.xcdatamodel; sourceTree = "<group>"; };
+		8614E8101CA5F39600DF48EA /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
+		8614E8131CA5F39600DF48EA /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/LaunchScreen.storyboard; sourceTree = "<group>"; };
+		8614E8151CA5F39600DF48EA /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
+		8614E81A1CA5F39600DF48EA /* TweedTests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = TweedTests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
+		8614E81E1CA5F39600DF48EA /* TweedTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TweedTests.swift; sourceTree = "<group>"; };
+		8614E8201CA5F39600DF48EA /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
+		8614E8251CA5F39600DF48EA /* TweedUITests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = TweedUITests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
+		8614E8291CA5F39600DF48EA /* TweedUITests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TweedUITests.swift; sourceTree = "<group>"; };
+		8614E82B1CA5F39600DF48EA /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
+/* End PBXFileReference section */
+
+/* Begin PBXFrameworksBuildPhase section */
+		8614E8001CA5F39600DF48EA /* Frameworks */ = {
+			isa = PBXFrameworksBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		8614E8171CA5F39600DF48EA /* Frameworks */ = {
+			isa = PBXFrameworksBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		8614E8221CA5F39600DF48EA /* Frameworks */ = {
+			isa = PBXFrameworksBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+/* End PBXFrameworksBuildPhase section */
+
+/* Begin PBXGroup section */
+		8614E7FA1CA5F39600DF48EA = {
+			isa = PBXGroup;
+			children = (
+				8614E8051CA5F39600DF48EA /* Tweed */,
+				8614E81D1CA5F39600DF48EA /* TweedTests */,
+				8614E8281CA5F39600DF48EA /* TweedUITests */,
+				8614E8041CA5F39600DF48EA /* Products */,
+			);
+			sourceTree = "<group>";
+		};
+		8614E8041CA5F39600DF48EA /* Products */ = {
+			isa = PBXGroup;
+			children = (
+				8614E8031CA5F39600DF48EA /* Tweed.app */,
+				8614E81A1CA5F39600DF48EA /* TweedTests.xctest */,
+				8614E8251CA5F39600DF48EA /* TweedUITests.xctest */,
+			);
+			name = Products;
+			sourceTree = "<group>";
+		};
+		8614E8051CA5F39600DF48EA /* Tweed */ = {
+			isa = PBXGroup;
+			children = (
+				8614E8061CA5F39600DF48EA /* AppDelegate.swift */,
+				8614E8081CA5F39600DF48EA /* ViewController.swift */,
+				8614E80A1CA5F39600DF48EA /* Main.storyboard */,
+				8614E8101CA5F39600DF48EA /* Assets.xcassets */,
+				8614E8121CA5F39600DF48EA /* LaunchScreen.storyboard */,
+				8614E8151CA5F39600DF48EA /* Info.plist */,
+				8614E80D1CA5F39600DF48EA /* Tweed.xcdatamodeld */,
+			);
+			path = Tweed;
+			sourceTree = "<group>";
+		};
+		8614E81D1CA5F39600DF48EA /* TweedTests */ = {
+			isa = PBXGroup;
+			children = (
+				8614E81E1CA5F39600DF48EA /* TweedTests.swift */,
+				8614E8201CA5F39600DF48EA /* Info.plist */,
+			);
+			path = TweedTests;
+			sourceTree = "<group>";
+		};
+		8614E8281CA5F39600DF48EA /* TweedUITests */ = {
+			isa = PBXGroup;
+			children = (
+				8614E8291CA5F39600DF48EA /* TweedUITests.swift */,
+				8614E82B1CA5F39600DF48EA /* Info.plist */,
+			);
+			path = TweedUITests;
+			sourceTree = "<group>";
+		};
+/* End PBXGroup section */
+
+/* Begin PBXNativeTarget section */
+		8614E8021CA5F39600DF48EA /* Tweed */ = {
+			isa = PBXNativeTarget;
+			buildConfigurationList = 8614E82E1CA5F39600DF48EA /* Build configuration list for PBXNativeTarget "Tweed" */;
+			buildPhases = (
+				8614E7FF1CA5F39600DF48EA /* Sources */,
+				8614E8001CA5F39600DF48EA /* Frameworks */,
+				8614E8011CA5F39600DF48EA /* Resources */,
+			);
+			buildRules = (
+			);
+			dependencies = (
+			);
+			name = Tweed;
+			productName = Tweed;
+			productReference = 8614E8031CA5F39600DF48EA /* Tweed.app */;
+			productType = "com.apple.product-type.application";
+		};
+		8614E8191CA5F39600DF48EA /* TweedTests */ = {
+			isa = PBXNativeTarget;
+			buildConfigurationList = 8614E8311CA5F39600DF48EA /* Build configuration list for PBXNativeTarget "TweedTests" */;
+			buildPhases = (
+				8614E8161CA5F39600DF48EA /* Sources */,
+				8614E8171CA5F39600DF48EA /* Frameworks */,
+				8614E8181CA5F39600DF48EA /* Resources */,
+			);
+			buildRules = (
+			);
+			dependencies = (
+				8614E81C1CA5F39600DF48EA /* PBXTargetDependency */,
+			);
+			name = TweedTests;
+			productName = TweedTests;
+			productReference = 8614E81A1CA5F39600DF48EA /* TweedTests.xctest */;
+			productType = "com.apple.product-type.bundle.unit-test";
+		};
+		8614E8241CA5F39600DF48EA /* TweedUITests */ = {
+			isa = PBXNativeTarget;
+			buildConfigurationList = 8614E8341CA5F39600DF48EA /* Build configuration list for PBXNativeTarget "TweedUITests" */;
+			buildPhases = (
+				8614E8211CA5F39600DF48EA /* Sources */,
+				8614E8221CA5F39600DF48EA /* Frameworks */,
+				8614E8231CA5F39600DF48EA /* Resources */,
+			);
+			buildRules = (
+			);
+			dependencies = (
+				8614E8271CA5F39600DF48EA /* PBXTargetDependency */,
+			);
+			name = TweedUITests;
+			productName = TweedUITests;
+			productReference = 8614E8251CA5F39600DF48EA /* TweedUITests.xctest */;
+			productType = "com.apple.product-type.bundle.ui-testing";
+		};
+/* End PBXNativeTarget section */
+
+/* Begin PBXProject section */
+		8614E7FB1CA5F39600DF48EA /* Project object */ = {
+			isa = PBXProject;
+			attributes = {
+				LastSwiftUpdateCheck = 0720;
+				LastUpgradeCheck = 0720;
+				ORGANIZATIONNAME = "Zachary Saraf";
+				TargetAttributes = {
+					8614E8021CA5F39600DF48EA = {
+						CreatedOnToolsVersion = 7.2.1;
+					};
+					8614E8191CA5F39600DF48EA = {
+						CreatedOnToolsVersion = 7.2.1;
+						TestTargetID = 8614E8021CA5F39600DF48EA;
+					};
+					8614E8241CA5F39600DF48EA = {
+						CreatedOnToolsVersion = 7.2.1;
+						TestTargetID = 8614E8021CA5F39600DF48EA;
+					};
+				};
+			};
+			buildConfigurationList = 8614E7FE1CA5F39600DF48EA /* Build configuration list for PBXProject "Tweed" */;
+			compatibilityVersion = "Xcode 3.2";
+			developmentRegion = English;
+			hasScannedForEncodings = 0;
+			knownRegions = (
+				en,
+				Base,
+			);
+			mainGroup = 8614E7FA1CA5F39600DF48EA;
+			productRefGroup = 8614E8041CA5F39600DF48EA /* Products */;
+			projectDirPath = "";
+			projectRoot = "";
+			targets = (
+				8614E8021CA5F39600DF48EA /* Tweed */,
+				8614E8191CA5F39600DF48EA /* TweedTests */,
+				8614E8241CA5F39600DF48EA /* TweedUITests */,
+			);
+		};
+/* End PBXProject section */
+
+/* Begin PBXResourcesBuildPhase section */
+		8614E8011CA5F39600DF48EA /* Resources */ = {
+			isa = PBXResourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				8614E8141CA5F39600DF48EA /* LaunchScreen.storyboard in Resources */,
+				8614E8111CA5F39600DF48EA /* Assets.xcassets in Resources */,
+				8614E80C1CA5F39600DF48EA /* Main.storyboard in Resources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		8614E8181CA5F39600DF48EA /* Resources */ = {
+			isa = PBXResourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		8614E8231CA5F39600DF48EA /* Resources */ = {
+			isa = PBXResourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+/* End PBXResourcesBuildPhase section */
+
+/* Begin PBXSourcesBuildPhase section */
+		8614E7FF1CA5F39600DF48EA /* Sources */ = {
+			isa = PBXSourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				8614E80F1CA5F39600DF48EA /* Tweed.xcdatamodeld in Sources */,
+				8614E8091CA5F39600DF48EA /* ViewController.swift in Sources */,
+				8614E8071CA5F39600DF48EA /* AppDelegate.swift in Sources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		8614E8161CA5F39600DF48EA /* Sources */ = {
+			isa = PBXSourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				8614E81F1CA5F39600DF48EA /* TweedTests.swift in Sources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		8614E8211CA5F39600DF48EA /* Sources */ = {
+			isa = PBXSourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				8614E82A1CA5F39600DF48EA /* TweedUITests.swift in Sources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+/* End PBXSourcesBuildPhase section */
+
+/* Begin PBXTargetDependency section */
+		8614E81C1CA5F39600DF48EA /* PBXTargetDependency */ = {
+			isa = PBXTargetDependency;
+			target = 8614E8021CA5F39600DF48EA /* Tweed */;
+			targetProxy = 8614E81B1CA5F39600DF48EA /* PBXContainerItemProxy */;
+		};
+		8614E8271CA5F39600DF48EA /* PBXTargetDependency */ = {
+			isa = PBXTargetDependency;
+			target = 8614E8021CA5F39600DF48EA /* Tweed */;
+			targetProxy = 8614E8261CA5F39600DF48EA /* PBXContainerItemProxy */;
+		};
+/* End PBXTargetDependency section */
+
+/* Begin PBXVariantGroup section */
+		8614E80A1CA5F39600DF48EA /* Main.storyboard */ = {
+			isa = PBXVariantGroup;
+			children = (
+				8614E80B1CA5F39600DF48EA /* Base */,
+			);
+			name = Main.storyboard;
+			sourceTree = "<group>";
+		};
+		8614E8121CA5F39600DF48EA /* LaunchScreen.storyboard */ = {
+			isa = PBXVariantGroup;
+			children = (
+				8614E8131CA5F39600DF48EA /* Base */,
+			);
+			name = LaunchScreen.storyboard;
+			sourceTree = "<group>";
+		};
+/* End PBXVariantGroup section */
+
+/* Begin XCBuildConfiguration section */
+		8614E82C1CA5F39600DF48EA /* Debug */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ALWAYS_SEARCH_USER_PATHS = NO;
+				CLANG_CXX_LANGUAGE_STANDARD = "gnu++0x";
+				CLANG_CXX_LIBRARY = "libc++";
+				CLANG_ENABLE_MODULES = YES;
+				CLANG_ENABLE_OBJC_ARC = YES;
+				CLANG_WARN_BOOL_CONVERSION = YES;
+				CLANG_WARN_CONSTANT_CONVERSION = YES;
+				CLANG_WARN_DIRECT_OBJC_ISA_USAGE = YES_ERROR;
+				CLANG_WARN_EMPTY_BODY = YES;
+				CLANG_WARN_ENUM_CONVERSION = YES;
+				CLANG_WARN_INT_CONVERSION = YES;
+				CLANG_WARN_OBJC_ROOT_CLASS = YES_ERROR;
+				CLANG_WARN_UNREACHABLE_CODE = YES;
+				CLANG_WARN__DUPLICATE_METHOD_MATCH = YES;
+				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer";
+				COPY_PHASE_STRIP = NO;
+				DEBUG_INFORMATION_FORMAT = dwarf;
+				ENABLE_STRICT_OBJC_MSGSEND = YES;
+				ENABLE_TESTABILITY = YES;
+				GCC_C_LANGUAGE_STANDARD = gnu99;
+				GCC_DYNAMIC_NO_PIC = NO;
+				GCC_NO_COMMON_BLOCKS = YES;
+				GCC_OPTIMIZATION_LEVEL = 0;
+				GCC_PREPROCESSOR_DEFINITIONS = (
+					"DEBUG=1",
+					"$(inherited)",
+				);
+				GCC_WARN_64_TO_32_BIT_CONVERSION = YES;
+				GCC_WARN_ABOUT_RETURN_TYPE = YES_ERROR;
+				GCC_WARN_UNDECLARED_SELECTOR = YES;
+				GCC_WARN_UNINITIALIZED_AUTOS = YES_AGGRESSIVE;
+				GCC_WARN_UNUSED_FUNCTION = YES;
+				GCC_WARN_UNUSED_VARIABLE = YES;
+				IPHONEOS_DEPLOYMENT_TARGET = 9.2;
+				MTL_ENABLE_DEBUG_INFO = YES;
+				ONLY_ACTIVE_ARCH = YES;
+				SDKROOT = iphoneos;
+				SWIFT_OPTIMIZATION_LEVEL = "-Onone";
+			};
+			name = Debug;
+		};
+		8614E82D1CA5F39600DF48EA /* Release */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ALWAYS_SEARCH_USER_PATHS = NO;
+				CLANG_CXX_LANGUAGE_STANDARD = "gnu++0x";
+				CLANG_CXX_LIBRARY = "libc++";
+				CLANG_ENABLE_MODULES = YES;
+				CLANG_ENABLE_OBJC_ARC = YES;
+				CLANG_WARN_BOOL_CONVERSION = YES;
+				CLANG_WARN_CONSTANT_CONVERSION = YES;
+				CLANG_WARN_DIRECT_OBJC_ISA_USAGE = YES_ERROR;
+				CLANG_WARN_EMPTY_BODY = YES;
+				CLANG_WARN_ENUM_CONVERSION = YES;
+				CLANG_WARN_INT_CONVERSION = YES;
+				CLANG_WARN_OBJC_ROOT_CLASS = YES_ERROR;
+				CLANG_WARN_UNREACHABLE_CODE = YES;
+				CLANG_WARN__DUPLICATE_METHOD_MATCH = YES;
+				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer";
+				COPY_PHASE_STRIP = NO;
+				DEBUG_INFORMATION_FORMAT = "dwarf-with-dsym";
+				ENABLE_NS_ASSERTIONS = NO;
+				ENABLE_STRICT_OBJC_MSGSEND = YES;
+				GCC_C_LANGUAGE_STANDARD = gnu99;
+				GCC_NO_COMMON_BLOCKS = YES;
+				GCC_WARN_64_TO_32_BIT_CONVERSION = YES;
+				GCC_WARN_ABOUT_RETURN_TYPE = YES_ERROR;
+				GCC_WARN_UNDECLARED_SELECTOR = YES;
+				GCC_WARN_UNINITIALIZED_AUTOS = YES_AGGRESSIVE;
+				GCC_WARN_UNUSED_FUNCTION = YES;
+				GCC_WARN_UNUSED_VARIABLE = YES;
+				IPHONEOS_DEPLOYMENT_TARGET = 9.2;
+				MTL_ENABLE_DEBUG_INFO = NO;
+				SDKROOT = iphoneos;
+				VALIDATE_PRODUCT = YES;
+			};
+			name = Release;
+		};
+		8614E82F1CA5F39600DF48EA /* Debug */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
+				INFOPLIST_FILE = Tweed/Info.plist;
+				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
+				PRODUCT_BUNDLE_IDENTIFIER = vanfordinc.Tweed;
+				PRODUCT_NAME = "$(TARGET_NAME)";
+			};
+			name = Debug;
+		};
+		8614E8301CA5F39600DF48EA /* Release */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
+				INFOPLIST_FILE = Tweed/Info.plist;
+				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
+				PRODUCT_BUNDLE_IDENTIFIER = vanfordinc.Tweed;
+				PRODUCT_NAME = "$(TARGET_NAME)";
+			};
+			name = Release;
+		};
+		8614E8321CA5F39600DF48EA /* Debug */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				BUNDLE_LOADER = "$(TEST_HOST)";
+				INFOPLIST_FILE = TweedTests/Info.plist;
+				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks @loader_path/Frameworks";
+				PRODUCT_BUNDLE_IDENTIFIER = vanfordinc.TweedTests;
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				TEST_HOST = "$(BUILT_PRODUCTS_DIR)/Tweed.app/Tweed";
+			};
+			name = Debug;
+		};
+		8614E8331CA5F39600DF48EA /* Release */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				BUNDLE_LOADER = "$(TEST_HOST)";
+				INFOPLIST_FILE = TweedTests/Info.plist;
+				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks @loader_path/Frameworks";
+				PRODUCT_BUNDLE_IDENTIFIER = vanfordinc.TweedTests;
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				TEST_HOST = "$(BUILT_PRODUCTS_DIR)/Tweed.app/Tweed";
+			};
+			name = Release;
+		};
+		8614E8351CA5F39600DF48EA /* Debug */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				INFOPLIST_FILE = TweedUITests/Info.plist;
+				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks @loader_path/Frameworks";
+				PRODUCT_BUNDLE_IDENTIFIER = vanfordinc.TweedUITests;
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				TEST_TARGET_NAME = Tweed;
+				USES_XCTRUNNER = YES;
+			};
+			name = Debug;
+		};
+		8614E8361CA5F39600DF48EA /* Release */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				INFOPLIST_FILE = TweedUITests/Info.plist;
+				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks @loader_path/Frameworks";
+				PRODUCT_BUNDLE_IDENTIFIER = vanfordinc.TweedUITests;
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				TEST_TARGET_NAME = Tweed;
+				USES_XCTRUNNER = YES;
+			};
+			name = Release;
+		};
+/* End XCBuildConfiguration section */
+
+/* Begin XCConfigurationList section */
+		8614E7FE1CA5F39600DF48EA /* Build configuration list for PBXProject "Tweed" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				8614E82C1CA5F39600DF48EA /* Debug */,
+				8614E82D1CA5F39600DF48EA /* Release */,
+			);
+			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
+		};
+		8614E82E1CA5F39600DF48EA /* Build configuration list for PBXNativeTarget "Tweed" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				8614E82F1CA5F39600DF48EA /* Debug */,
+				8614E8301CA5F39600DF48EA /* Release */,
+			);
+			defaultConfigurationIsVisible = 0;
+		};
+		8614E8311CA5F39600DF48EA /* Build configuration list for PBXNativeTarget "TweedTests" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				8614E8321CA5F39600DF48EA /* Debug */,
+				8614E8331CA5F39600DF48EA /* Release */,
+			);
+			defaultConfigurationIsVisible = 0;
+		};
+		8614E8341CA5F39600DF48EA /* Build configuration list for PBXNativeTarget "TweedUITests" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				8614E8351CA5F39600DF48EA /* Debug */,
+				8614E8361CA5F39600DF48EA /* Release */,
+			);
+			defaultConfigurationIsVisible = 0;
+		};
+/* End XCConfigurationList section */
+
+/* Begin XCVersionGroup section */
+		8614E80D1CA5F39600DF48EA /* Tweed.xcdatamodeld */ = {
+			isa = XCVersionGroup;
+			children = (
+				8614E80E1CA5F39600DF48EA /* Tweed.xcdatamodel */,
+			);
+			currentVersion = 8614E80E1CA5F39600DF48EA /* Tweed.xcdatamodel */;
+			path = Tweed.xcdatamodeld;
+			sourceTree = "<group>";
+			versionGroupType = wrapper.xcdatamodel;
+		};
+/* End XCVersionGroup section */
+	};
+	rootObject = 8614E7FB1CA5F39600DF48EA /* Project object */;
+}
