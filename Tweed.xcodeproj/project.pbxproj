@@ -8,12 +8,22 @@
 
 /* Begin PBXBuildFile section */
 		8614E8071CA5F39600DF48EA /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8614E8061CA5F39600DF48EA /* AppDelegate.swift */; };
-		8614E8091CA5F39600DF48EA /* ViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8614E8081CA5F39600DF48EA /* ViewController.swift */; };
 		8614E80F1CA5F39600DF48EA /* Tweed.xcdatamodeld in Sources */ = {isa = PBXBuildFile; fileRef = 8614E80D1CA5F39600DF48EA /* Tweed.xcdatamodeld */; };
 		8614E8111CA5F39600DF48EA /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 8614E8101CA5F39600DF48EA /* Assets.xcassets */; };
 		8614E8141CA5F39600DF48EA /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 8614E8121CA5F39600DF48EA /* LaunchScreen.storyboard */; };
 		8614E81F1CA5F39600DF48EA /* TweedTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8614E81E1CA5F39600DF48EA /* TweedTests.swift */; };
 		8614E82A1CA5F39600DF48EA /* TweedUITests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8614E8291CA5F39600DF48EA /* TweedUITests.swift */; };
+		8614E83A1CA5F64000DF48EA /* DataManager.m in Sources */ = {isa = PBXBuildFile; fileRef = 8614E8391CA5F64000DF48EA /* DataManager.m */; };
+		8614E83E1CA5F6EC00DF48EA /* HomeViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8614E83D1CA5F6EC00DF48EA /* HomeViewController.swift */; };
+		86D299821CA5F87300AA8739 /* CFNetwork.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 86D2997A1CA5F87300AA8739 /* CFNetwork.framework */; };
+		86D299831CA5F87300AA8739 /* Foundation.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 86D2997B1CA5F87300AA8739 /* Foundation.framework */; };
+		86D299841CA5F87300AA8739 /* GameKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 86D2997C1CA5F87300AA8739 /* GameKit.framework */; };
+		86D299851CA5F87300AA8739 /* OpenGLES.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 86D2997D1CA5F87300AA8739 /* OpenGLES.framework */; };
+		86D299861CA5F87300AA8739 /* QuartzCore.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 86D2997E1CA5F87300AA8739 /* QuartzCore.framework */; };
+		86D299871CA5F87300AA8739 /* Social.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 86D2997F1CA5F87300AA8739 /* Social.framework */; };
+		86D299881CA5F87300AA8739 /* StoreKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 86D299801CA5F87300AA8739 /* StoreKit.framework */; };
+		86D299891CA5F87300AA8739 /* SystemConfiguration.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 86D299811CA5F87300AA8739 /* SystemConfiguration.framework */; };
+		86D2998B1CA5F88100AA8739 /* CoreData.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 86D2998A1CA5F88100AA8739 /* CoreData.framework */; };
 		C429FE23F637B9810327BB16 /* Pods.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = B808E2B0FC48822C25B15FCE /* Pods.framework */; };
 /* End PBXBuildFile section */
 
@@ -38,7 +48,6 @@
 		469926E8651BA05D3730C395 /* Pods.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = Pods.release.xcconfig; path = "Pods/Target Support Files/Pods/Pods.release.xcconfig"; sourceTree = "<group>"; };
 		8614E8031CA5F39600DF48EA /* Tweed.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = Tweed.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		8614E8061CA5F39600DF48EA /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
-		8614E8081CA5F39600DF48EA /* ViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ViewController.swift; sourceTree = "<group>"; };
 		8614E80E1CA5F39600DF48EA /* Tweed.xcdatamodel */ = {isa = PBXFileReference; lastKnownFileType = wrapper.xcdatamodel; path = Tweed.xcdatamodel; sourceTree = "<group>"; };
 		8614E8101CA5F39600DF48EA /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
 		8614E8131CA5F39600DF48EA /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/LaunchScreen.storyboard; sourceTree = "<group>"; };
@@ -49,6 +58,19 @@
 		8614E8251CA5F39600DF48EA /* TweedUITests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = TweedUITests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
 		8614E8291CA5F39600DF48EA /* TweedUITests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TweedUITests.swift; sourceTree = "<group>"; };
 		8614E82B1CA5F39600DF48EA /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
+		8614E8371CA5F63F00DF48EA /* Tweed-Bridging-Header.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = "Tweed-Bridging-Header.h"; sourceTree = "<group>"; };
+		8614E8381CA5F64000DF48EA /* DataManager.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = DataManager.h; sourceTree = "<group>"; };
+		8614E8391CA5F64000DF48EA /* DataManager.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = DataManager.m; sourceTree = "<group>"; };
+		8614E83D1CA5F6EC00DF48EA /* HomeViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = HomeViewController.swift; sourceTree = "<group>"; };
+		86D2997A1CA5F87300AA8739 /* CFNetwork.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = CFNetwork.framework; path = System/Library/Frameworks/CFNetwork.framework; sourceTree = SDKROOT; };
+		86D2997B1CA5F87300AA8739 /* Foundation.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Foundation.framework; path = System/Library/Frameworks/Foundation.framework; sourceTree = SDKROOT; };
+		86D2997C1CA5F87300AA8739 /* GameKit.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = GameKit.framework; path = System/Library/Frameworks/GameKit.framework; sourceTree = SDKROOT; };
+		86D2997D1CA5F87300AA8739 /* OpenGLES.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = OpenGLES.framework; path = System/Library/Frameworks/OpenGLES.framework; sourceTree = SDKROOT; };
+		86D2997E1CA5F87300AA8739 /* QuartzCore.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = QuartzCore.framework; path = System/Library/Frameworks/QuartzCore.framework; sourceTree = SDKROOT; };
+		86D2997F1CA5F87300AA8739 /* Social.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Social.framework; path = System/Library/Frameworks/Social.framework; sourceTree = SDKROOT; };
+		86D299801CA5F87300AA8739 /* StoreKit.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = StoreKit.framework; path = System/Library/Frameworks/StoreKit.framework; sourceTree = SDKROOT; };
+		86D299811CA5F87300AA8739 /* SystemConfiguration.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = SystemConfiguration.framework; path = System/Library/Frameworks/SystemConfiguration.framework; sourceTree = SDKROOT; };
+		86D2998A1CA5F88100AA8739 /* CoreData.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = CoreData.framework; path = System/Library/Frameworks/CoreData.framework; sourceTree = SDKROOT; };
 		B808E2B0FC48822C25B15FCE /* Pods.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		C8015E868E43487347046249 /* Pods.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = Pods.debug.xcconfig; path = "Pods/Target Support Files/Pods/Pods.debug.xcconfig"; sourceTree = "<group>"; };
 /* End PBXFileReference section */
@@ -58,6 +80,15 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				86D2998B1CA5F88100AA8739 /* CoreData.framework in Frameworks */,
+				86D299821CA5F87300AA8739 /* CFNetwork.framework in Frameworks */,
+				86D299831CA5F87300AA8739 /* Foundation.framework in Frameworks */,
+				86D299841CA5F87300AA8739 /* GameKit.framework in Frameworks */,
+				86D299851CA5F87300AA8739 /* OpenGLES.framework in Frameworks */,
+				86D299861CA5F87300AA8739 /* QuartzCore.framework in Frameworks */,
+				86D299871CA5F87300AA8739 /* Social.framework in Frameworks */,
+				86D299881CA5F87300AA8739 /* StoreKit.framework in Frameworks */,
+				86D299891CA5F87300AA8739 /* SystemConfiguration.framework in Frameworks */,
 				C429FE23F637B9810327BB16 /* Pods.framework in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
@@ -113,12 +144,13 @@
 		8614E8051CA5F39600DF48EA /* Tweed */ = {
 			isa = PBXGroup;
 			children = (
+				8614E83C1CA5F65800DF48EA /* Core Data */,
 				8614E8061CA5F39600DF48EA /* AppDelegate.swift */,
-				8614E8081CA5F39600DF48EA /* ViewController.swift */,
 				8614E8101CA5F39600DF48EA /* Assets.xcassets */,
 				8614E8121CA5F39600DF48EA /* LaunchScreen.storyboard */,
 				8614E8151CA5F39600DF48EA /* Info.plist */,
-				8614E80D1CA5F39600DF48EA /* Tweed.xcdatamodeld */,
+				8614E8371CA5F63F00DF48EA /* Tweed-Bridging-Header.h */,
+				8614E83D1CA5F6EC00DF48EA /* HomeViewController.swift */,
 			);
 			path = Tweed;
 			sourceTree = "<group>";
@@ -141,9 +173,28 @@
 			path = TweedUITests;
 			sourceTree = "<group>";
 		};
+		8614E83C1CA5F65800DF48EA /* Core Data */ = {
+			isa = PBXGroup;
+			children = (
+				8614E8381CA5F64000DF48EA /* DataManager.h */,
+				8614E8391CA5F64000DF48EA /* DataManager.m */,
+				8614E80D1CA5F39600DF48EA /* Tweed.xcdatamodeld */,
+			);
+			name = "Core Data";
+			sourceTree = "<group>";
+		};
 		E88152B23AB8FC9772C3D7B9 /* Frameworks */ = {
 			isa = PBXGroup;
 			children = (
+				86D2998A1CA5F88100AA8739 /* CoreData.framework */,
+				86D2997A1CA5F87300AA8739 /* CFNetwork.framework */,
+				86D2997B1CA5F87300AA8739 /* Foundation.framework */,
+				86D2997C1CA5F87300AA8739 /* GameKit.framework */,
+				86D2997D1CA5F87300AA8739 /* OpenGLES.framework */,
+				86D2997E1CA5F87300AA8739 /* QuartzCore.framework */,
+				86D2997F1CA5F87300AA8739 /* Social.framework */,
+				86D299801CA5F87300AA8739 /* StoreKit.framework */,
+				86D299811CA5F87300AA8739 /* SystemConfiguration.framework */,
 				B808E2B0FC48822C25B15FCE /* Pods.framework */,
 			);
 			name = Frameworks;
@@ -330,8 +381,9 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				8614E83E1CA5F6EC00DF48EA /* HomeViewController.swift in Sources */,
 				8614E80F1CA5F39600DF48EA /* Tweed.xcdatamodeld in Sources */,
-				8614E8091CA5F39600DF48EA /* ViewController.swift in Sources */,
+				8614E83A1CA5F64000DF48EA /* DataManager.m in Sources */,
 				8614E8071CA5F39600DF48EA /* AppDelegate.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
@@ -465,10 +517,13 @@
 			baseConfigurationReference = C8015E868E43487347046249 /* Pods.debug.xcconfig */;
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
+				CLANG_ENABLE_MODULES = YES;
 				INFOPLIST_FILE = Tweed/Info.plist;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
 				PRODUCT_BUNDLE_IDENTIFIER = vanfordinc.Tweed;
 				PRODUCT_NAME = "$(TARGET_NAME)";
+				SWIFT_OBJC_BRIDGING_HEADER = "Tweed/Tweed-Bridging-Header.h";
+				SWIFT_OPTIMIZATION_LEVEL = "-Onone";
 			};
 			name = Debug;
 		};
@@ -477,10 +532,12 @@
 			baseConfigurationReference = 469926E8651BA05D3730C395 /* Pods.release.xcconfig */;
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
+				CLANG_ENABLE_MODULES = YES;
 				INFOPLIST_FILE = Tweed/Info.plist;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
 				PRODUCT_BUNDLE_IDENTIFIER = vanfordinc.Tweed;
 				PRODUCT_NAME = "$(TARGET_NAME)";
+				SWIFT_OBJC_BRIDGING_HEADER = "Tweed/Tweed-Bridging-Header.h";
 			};
 			name = Release;
 		};

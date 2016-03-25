@@ -21,7 +21,7 @@
 //  OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN
 //  THE SOFTWARE.
 
-#if os(iOS) || os(tvOS)
+#if os(iOS)
 import UIKit
 #else
 import AppKit
@@ -133,7 +133,7 @@ internal struct ConstraintAttributes: OptionSetType, BooleanType {
             attrs.append(.Baseline)
         }
         
-        #if os(iOS) || os(tvOS)
+        #if os(iOS)
         #if SNAPKIT_DEPLOYMENT_LEGACY
         guard #available(iOS 8.0, *) else {
             return attrs

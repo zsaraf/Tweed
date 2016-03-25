@@ -21,7 +21,7 @@
 //  OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN
 //  THE SOFTWARE.
 
-#if os(iOS) || os(tvOS)
+#if os(iOS)
 import UIKit
 #else
 import AppKit
@@ -149,7 +149,7 @@ private extension NSLayoutRelation {
 private extension NSLayoutAttribute {
     
     private var snp_description: String {
-        #if os(iOS) || os(tvOS)
+        #if os(iOS)
         switch self {
         case .NotAnAttribute:       return "notAnAttribute"
         case .Top:                  return "top"
