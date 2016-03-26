@@ -7,9 +7,23 @@
 //
 
 import UIKit
+import SnapKit
+
+protocol FollowViewControllerDelegate: class {
+    func followViewControllerDidFinish(fvc: FollowViewController)
+    func followViewControllerDidCancel(fvc: FollowViewController)
+}
 
 class FollowViewController: UIViewController, UIViewControllerAnimatedTransitioning, UIViewControllerTransitioningDelegate {
     let blurredImage: UIImage
+    var topBarView: UIView!
+    var contentView: UIView!
+    var textField: TweedTextField!
+    var delegate: FollowViewControllerDelegate?
+
+    // Constraints
+    var topBarViewTopConstraint: Constraint?
+    var contentViewLeftConstraint: Constraint?
 
     init(blurredImage: UIImage) {
         self.blurredImage = blurredImage
@@ -25,13 +39,81 @@ class FollowViewController: UIViewController, UIViewControllerAnimatedTransition
         super.viewDidLoad()
 
         self.setupBackgroundView()
+        self.setupTopBarView()
+        self.setupContentView()
+    }
 
-        let textField = TweedTextField(frame: CGRectZero, icon: UIImage(named: "email_gray")!)
-        self.view.addSubview(textField)
+    // MARK: View Setup
 
-        textField.snp_makeConstraints { (make) -> Void in
-            make.width.equalTo(self.view).multipliedBy(0.7)
-            make.center.equalTo(self.view)
+    func setupTopBarView() {
+        self.topBarView = UIView()
+
+        let titleLabel = UILabel(font: UIFont.mediumGotham(18.0)!, textColor: UIColor.whiteColor(), text: "Follow", textAlignment: .Center)
+        titleLabel.shadowColor = UIColor(white: 0.0, alpha: 0.8)
+        titleLabel.shadowOffset = CGSizeMake(0, 1)
+        self.topBarView.addSubview(titleLabel)
+
+        let cancelButton = self.topBarButton(UIImage(named: "cancel_circle")!, action: "cancel:")
+        self.topBarView.addSubview(cancelButton)
+
+        let acceptButton = self.topBarButton(UIImage(named: "check_circle")!, action: "accept:")
+        self.topBarView.addSubview(acceptButton)
+
+        titleLabel.snp_makeConstraints { (make) -> Void in
+            make.edges.equalTo(self.topBarView)
+        }
+
+        cancelButton.snp_makeConstraints { (make) -> Void in
+            make.left.equalTo(self.topBarView).inset(20.0)
+            make.height.equalTo(self.topBarView).multipliedBy(0.8)
+            make.centerY.equalTo(self.topBarView)
+        }
+
+        acceptButton.snp_makeConstraints { (make) -> Void in
+            make.right.equalTo(self.topBarView).inset(20.0)
+            make.height.equalTo(self.topBarView).multipliedBy(0.8)
+            make.centerY.equalTo(self.topBarView)
+        }
+
+        self.view.addSubview(self.topBarView)
+
+        self.topBarView.snp_makeConstraints { (make) -> Void in
+            make.height.equalTo(44.0)
+            make.left.right.equalTo(self.view)
+            self.topBarViewTopConstraint = make.top.equalTo(self.view).offset(UIApplication.sharedApplication().statusBarFrame.size.height).constraint
+        }
+    }
+
+    func topBarButton(image: UIImage, action: String) -> UIButton {
+        let btn = UIButton(type: .Custom)
+        btn.setImage(UIImage(named: "check_circle"), forState: .Normal)
+        btn.addTarget(self, action: "accept:", forControlEvents: .TouchUpInside)
+        btn.layer.shadowColor = UIColor(white: 0, alpha: 0.1).CGColor
+        btn.layer.shadowOffset = CGSizeMake(0, 1)
+        btn.layer.shadowRadius = 2.0
+        return btn
+    }
+
+    func setupContentView() {
+        self.contentView = UIView()
+
+        self.textField = TweedTextField(frame: CGRectZero, icon: UIImage(named: "email_gray")!)
+        self.textField.returnKeyType = .Done
+        self.textField.autocapitalizationType = .None
+        self.textField.autocorrectionType = .No
+        self.contentView.addSubview(self.textField)
+
+        self.textField.snp_makeConstraints { (make) -> Void in
+            make.top.equalTo(self.contentView).offset(20.0)
+            make.centerX.equalTo(self.contentView)
+        }
+
+        self.view.addSubview(self.contentView)
+
+        self.contentView.snp_makeConstraints { (make) -> Void in
+            make.top.equalTo(self.topBarView.snp_bottom)
+            make.bottom.right.equalTo(self.view)
+            self.contentViewLeftConstraint = make.left.equalTo(self.view).constraint
         }
     }
 
@@ -51,6 +133,20 @@ class FollowViewController: UIViewController, UIViewControllerAnimatedTransition
         tweedPatternView.snp_makeConstraints { (make) -> Void in
             make.edges.equalTo(self.view)
         }
+    }
+
+    // MARK: Action Methods
+
+    func cancel(button: UIButton) {
+        self.delegate?.followViewControllerDidCancel(self)
+    }
+
+    func accept(button: UIButton) {
+        let animationView = SeshConfirmationAnimationView(frame: self.view.bounds)
+        animationView.alpha = 0.0;
+        animationView.confirmationText = "Added Followers!"
+        self.view.addSubview(animationView)
+
     }
 
     // MARK: UIViewControllerAnimatedTransitioning
@@ -74,12 +170,24 @@ class FollowViewController: UIViewController, UIViewControllerAnimatedTransition
         if toVC is FollowViewController {
             let fvc = toVC as! FollowViewController
 
+            self.topBarViewTopConstraint?.updateOffset(-1 * self.topBarView.bounds.size.height)
+            self.contentViewLeftConstraint?.updateOffset(-1 * self.view.bounds.size.width)
+            self.view.layoutIfNeeded()
+
             fvc.view.alpha = 0.0
             transitionContext.containerView()?.addSubview(fvc.view)
-            UIView.animateWithDuration(0.3, animations: { () -> Void in
+            UIView.animateWithDuration(0.5, animations: { () -> Void in
                 fvc.view.alpha = 1.0
             }, completion: { (success: Bool) -> Void in
                 transitionContext.completeTransition(true)
+            })
+
+            self.topBarViewTopConstraint?.updateOffset(UIApplication.sharedApplication().statusBarFrame.size.height)
+            self.contentViewLeftConstraint?.updateOffset(0)
+            UIView.animateWithDuration(0.5, delay: 0.0, usingSpringWithDamping: 0.5, initialSpringVelocity: 0.4, options: UIViewAnimationOptions(), animations: { () -> Void in
+                self.view.layoutIfNeeded()
+            }, completion: { (success: Bool) -> Void in
+                self.textField.becomeFirstResponder()
             })
         } else {
             UIView.animateWithDuration(0.3, animations: { () -> Void in
@@ -89,70 +197,5 @@ class FollowViewController: UIViewController, UIViewControllerAnimatedTransition
             })
         }
     }
-
-//    #pragma mark - UIViewControllerAnimatedTransitioning
-//
-//    - (id<UIViewControllerAnimatedTransitioning>)animationControllerForPresentedController:(UIViewController *)presented presentingController:(UIViewController *)presenting sourceController:(UIViewController *)source
-//    {
-//    return self;
-//    }
-//
-//    - (id<UIViewControllerAnimatedTransitioning>)animationControllerForDismissedController:(UIViewController *)dismissed
-//    {
-//    return self;
-//    }
-//
-//    - (NSTimeInterval)transitionDuration:(id <UIViewControllerContextTransitioning>)transitionContext {
-//    return .5f;
-//}
-//
-//- (void)animateTransition:(id <UIViewControllerContextTransitioning>)transitionContext {
-//    // Grab the from and to view controllers from the context
-//    UIViewController *fromViewController = [transitionContext viewControllerForKey:UITransitionContextFromViewControllerKey];
-//    UIViewController *toViewController = [transitionContext viewControllerForKey:UITransitionContextToViewControllerKey];
-//
-//    if ([toViewController isKindOfClass:[self class]]) {
-//        toViewController.view.alpha = 0.0;
-//        [transitionContext.containerView addSubview:toViewController.view];
-//
-//        SeshFlowViewController *vc = (SeshFlowViewController *)toViewController;
-//        [UIView animateWithDuration:[self transitionDuration:transitionContext] animations:^{
-//            vc.view.alpha = 1.0;
-//            } completion:^(BOOL finished) {
-//            [transitionContext completeTransition:YES];
-//            }];
-//
-//        POPSpringAnimation *animation = [POPSpringAnimation animationWithPropertyNamed:kPOPLayerPositionY];
-//        animation.toValue = @(_topBarView.frame.size.height/2 + 10.0);
-//        animation.springBounciness = 2.0;
-//        animation.springSpeed = 2.0;
-//        animation.beginTime = .2;
-//        [_topBarView.layer pop_addAnimation:animation forKey:@"topBarViewAnimation"];
-//
-//        POPSpringAnimation *textFieldAnimation = [POPSpringAnimation animationWithPropertyNamed:kPOPScrollViewContentOffset];
-//        textFieldAnimation.toValue = [NSValue valueWithCGPoint:CGPointMake(0, 0)];
-//        textFieldAnimation.springBounciness = 5.0;
-//        textFieldAnimation.springSpeed = 5.0;
-//        textFieldAnimation.beginTime = .2;
-//        textFieldAnimation.completionBlock = ^(POPAnimation *anim, BOOL completed) {
-//            [[self _viewForProgress:self.currentProgress] setEnabled:YES];
-//        };
-//        [_contentScrollView pop_addAnimation:textFieldAnimation forKey:@"textFieldAnimation"];
-//    } else {
-//        // This is a hacky fix for an iOS 8 bug with animated transitioning. TODO: convert this back to typical way of implementing this.
-//
-//        //        [[UIApplication sharedApplication].keyWindow addSubview:toViewController.view];
-//        //        [[UIApplication sharedApplication].keyWindow addSubview:fromViewController.view];
-//
-//        //        [transitionContext.containerView addSubview:toViewController.view];
-//        //        [transitionContext.containerView bringSubviewToFront:fromViewController.view];
-//
-//        [UIView animateWithDuration:[self transitionDuration:transitionContext] animations:^{
-//            fromViewController.view.alpha = 0.0;
-//            } completion:^(BOOL finished) {
-//            [transitionContext completeTransition:YES];
-//            }];
-//    }
-//}
 
 }
