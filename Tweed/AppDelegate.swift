@@ -17,11 +17,19 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
 
     func application(application: UIApplication, didFinishLaunchingWithOptions launchOptions: [NSObject: AnyObject]?) -> Bool {
 
+        self.customizeAppearance()
+
+        let nvc = UINavigationController(rootViewController: HomeViewController())
+
         self.window = UIWindow(frame: UIScreen.mainScreen().bounds)
-        self.window?.rootViewController = HomeViewController()
+        self.window?.rootViewController = nvc
         self.window?.makeKeyAndVisible()
 
         return true
+    }
+
+    func customizeAppearance() {
+        UINavigationBar.appearance().titleTextAttributes = [NSFontAttributeName: UIFont.bookGotham(17.0)!]
     }
 
     func applicationWillResignActive(application: UIApplication) {
