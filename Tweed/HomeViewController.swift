@@ -18,7 +18,7 @@ class HomeViewController: UIViewController, UITableViewDelegate, UITableViewData
 
         self.view.backgroundColor = UIColor.whiteColor()
 
-        self.title = "TWEED"
+        self.configureNavigationBar()
 
         self.tableView.delegate = self
         self.tableView.dataSource = self
@@ -30,6 +30,16 @@ class HomeViewController: UIViewController, UITableViewDelegate, UITableViewData
         self.tableView.snp_makeConstraints { (make) -> Void in
             make.edges.equalTo(self.view)
         }
+    }
+
+    func configureNavigationBar() {
+        self.title = "TWEED"
+
+        let addFollowsButton = UIButton(type: .Custom)
+        addFollowsButton.bounds = CGRectMake(0, 0, 20, 20)
+        addFollowsButton.setImage(UIImage(named: "plus_white"), forState: .Normal)
+        addFollowsButton.addTarget(self, action: "addFollows:", forControlEvents: .TouchUpInside)
+        self.navigationItem.rightBarButtonItem = UIBarButtonItem(customView: addFollowsButton)
     }
 
     // MARK: UITableViewDelegate & UITableViewDataSource methods
@@ -56,6 +66,21 @@ class HomeViewController: UIViewController, UITableViewDelegate, UITableViewData
 
     func numberOfSectionsInTableView(tableView: UITableView) -> Int {
         return 1
+    }
+
+    // MARK: Action methods
+
+    func addFollows(button: UIButton) {
+        let rootView = self.navigationController!.view
+        let blurredImage = UIImage.blurredImageWithRootView(rootView, tintColor: UIColor(white: 1, alpha: 0.1), radius: 6, saturationDeltaFactor: 1.2)
+
+        let fvc = FollowViewController(blurredImage: blurredImage)
+        fvc.modalPresentationStyle = .Custom
+        fvc.transitioningDelegate = fvc
+        self.presentViewController(fvc, animated: true) { () -> Void in
+            fvc.transitioningDelegate = nil
+        }
+
     }
 
 }

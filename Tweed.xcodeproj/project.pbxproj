@@ -45,6 +45,18 @@
 		86D299B71CA60C2100AA8739 /* UILabel+Tweed.swift in Sources */ = {isa = PBXBuildFile; fileRef = 86D299B61CA60C2100AA8739 /* UILabel+Tweed.swift */; };
 		86D299B91CA60D4500AA8739 /* UIColor+Tweed.swift in Sources */ = {isa = PBXBuildFile; fileRef = 86D299B81CA60D4500AA8739 /* UIColor+Tweed.swift */; };
 		86D299BB1CA7110700AA8739 /* TweedViewConstants.swift in Sources */ = {isa = PBXBuildFile; fileRef = 86D299BA1CA7110700AA8739 /* TweedViewConstants.swift */; };
+		86D299BE1CA714A500AA8739 /* FollowViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 86D299BD1CA714A500AA8739 /* FollowViewController.swift */; };
+		86D299C11CA7177000AA8739 /* TweedNetworking.swift in Sources */ = {isa = PBXBuildFile; fileRef = 86D299C01CA7177000AA8739 /* TweedNetworking.swift */; };
+		86D299C51CA71E5F00AA8739 /* plus_white.png in Resources */ = {isa = PBXBuildFile; fileRef = 86D299C21CA71E5F00AA8739 /* plus_white.png */; };
+		86D299C61CA71E5F00AA8739 /* plus_white@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 86D299C31CA71E5F00AA8739 /* plus_white@2x.png */; };
+		86D299C71CA71E5F00AA8739 /* plus_white@3x.png in Resources */ = {isa = PBXBuildFile; fileRef = 86D299C41CA71E5F00AA8739 /* plus_white@3x.png */; };
+		86D299CC1CA71F3700AA8739 /* UIImage+ImageEffects.m in Sources */ = {isa = PBXBuildFile; fileRef = 86D299C91CA71F3700AA8739 /* UIImage+ImageEffects.m */; };
+		86D299CD1CA71F3700AA8739 /* UIImage+SeshUtils.m in Sources */ = {isa = PBXBuildFile; fileRef = 86D299CB1CA71F3700AA8739 /* UIImage+SeshUtils.m */; };
+		86D299D01CA721CA00AA8739 /* tweed_texture.png in Resources */ = {isa = PBXBuildFile; fileRef = 86D299CF1CA721CA00AA8739 /* tweed_texture.png */; };
+		86D299D31CA729F800AA8739 /* TweedTextField.swift in Sources */ = {isa = PBXBuildFile; fileRef = 86D299D21CA729F800AA8739 /* TweedTextField.swift */; };
+		86D299D81CA72C8300AA8739 /* email_gray.png in Resources */ = {isa = PBXBuildFile; fileRef = 86D299D51CA72C8300AA8739 /* email_gray.png */; };
+		86D299D91CA72C8300AA8739 /* email_gray@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 86D299D61CA72C8300AA8739 /* email_gray@2x.png */; };
+		86D299DA1CA72C8300AA8739 /* email_gray@3x.png in Resources */ = {isa = PBXBuildFile; fileRef = 86D299D71CA72C8300AA8739 /* email_gray@3x.png */; };
 		C429FE23F637B9810327BB16 /* Pods.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = B808E2B0FC48822C25B15FCE /* Pods.framework */; };
 /* End PBXBuildFile section */
 
@@ -113,6 +125,20 @@
 		86D299B61CA60C2100AA8739 /* UILabel+Tweed.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "UILabel+Tweed.swift"; sourceTree = "<group>"; };
 		86D299B81CA60D4500AA8739 /* UIColor+Tweed.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "UIColor+Tweed.swift"; sourceTree = "<group>"; };
 		86D299BA1CA7110700AA8739 /* TweedViewConstants.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = TweedViewConstants.swift; sourceTree = "<group>"; };
+		86D299BD1CA714A500AA8739 /* FollowViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = FollowViewController.swift; sourceTree = "<group>"; };
+		86D299C01CA7177000AA8739 /* TweedNetworking.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = TweedNetworking.swift; sourceTree = "<group>"; };
+		86D299C21CA71E5F00AA8739 /* plus_white.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = plus_white.png; sourceTree = "<group>"; };
+		86D299C31CA71E5F00AA8739 /* plus_white@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "plus_white@2x.png"; sourceTree = "<group>"; };
+		86D299C41CA71E5F00AA8739 /* plus_white@3x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "plus_white@3x.png"; sourceTree = "<group>"; };
+		86D299C81CA71F3700AA8739 /* UIImage+ImageEffects.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "UIImage+ImageEffects.h"; sourceTree = "<group>"; };
+		86D299C91CA71F3700AA8739 /* UIImage+ImageEffects.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "UIImage+ImageEffects.m"; sourceTree = "<group>"; };
+		86D299CA1CA71F3700AA8739 /* UIImage+SeshUtils.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "UIImage+SeshUtils.h"; sourceTree = "<group>"; };
+		86D299CB1CA71F3700AA8739 /* UIImage+SeshUtils.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "UIImage+SeshUtils.m"; sourceTree = "<group>"; };
+		86D299CF1CA721CA00AA8739 /* tweed_texture.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = tweed_texture.png; sourceTree = "<group>"; };
+		86D299D21CA729F800AA8739 /* TweedTextField.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = TweedTextField.swift; sourceTree = "<group>"; };
+		86D299D51CA72C8300AA8739 /* email_gray.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = email_gray.png; sourceTree = "<group>"; };
+		86D299D61CA72C8300AA8739 /* email_gray@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "email_gray@2x.png"; sourceTree = "<group>"; };
+		86D299D71CA72C8300AA8739 /* email_gray@3x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "email_gray@3x.png"; sourceTree = "<group>"; };
 		B808E2B0FC48822C25B15FCE /* Pods.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		C8015E868E43487347046249 /* Pods.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = Pods.debug.xcconfig; path = "Pods/Target Support Files/Pods/Pods.debug.xcconfig"; sourceTree = "<group>"; };
 /* End PBXFileReference section */
@@ -186,6 +212,8 @@
 		8614E8051CA5F39600DF48EA /* Tweed */ = {
 			isa = PBXGroup;
 			children = (
+				86D299D41CA72A0400AA8739 /* Reusable Components */,
+				86D299BF1CA7175E00AA8739 /* Networking */,
 				86D299B51CA60C0D00AA8739 /* Extensions */,
 				86D299B11CA60B5700AA8739 /* View Controllers */,
 				8614E8061CA5F39600DF48EA /* AppDelegate.swift */,
@@ -226,6 +254,7 @@
 		86D2998C1CA608A200AA8739 /* Resources */ = {
 			isa = PBXGroup;
 			children = (
+				86D299D11CA721CD00AA8739 /* Textures */,
 				86D2998E1CA608C400AA8739 /* Fonts */,
 				86D2998D1CA608BB00AA8739 /* Icons */,
 				8614E8101CA5F39600DF48EA /* Assets.xcassets */,
@@ -239,6 +268,12 @@
 		86D2998D1CA608BB00AA8739 /* Icons */ = {
 			isa = PBXGroup;
 			children = (
+				86D299D51CA72C8300AA8739 /* email_gray.png */,
+				86D299D61CA72C8300AA8739 /* email_gray@2x.png */,
+				86D299D71CA72C8300AA8739 /* email_gray@3x.png */,
+				86D299C21CA71E5F00AA8739 /* plus_white.png */,
+				86D299C31CA71E5F00AA8739 /* plus_white@2x.png */,
+				86D299C41CA71E5F00AA8739 /* plus_white@3x.png */,
 			);
 			name = Icons;
 			sourceTree = "<group>";
@@ -269,6 +304,7 @@
 		86D299B11CA60B5700AA8739 /* View Controllers */ = {
 			isa = PBXGroup;
 			children = (
+				86D299BC1CA7148B00AA8739 /* Follow */,
 				86D299B21CA60B6400AA8739 /* Home */,
 			);
 			name = "View Controllers";
@@ -287,11 +323,55 @@
 		86D299B51CA60C0D00AA8739 /* Extensions */ = {
 			isa = PBXGroup;
 			children = (
+				86D299CE1CA71F3C00AA8739 /* UIImage */,
 				86D299AF1CA609A200AA8739 /* UIFont+Tweed.swift */,
 				86D299B61CA60C2100AA8739 /* UILabel+Tweed.swift */,
 				86D299B81CA60D4500AA8739 /* UIColor+Tweed.swift */,
 			);
 			name = Extensions;
+			sourceTree = "<group>";
+		};
+		86D299BC1CA7148B00AA8739 /* Follow */ = {
+			isa = PBXGroup;
+			children = (
+				86D299BD1CA714A500AA8739 /* FollowViewController.swift */,
+			);
+			name = Follow;
+			sourceTree = "<group>";
+		};
+		86D299BF1CA7175E00AA8739 /* Networking */ = {
+			isa = PBXGroup;
+			children = (
+				86D299C01CA7177000AA8739 /* TweedNetworking.swift */,
+			);
+			name = Networking;
+			sourceTree = "<group>";
+		};
+		86D299CE1CA71F3C00AA8739 /* UIImage */ = {
+			isa = PBXGroup;
+			children = (
+				86D299C81CA71F3700AA8739 /* UIImage+ImageEffects.h */,
+				86D299C91CA71F3700AA8739 /* UIImage+ImageEffects.m */,
+				86D299CA1CA71F3700AA8739 /* UIImage+SeshUtils.h */,
+				86D299CB1CA71F3700AA8739 /* UIImage+SeshUtils.m */,
+			);
+			name = UIImage;
+			sourceTree = "<group>";
+		};
+		86D299D11CA721CD00AA8739 /* Textures */ = {
+			isa = PBXGroup;
+			children = (
+				86D299CF1CA721CA00AA8739 /* tweed_texture.png */,
+			);
+			name = Textures;
+			sourceTree = "<group>";
+		};
+		86D299D41CA72A0400AA8739 /* Reusable Components */ = {
+			isa = PBXGroup;
+			children = (
+				86D299D21CA729F800AA8739 /* TweedTextField.swift */,
+			);
+			name = "Reusable Components";
 			sourceTree = "<group>";
 		};
 		E88152B23AB8FC9772C3D7B9 /* Frameworks */ = {
@@ -418,22 +498,29 @@
 			isa = PBXResourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				86D299D91CA72C8300AA8739 /* email_gray@2x.png in Resources */,
 				86D2999F1CA6094600AA8739 /* Gotham-Black.otf in Resources */,
+				86D299C51CA71E5F00AA8739 /* plus_white.png in Resources */,
+				86D299C71CA71E5F00AA8739 /* plus_white@3x.png in Resources */,
 				86D299A01CA6094600AA8739 /* Gotham-BlackItalic.otf in Resources */,
 				86D299A11CA6094600AA8739 /* Gotham-Bold.otf in Resources */,
 				86D299A21CA6094600AA8739 /* Gotham-BoldItalic.otf in Resources */,
 				86D299A31CA6094600AA8739 /* Gotham-Book.otf in Resources */,
 				86D299A41CA6094600AA8739 /* Gotham-BookItalic.otf in Resources */,
 				86D299A51CA6094600AA8739 /* Gotham-Light.otf in Resources */,
+				86D299D01CA721CA00AA8739 /* tweed_texture.png in Resources */,
 				86D299A61CA6094600AA8739 /* Gotham-LightItalic.otf in Resources */,
 				86D299A71CA6094600AA8739 /* Gotham-Medium.otf in Resources */,
 				86D299A81CA6094600AA8739 /* Gotham-MediumItalic.otf in Resources */,
 				86D299A91CA6094600AA8739 /* Gotham-Thin.otf in Resources */,
 				86D299AA1CA6094600AA8739 /* Gotham-ThinItalic.otf in Resources */,
 				86D299AB1CA6094600AA8739 /* Gotham-Ultra.otf in Resources */,
+				86D299D81CA72C8300AA8739 /* email_gray.png in Resources */,
+				86D299C61CA71E5F00AA8739 /* plus_white@2x.png in Resources */,
 				86D299AC1CA6094600AA8739 /* Gotham-UltraItalic.otf in Resources */,
 				86D299AD1CA6094600AA8739 /* Gotham-XLight.otf in Resources */,
 				86D299AE1CA6094600AA8739 /* Gotham-XLightItalic.otf in Resources */,
+				86D299DA1CA72C8300AA8739 /* email_gray@3x.png in Resources */,
 				8614E8141CA5F39600DF48EA /* LaunchScreen.storyboard in Resources */,
 				8614E8111CA5F39600DF48EA /* Assets.xcassets in Resources */,
 			);
@@ -508,6 +595,7 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				86D299CD1CA71F3700AA8739 /* UIImage+SeshUtils.m in Sources */,
 				8614E83E1CA5F6EC00DF48EA /* HomeViewController.swift in Sources */,
 				8614E80F1CA5F39600DF48EA /* Tweed.xcdatamodeld in Sources */,
 				8614E83A1CA5F64000DF48EA /* DataManager.m in Sources */,
@@ -515,7 +603,11 @@
 				86D299B01CA609A200AA8739 /* UIFont+Tweed.swift in Sources */,
 				8614E8071CA5F39600DF48EA /* AppDelegate.swift in Sources */,
 				86D299B41CA60BA800AA8739 /* TweetTableViewCell.swift in Sources */,
+				86D299BE1CA714A500AA8739 /* FollowViewController.swift in Sources */,
+				86D299CC1CA71F3700AA8739 /* UIImage+ImageEffects.m in Sources */,
 				86D299B91CA60D4500AA8739 /* UIColor+Tweed.swift in Sources */,
+				86D299D31CA729F800AA8739 /* TweedTextField.swift in Sources */,
+				86D299C11CA7177000AA8739 /* TweedNetworking.swift in Sources */,
 				86D299BB1CA7110700AA8739 /* TweedViewConstants.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;

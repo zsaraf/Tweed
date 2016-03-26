@@ -29,7 +29,8 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
     }
 
     func customizeAppearance() {
-        UINavigationBar.appearance().titleTextAttributes = [NSFontAttributeName: UIFont.bookGotham(17.0)!]
+        UINavigationBar.appearance().titleTextAttributes = [NSFontAttributeName: UIFont.bookGotham(17.0)!, NSForegroundColorAttributeName: UIColor.whiteColor()]
+        UINavigationBar.appearance().barTintColor = UIColor.tweedBlue()
     }
 
     func applicationWillResignActive(application: UIApplication) {

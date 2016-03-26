@@ -10,6 +10,10 @@ import UIKit
 
 extension UIColor {
 
+    static func tweedBlue() -> UIColor {
+        return UIColor(red:0.37, green:0.47, blue:0.63, alpha:1.00)
+    }
+
     static func tweedDarkGray() -> UIColor {
         return UIColor(red:0.2, green:0.2, blue:0.2, alpha:1)
     }
