@@ -10,6 +10,14 @@ import UIKit
 
 extension UIFont {
 
+    static func SFMedium(size: CGFloat) -> UIFont? {
+        return UIFont(name: "SF-UI-Text-Medium", size: size)
+    }
+
+    static func SFRegular(size: CGFloat) -> UIFont? {
+        return UIFont(name: "SF-UI-Text-Regular", size: size)
+    }
+    
     static func lightGotham(size: CGFloat) -> UIFont? {
         return UIFont(name: "Gotham-Light", size: size)
     }

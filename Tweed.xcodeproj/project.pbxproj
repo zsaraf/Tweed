@@ -57,6 +57,10 @@
 		86D299D81CA72C8300AA8739 /* email_gray.png in Resources */ = {isa = PBXBuildFile; fileRef = 86D299D51CA72C8300AA8739 /* email_gray.png */; };
 		86D299D91CA72C8300AA8739 /* email_gray@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 86D299D61CA72C8300AA8739 /* email_gray@2x.png */; };
 		86D299DA1CA72C8300AA8739 /* email_gray@3x.png in Resources */ = {isa = PBXBuildFile; fileRef = 86D299D71CA72C8300AA8739 /* email_gray@3x.png */; };
+		AF8883741CA732D40097DCDA /* SF-UI-Text-Light.otf in Resources */ = {isa = PBXBuildFile; fileRef = AF8883721CA732D40097DCDA /* SF-UI-Text-Light.otf */; };
+		AF8883751CA732D40097DCDA /* SF-UI-Text-Regular.otf in Resources */ = {isa = PBXBuildFile; fileRef = AF8883731CA732D40097DCDA /* SF-UI-Text-Regular.otf */; };
+		AF8883791CA734210097DCDA /* User+CoreDataProperties.swift in Sources */ = {isa = PBXBuildFile; fileRef = AF8883771CA734210097DCDA /* User+CoreDataProperties.swift */; };
+		AF88837A1CA734210097DCDA /* User.swift in Sources */ = {isa = PBXBuildFile; fileRef = AF8883781CA734210097DCDA /* User.swift */; };
 		C429FE23F637B9810327BB16 /* Pods.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = B808E2B0FC48822C25B15FCE /* Pods.framework */; };
 /* End PBXBuildFile section */
 
@@ -139,6 +143,10 @@
 		86D299D51CA72C8300AA8739 /* email_gray.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = email_gray.png; sourceTree = "<group>"; };
 		86D299D61CA72C8300AA8739 /* email_gray@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "email_gray@2x.png"; sourceTree = "<group>"; };
 		86D299D71CA72C8300AA8739 /* email_gray@3x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "email_gray@3x.png"; sourceTree = "<group>"; };
+		AF8883721CA732D40097DCDA /* SF-UI-Text-Light.otf */ = {isa = PBXFileReference; lastKnownFileType = file; path = "SF-UI-Text-Light.otf"; sourceTree = "<group>"; };
+		AF8883731CA732D40097DCDA /* SF-UI-Text-Regular.otf */ = {isa = PBXFileReference; lastKnownFileType = file; path = "SF-UI-Text-Regular.otf"; sourceTree = "<group>"; };
+		AF8883771CA734210097DCDA /* User+CoreDataProperties.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "User+CoreDataProperties.swift"; sourceTree = "<group>"; };
+		AF8883781CA734210097DCDA /* User.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = User.swift; sourceTree = "<group>"; };
 		B808E2B0FC48822C25B15FCE /* Pods.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		C8015E868E43487347046249 /* Pods.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = Pods.debug.xcconfig; path = "Pods/Target Support Files/Pods/Pods.debug.xcconfig"; sourceTree = "<group>"; };
 /* End PBXFileReference section */
@@ -244,6 +252,7 @@
 		8614E83C1CA5F65800DF48EA /* Core Data */ = {
 			isa = PBXGroup;
 			children = (
+				AF8883761CA7340C0097DCDA /* NSManagedObjects */,
 				8614E8381CA5F64000DF48EA /* DataManager.h */,
 				8614E8391CA5F64000DF48EA /* DataManager.m */,
 				8614E80D1CA5F39600DF48EA /* Tweed.xcdatamodeld */,
@@ -281,6 +290,8 @@
 		86D2998E1CA608C400AA8739 /* Fonts */ = {
 			isa = PBXGroup;
 			children = (
+				AF8883721CA732D40097DCDA /* SF-UI-Text-Light.otf */,
+				AF8883731CA732D40097DCDA /* SF-UI-Text-Regular.otf */,
 				86D2998F1CA608EE00AA8739 /* Gotham-Black.otf */,
 				86D299901CA608EE00AA8739 /* Gotham-BlackItalic.otf */,
 				86D299911CA608EE00AA8739 /* Gotham-Bold.otf */,
@@ -372,6 +383,15 @@
 				86D299D21CA729F800AA8739 /* TweedTextField.swift */,
 			);
 			name = "Reusable Components";
+			sourceTree = "<group>";
+		};
+		AF8883761CA7340C0097DCDA /* NSManagedObjects */ = {
+			isa = PBXGroup;
+			children = (
+				AF8883771CA734210097DCDA /* User+CoreDataProperties.swift */,
+				AF8883781CA734210097DCDA /* User.swift */,
+			);
+			name = NSManagedObjects;
 			sourceTree = "<group>";
 		};
 		E88152B23AB8FC9772C3D7B9 /* Frameworks */ = {
@@ -500,12 +520,14 @@
 			files = (
 				86D299D91CA72C8300AA8739 /* email_gray@2x.png in Resources */,
 				86D2999F1CA6094600AA8739 /* Gotham-Black.otf in Resources */,
+				AF8883751CA732D40097DCDA /* SF-UI-Text-Regular.otf in Resources */,
 				86D299C51CA71E5F00AA8739 /* plus_white.png in Resources */,
 				86D299C71CA71E5F00AA8739 /* plus_white@3x.png in Resources */,
 				86D299A01CA6094600AA8739 /* Gotham-BlackItalic.otf in Resources */,
 				86D299A11CA6094600AA8739 /* Gotham-Bold.otf in Resources */,
 				86D299A21CA6094600AA8739 /* Gotham-BoldItalic.otf in Resources */,
 				86D299A31CA6094600AA8739 /* Gotham-Book.otf in Resources */,
+				AF8883741CA732D40097DCDA /* SF-UI-Text-Light.otf in Resources */,
 				86D299A41CA6094600AA8739 /* Gotham-BookItalic.otf in Resources */,
 				86D299A51CA6094600AA8739 /* Gotham-Light.otf in Resources */,
 				86D299D01CA721CA00AA8739 /* tweed_texture.png in Resources */,
@@ -599,10 +621,12 @@
 				8614E83E1CA5F6EC00DF48EA /* HomeViewController.swift in Sources */,
 				8614E80F1CA5F39600DF48EA /* Tweed.xcdatamodeld in Sources */,
 				8614E83A1CA5F64000DF48EA /* DataManager.m in Sources */,
+				AF88837A1CA734210097DCDA /* User.swift in Sources */,
 				86D299B71CA60C2100AA8739 /* UILabel+Tweed.swift in Sources */,
 				86D299B01CA609A200AA8739 /* UIFont+Tweed.swift in Sources */,
 				8614E8071CA5F39600DF48EA /* AppDelegate.swift in Sources */,
 				86D299B41CA60BA800AA8739 /* TweetTableViewCell.swift in Sources */,
+				AF8883791CA734210097DCDA /* User+CoreDataProperties.swift in Sources */,
 				86D299BE1CA714A500AA8739 /* FollowViewController.swift in Sources */,
 				86D299CC1CA71F3700AA8739 /* UIImage+ImageEffects.m in Sources */,
 				86D299B91CA60D4500AA8739 /* UIColor+Tweed.swift in Sources */,
