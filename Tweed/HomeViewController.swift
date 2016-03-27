@@ -9,19 +9,60 @@
 import UIKit
 import SnapKit
 import SDWebImage
+import TLYShyNavBar
 
-class HomeViewController: UIViewController, UITableViewDelegate, UITableViewDataSource, FollowViewControllerDelegate, ViewProfileAlertViewDelegate {
+class HomeViewController: UIViewController, UITableViewDelegate, UITableViewDataSource, UICollectionViewDataSource, UICollectionViewDelegate, FollowViewControllerDelegate, ViewProfileAlertViewDelegate {
     let tableView = UITableView()
+    var followingCollectionView: UICollectionView!
 
-    private var tweets = [Tweet]()
+    private var tweets = Tweet.getAllTweets()
+    private var following = User.getFollowingUsers()!
     
     override func viewDidLoad() {
         super.viewDidLoad()
 
         self.view.backgroundColor = UIColor.whiteColor()
+        self.automaticallyAdjustsScrollViewInsets = false
 
-        self.configureNavigationBar()
+        self.setupNavigationBar()
+        self.setupCollectionView()
+        self.setupTableView()
 
+        self.refreshTweets()
+    }
+
+    func setupNavigationBar() {
+        self.title = "Timeline"
+
+        let addFollowsButton = UIButton(type: .Custom)
+        addFollowsButton.bounds = CGRectMake(0, 0, 20, 20)
+        addFollowsButton.setImage(UIImage(named: "plus_white"), forState: .Normal)
+        addFollowsButton.addTarget(self, action: "addFollows:", forControlEvents: .TouchUpInside)
+        self.navigationItem.rightBarButtonItem = UIBarButtonItem(customView: addFollowsButton)
+    }
+
+    func setupCollectionView() {
+        let layout = UICollectionViewFlowLayout()
+        layout.scrollDirection = .Horizontal
+        layout.minimumLineSpacing = 0
+        layout.minimumInteritemSpacing = 0
+        let itemSize = UIScreen.mainScreen().bounds.size.height * 0.1
+        layout.itemSize = CGSize(width: itemSize, height: itemSize)
+        layout.sectionInset = UIEdgeInsetsZero
+
+        self.followingCollectionView = UICollectionView(frame: CGRectMake(0, 0, UIScreen.mainScreen().bounds.size.width, itemSize), collectionViewLayout: layout)
+        self.followingCollectionView.delegate = self
+        self.followingCollectionView.dataSource = self
+        self.followingCollectionView.showsHorizontalScrollIndicator = false
+        self.followingCollectionView.showsVerticalScrollIndicator = false
+        self.followingCollectionView.alwaysBounceHorizontal = true
+        self.followingCollectionView.registerClass(FollowingCollectionViewCell.self, forCellWithReuseIdentifier: FollowingCollectionViewCell.Identifier)
+        self.followingCollectionView.backgroundColor = UIColor.tweedBlue()
+
+        self.shyNavBarManager.extensionView = self.followingCollectionView
+    }
+
+    func setupTableView() {
         self.tableView.delegate = self
         self.tableView.dataSource = self
         self.tableView.estimatedRowHeight = 60.0
@@ -30,24 +71,28 @@ class HomeViewController: UIViewController, UITableViewDelegate, UITableViewData
         self.tableView.separatorStyle = .None
         self.view.addSubview(self.tableView)
 
+        self.shyNavBarManager.scrollView = self.tableView
+
         self.tableView.snp_makeConstraints { (make) -> Void in
             make.edges.equalTo(self.view)
         }
     }
-    
-    override func viewDidAppear(animated: Bool) {
-        super.viewDidAppear(animated)
-        self.refreshTweets()
+
+    // MARK: UICollectionViewDataSource
+
+    func collectionView(collectionView: UICollectionView, cellForItemAtIndexPath indexPath: NSIndexPath) -> UICollectionViewCell {
+        let cell = collectionView.dequeueReusableCellWithReuseIdentifier(FollowingCollectionViewCell.Identifier, forIndexPath: indexPath) as! FollowingCollectionViewCell
+        let user = self.following[indexPath.row]
+        cell.user = user
+        return cell
     }
 
-    func configureNavigationBar() {
-        self.title = "Timeline"
+    func numberOfSectionsInCollectionView(collectionView: UICollectionView) -> Int {
+        return 1
+    }
 
-        let addFollowsButton = UIButton(type: .Custom)
-        addFollowsButton.bounds = CGRectMake(0, 0, 20, 20)
-        addFollowsButton.setImage(UIImage(named: "plus_white"), forState: .Normal)
-        addFollowsButton.addTarget(self, action: "addFollows:", forControlEvents: .TouchUpInside)
-        self.navigationItem.rightBarButtonItem = UIBarButtonItem(customView: addFollowsButton)
+    func collectionView(collectionView: UICollectionView, numberOfItemsInSection section: Int) -> Int {
+        return self.following.count
     }
 
     // MARK: UITableViewDelegate & UITableViewDataSource methods
@@ -114,7 +159,15 @@ class HomeViewController: UIViewController, UITableViewDelegate, UITableViewData
     }
     
     // MARK: Private Methods
-    
+
+    func updateViewsWithCoreData() {
+        // Assign tweets and resume operations as normal
+        self.tweets = Tweet.getAllTweets()
+        self.following = User.getFollowingUsers()!
+        self.followingCollectionView.reloadData()
+        self.tableView.reloadData()
+    }
+
     func refreshTweets() {
         TweedNetworking.refreshTweets({ (task, responseObject) in
             
@@ -135,10 +188,8 @@ class HomeViewController: UIViewController, UITableViewDelegate, UITableViewData
             
             // Save the shared context
             DataManager.sharedInstance().saveContext(nil)
-            
-            // Assign tweets and resume operations as normal
-            self.tweets = Tweet.getAllTweets()
-            self.tableView.reloadData()
+
+            self.updateViewsWithCoreData()
             
         }) { (task, error) in
             print("Failed to refresh tweets with error: \(error.localizedDescription)")
@@ -160,8 +211,11 @@ class HomeViewController: UIViewController, UITableViewDelegate, UITableViewData
             }
 
             TweedNetworking.editHandles(Array(), deletions: [user.screenName!], successHandler: { (task, responseObject) -> Void in
-                user.
-                DataManager.sharedInstance().deleteObject(user, context: nil)
+                user.isFollowing = NSNumber(bool: false)
+                DataManager.sharedInstance().saveContext(nil)
+
+                self.updateViewsWithCoreData()
+
                 animationView.completionBlock = { (confirmationView: SeshConfirmationAnimationView!) -> Void in
                     UIView.animateWithDuration(0.3, animations: { () -> Void in
                         animationView.alpha = 0.0

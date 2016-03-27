@@ -116,7 +116,7 @@ class ViewProfileAlertViewController: SeshAlertViewController {
         imageView.layer.cornerRadius = 5.0
         imageView.layer.borderColor = UIColor.whiteColor().CGColor
         imageView.layer.borderWidth = 2.0
-        imageView.sd_setImageWithURL(NSURL(string: self.user.profileImageUrl!))
+        imageView.sd_setImageWithURL(NSURL(string: self.user.bigProfileImageUrl()))
         self.imageWrapperView.addSubview(imageView)
 
         imageView.snp_makeConstraints { (make) -> Void in

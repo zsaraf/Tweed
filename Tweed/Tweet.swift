@@ -61,6 +61,7 @@ class Tweet: NSManagedObject {
         let allTweets = NSFetchRequest()
         allTweets.entity = NSEntityDescription.entityForName("Tweet", inManagedObjectContext: moc)
         allTweets.sortDescriptors = [NSSortDescriptor(key: "createdAt", ascending: false)]
+        allTweets.predicate = NSPredicate(format: "user.isFollowing == %@", NSNumber(bool: true))
         allTweets.includesPropertyValues = false
         var results: [AnyObject]?
         do {

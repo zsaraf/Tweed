@@ -32,6 +32,7 @@
 		862A4A581CA852B4009B29F4 /* ViewProfileAlertViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 862A4A561CA852B4009B29F4 /* ViewProfileAlertViewController.swift */; };
 		862A4A5A1CA8719A009B29F4 /* SeshDotView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 862A4A591CA8719A009B29F4 /* SeshDotView.swift */; };
 		862A4A5C1CA875F3009B29F4 /* NSNumber+Tweed.swift in Sources */ = {isa = PBXBuildFile; fileRef = 862A4A5B1CA875F3009B29F4 /* NSNumber+Tweed.swift */; };
+		86CD27411CA8968E0076E5AC /* FollowingCollectionViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 86CD27401CA8968E0076E5AC /* FollowingCollectionViewCell.swift */; };
 		86D299821CA5F87300AA8739 /* CFNetwork.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 86D2997A1CA5F87300AA8739 /* CFNetwork.framework */; };
 		86D299831CA5F87300AA8739 /* Foundation.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 86D2997B1CA5F87300AA8739 /* Foundation.framework */; };
 		86D299841CA5F87300AA8739 /* GameKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 86D2997C1CA5F87300AA8739 /* GameKit.framework */; };
@@ -181,6 +182,7 @@
 		862A4A561CA852B4009B29F4 /* ViewProfileAlertViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ViewProfileAlertViewController.swift; sourceTree = "<group>"; };
 		862A4A591CA8719A009B29F4 /* SeshDotView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SeshDotView.swift; sourceTree = "<group>"; };
 		862A4A5B1CA875F3009B29F4 /* NSNumber+Tweed.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "NSNumber+Tweed.swift"; sourceTree = "<group>"; };
+		86CD27401CA8968E0076E5AC /* FollowingCollectionViewCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = FollowingCollectionViewCell.swift; sourceTree = "<group>"; };
 		86D2997A1CA5F87300AA8739 /* CFNetwork.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = CFNetwork.framework; path = System/Library/Frameworks/CFNetwork.framework; sourceTree = SDKROOT; };
 		86D2997B1CA5F87300AA8739 /* Foundation.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Foundation.framework; path = System/Library/Frameworks/Foundation.framework; sourceTree = SDKROOT; };
 		86D2997C1CA5F87300AA8739 /* GameKit.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = GameKit.framework; path = System/Library/Frameworks/GameKit.framework; sourceTree = SDKROOT; };
@@ -529,6 +531,7 @@
 				8614E83D1CA5F6EC00DF48EA /* HomeViewController.swift */,
 				86D299B31CA60BA800AA8739 /* TweetTableViewCell.swift */,
 				86D299BA1CA7110700AA8739 /* TweedViewConstants.swift */,
+				86CD27401CA8968E0076E5AC /* FollowingCollectionViewCell.swift */,
 			);
 			name = Home;
 			sourceTree = "<group>";
@@ -907,6 +910,7 @@
 				862A4A5A1CA8719A009B29F4 /* SeshDotView.swift in Sources */,
 				86D29A1B1CA7475F00AA8739 /* LoadingViewController.swift in Sources */,
 				862A4A531CA78B0B009B29F4 /* AddedHandleTableViewCell.swift in Sources */,
+				86CD27411CA8968E0076E5AC /* FollowingCollectionViewCell.swift in Sources */,
 				86D299B01CA609A200AA8739 /* UIFont+Tweed.swift in Sources */,
 				8614E8071CA5F39600DF48EA /* AppDelegate.swift in Sources */,
 				86D299E91CA7384100AA8739 /* UIFont+Sesh.m in Sources */,

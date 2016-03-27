@@ -28,7 +28,7 @@ class RecommendationTableViewCell: UICollectionViewCell {
             
             self.screenNameLabel.text = "@" + (user?.screenName)!
             self.fullNameLabel.text = user?.displayName()
-            self.avatarImageView.sd_setImageWithURL(NSURL(string: (user?.profileImageUrl)!))
+            self.avatarImageView.sd_setImageWithURL(NSURL(string: (user?.bigProfileImageUrl())!))
             
         }
     }

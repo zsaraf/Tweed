@@ -89,6 +89,7 @@ if [[ "$CONFIGURATION" == "Debug" ]]; then
   install_framework "Pods/NSDate_TimeAgo.framework"
   install_framework "Pods/SDWebImage.framework"
   install_framework "Pods/SnapKit.framework"
+  install_framework "Pods/TLYShyNavBar.framework"
   install_framework "Pods/UIScrollView_InfiniteScroll.framework"
   install_framework "Pods/pop.framework"
 fi
@@ -98,6 +99,7 @@ if [[ "$CONFIGURATION" == "Release" ]]; then
   install_framework "Pods/NSDate_TimeAgo.framework"
   install_framework "Pods/SDWebImage.framework"
   install_framework "Pods/SnapKit.framework"
+  install_framework "Pods/TLYShyNavBar.framework"
   install_framework "Pods/UIScrollView_InfiniteScroll.framework"
   install_framework "Pods/pop.framework"
 fi

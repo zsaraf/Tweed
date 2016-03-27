@@ -24,7 +24,7 @@ class User: NSManagedObject {
         
         user!.id = String(userObject["id"] as! Int)
         user!.screenName = userObject["screen_name"] as? String
-        user!.profileImageUrl = (userObject["profile_image"] as? String)?.stringByReplacingOccurrencesOfString("_normal", withString: "")
+        user!.profileImageUrl = (userObject["profile_image"] as? String)
         user!.name = userObject["name"] as? String
         user!.followersCount = NSNumber(integer: (userObject["followers_count"] as! Int))
         user!.followingCount = NSNumber(integer: (userObject["following_count"] as! Int))
@@ -57,6 +57,27 @@ class User: NSManagedObject {
         } else {
             print("Should not happen help!")
             return nil;
+        }
+    }
+
+    static func getFollowingUsers() -> [User]? {
+        let moc = DataManager.sharedInstance().managedObjectContext!!
+        let request = NSFetchRequest()
+        let predicate = NSPredicate(format: "isFollowing == %@", NSNumber(bool: true))
+        request.entity = NSEntityDescription.entityForName("User", inManagedObjectContext: moc)
+        request.sortDescriptors = [NSSortDescriptor(key: "name", ascending: true)]
+        request.predicate = predicate
+        var results: [AnyObject]?
+        do {
+            results = try moc.executeFetchRequest(request)
+        } catch let error as NSError {
+            print(error.localizedDescription)
+        }
+
+        if (results == nil || results?.count == 0) {
+            return [User]();
+        } else {
+            return results as? [User]
         }
     }
     
@@ -126,10 +147,9 @@ class User: NSManagedObject {
         return abbreviatedName!
     }
     
-    func smallProfileImageUrl() -> String {
-        return (self.profileImageUrl?.stringByReplacingOccurrencesOfString(".jpeg", withString: "_normal.jpeg"))!
+    func bigProfileImageUrl() -> String {
+        return (self.profileImageUrl?.stringByReplacingOccurrencesOfString("_normal", withString: ""))!
     }
-
     
     class func testUser() -> User? {
         let moc = DataManager.sharedInstance().managedObjectContext!!

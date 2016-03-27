@@ -28,8 +28,7 @@ class TweetTableViewCell: UITableViewCell {
             self.dateLabel.text = self.tweet?.createdAt?.timeAgo()
             self.nameLabel.text = self.tweet?.user?.displayName()
             self.handleLabel.text = "@" + (self.tweet?.user?.screenName)!
-            self.profileImageView.sd_setImageWithURL(NSURL(string: (self.tweet?.user?.smallProfileImageUrl())!))
-
+            self.profileImageView.sd_setImageWithURL(NSURL(string: (self.tweet?.user?.profileImageUrl)!))
         }
     }
 
