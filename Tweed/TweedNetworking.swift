@@ -19,7 +19,7 @@ class TweedNetworking: NSObject {
     }
 
     static func baseUrl() -> NSURL {
-        return NSURL(string: "http://ec2-54-201-37-165.us-west-2.compute.amazonaws.com/django/")!
+        return NSURL(string: "http://ec2-54-201-127-170.us-west-2.compute.amazonaws.com/django/")!
     }
 
     static func request(relativeUrl: String, method: RequestMethod, params: [String: AnyObject], successHandler: TweedNetworkingSuccessHandler?, failureHandler: TweedNetworkingFailureHandler?) {

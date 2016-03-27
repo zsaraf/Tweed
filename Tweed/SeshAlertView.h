@@ -40,6 +40,11 @@ typedef BOOL(^SeshAlertViewClickedButtonHandler)(SeshAlertView *alertView, NSInt
             cancelButtonTitle:(NSString *)cancelButtonTitle
             otherButtonTitles:(NSArray *)otherButtonTitles;
 
+- (instancetype)initFromWindow:(UIWindow *)oldWindow
+     customAlertViewController:(UIViewController *)customAlertViewController
+                   xProportion:(CGFloat)xProportion
+                   yProportion:(CGFloat)yProportion;
+
 /* 
  This can only be called when networking is set to yes.
  This will bring up a new alert view that says that there are network 

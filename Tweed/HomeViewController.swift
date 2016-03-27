@@ -38,7 +38,7 @@ class HomeViewController: UIViewController, UITableViewDelegate, UITableViewData
         let addFollowsButton = UIButton(type: .Custom)
         addFollowsButton.bounds = CGRectMake(0, 0, 20, 20)
         addFollowsButton.setImage(UIImage(named: "plus_white"), forState: .Normal)
-        addFollowsButton.addTarget(self, action: #selector(HomeViewController.addFollows(_:)), forControlEvents: .TouchUpInside)
+        addFollowsButton.addTarget(self, action: "addFollows:", forControlEvents: .TouchUpInside)
         self.navigationItem.rightBarButtonItem = UIBarButtonItem(customView: addFollowsButton)
     }
 
@@ -53,6 +53,7 @@ class HomeViewController: UIViewController, UITableViewDelegate, UITableViewData
         var cell = tableView.dequeueReusableCellWithIdentifier(identifier) as? TweetTableViewCell
         if cell == nil {
             cell = TweetTableViewCell(style: .Default, reuseIdentifier: identifier)
+            cell?.selectionStyle = .None
         }
 
         cell?.messageTextView.text = "Hey this is my first tweet. Feels good to be alive! Read all of my tweets. Catch up on everything."
@@ -66,6 +67,12 @@ class HomeViewController: UIViewController, UITableViewDelegate, UITableViewData
 
     func numberOfSectionsInTableView(tableView: UITableView) -> Int {
         return 1
+    }
+
+    func tableView(tableView: UITableView, didSelectRowAtIndexPath indexPath: NSIndexPath) {
+        let user = User.testUser()
+        let alertView = ViewProfileAlertView(user: user!)
+        alertView.show()
     }
 
     // MARK: Action methods

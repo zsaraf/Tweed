@@ -78,10 +78,10 @@ class FollowViewController: UIViewController, UIViewControllerAnimatedTransition
         titleLabel.shadowOffset = CGSizeMake(0, 1)
         self.topBarView.addSubview(titleLabel)
 
-        let cancelButton = self.topBarButton(UIImage(named: "cancel_circle")!, action: #selector(FollowViewController.cancel(_:)))
+        let cancelButton = self.topBarButton(UIImage(named: "cancel_circle")!, action: "cancel:")
         self.topBarView.addSubview(cancelButton)
 
-        self.acceptButton = self.topBarButton(UIImage(named: "check_circle")!, action: #selector(FollowViewController.accept(_:)))
+        self.acceptButton = self.topBarButton(UIImage(named: "check_circle")!, action: "accept:")
         self.acceptButton.alpha = 0.0
         self.topBarView.addSubview(self.acceptButton)
 
@@ -151,7 +151,7 @@ class FollowViewController: UIViewController, UIViewControllerAnimatedTransition
         self.textField.autocorrectionType = .No
         self.contentView.addSubview(self.textField)
 
-        NSNotificationCenter.defaultCenter().addObserver(self, selector: #selector(FollowViewController.textFieldDidChange(_:)), name: "UITextFieldTextDidChangeNotification", object: self.textField)
+        NSNotificationCenter.defaultCenter().addObserver(self, selector: "textFieldDidChange:", name: "UITextFieldTextDidChangeNotification", object: self.textField)
 
         self.errorLabel = UILabel(font: UIFont.bookGotham(14.0)!, textColor: UIColor.grayColor(), text: "User not found", textAlignment: .Center)
         self.errorLabel.alpha = 0.0
@@ -244,7 +244,18 @@ class FollowViewController: UIViewController, UIViewControllerAnimatedTransition
     // MARK: Action Methods
 
     func cancel(button: UIButton) {
-        self.delegate?.followViewControllerDidCancel(self)
+        if self.addedHandles.count > 0 {
+            let alertView = SeshAlertView(swiftWithTitle: "Are you sure?", message: "You need to click the accept button in order to save these changes!", delegate: nil, cancelButtonTitle: "No", otherButtonTitles: ["Yes, I'm sure"])
+            alertView.dismissalBlock = { (alertView: SeshAlertView!, index: Int) -> Void in
+                if index == 0 {
+                    self.delegate?.followViewControllerDidCancel(self)
+                }
+            }
+            alertView.show()
+        } else {
+            self.delegate?.followViewControllerDidCancel(self)
+        }
+
     }
 
     func accept(button: UIButton) {

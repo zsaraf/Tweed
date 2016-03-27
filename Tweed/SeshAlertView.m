@@ -84,6 +84,25 @@
     return self;
 }
 
+- (instancetype)initFromWindow:(UIWindow *)oldWindow
+     customAlertViewController:(UIViewController *)customAlertViewController
+                   xProportion:(CGFloat)xProportion
+                   yProportion:(CGFloat)yProportion
+{
+    _xProportion = xProportion;
+    _yProportion = yProportion;
+    if ([customAlertViewController isKindOfClass:[SeshAlertViewController class]]) {
+        ((SeshAlertViewController *)customAlertViewController).delegate = self;
+    }
+    SeshAlertView *alertView = [self initWithMainViewController:(UIViewController<SeshBlurWindowViewControllerDelegate> *)customAlertViewController
+                                                      pageTitle:@""
+                                                showCloseButton:NO
+                                               showAcceptButton:NO
+                                                     fullScreen:NO];
+    alertView.tintColor = [UIColor colorWithWhite:.95 alpha:.7];
+    return alertView;
+}
+
 - (void)show
 {
     [[SeshAlertViewManager sharedManager] scheduleAlertView:self];

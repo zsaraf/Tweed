@@ -7,6 +7,7 @@
 //
 
 #import "UIColor+Sesh.h"
+#import "Tweed-Swift.h"
 
 @implementation UIColor (Sesh)
 
@@ -17,7 +18,7 @@
 
 + (UIColor *)seshDarkRed
 {
-    return [UIColor colorWithRed:0.95 green:0.5 blue:0.44 alpha:1];
+    return [UIColor tweedBlue];
 }
 
 + (UIColor *)seshDarkRedSelected
@@ -78,12 +79,12 @@
 
 + (UIColor *)seshButtonNormalColor
 {
-    return [UIColor colorWithRed:.96 green:.50 blue:.43 alpha:1];
+    return [UIColor tweedBlue];
 }
 
 + (UIColor *)seshButtonSelectedColor
 {
-    return [UIColor colorWithRed:.87 green:.45 blue:.39 alpha:1];
+    return [UIColor colorWithRed:0.18 green:0.24 blue:0.31 alpha:1];
 }
 
 + (UIColor *)seshTableViewCellSeparatorColor

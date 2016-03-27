@@ -14,7 +14,7 @@ class User: NSManagedObject {
 
     class func createOrUpdateUserWithObject(userObject: [String: AnyObject]) -> User? {
         
-        let moc = DataManager.sharedInstance().managedObjectContext!
+        let moc = DataManager.sharedInstance().managedObjectContext!!
         var user: User?
         let request = NSFetchRequest()
         let predicate = NSPredicate(format: "id == %@", String(userObject["id"] as! Int))
@@ -44,6 +44,7 @@ class User: NSManagedObject {
         user!.location = userObject["location"] as? String
         user!.bio = userObject["description"] as? String
         user!.profileBackgroundColor = userObject["profile_background_color"] as? String
+        user!.profileBackgroundImageUrl = userObject["profile_background_image"] as? String
         
         DataManager.sharedInstance().saveContext(nil)
         return user
@@ -53,7 +54,7 @@ class User: NSManagedObject {
     
     // Insert code here to add functionality to your managed object subclass
     class func testUser() -> User? {
-        let moc = DataManager.sharedInstance().managedObjectContext!
+        let moc = DataManager.sharedInstance().managedObjectContext!!
         var user: User?
         let request = NSFetchRequest()
         request.entity = NSEntityDescription.entityForName("User", inManagedObjectContext: moc)

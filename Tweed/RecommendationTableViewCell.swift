@@ -125,7 +125,7 @@ class RecommendationTableViewCell: UICollectionViewCell {
         }
         
         self.followButton.setTitle("Follow", forState: .Normal)
-        self.followButton.addTarget(self, action: #selector(RecommendationTableViewCell.followButtonHit(_:)), forControlEvents: .TouchUpInside)
+        self.followButton.addTarget(self, action: "followButtonHit:", forControlEvents: .TouchUpInside)
         wrapper.addSubview(self.followButton)
         let buttonSize = self.followButton.typicalSize()
         self.followButton.snp_makeConstraints { (make) in

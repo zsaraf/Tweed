@@ -2,7 +2,7 @@
 //  User+CoreDataProperties.swift
 //  Tweed
 //
-//  Created by Raymond Kennedy on 3/26/16.
+//  Created by Zachary Saraf on 3/27/16.
 //  Copyright © 2016 Zachary Saraf. All rights reserved.
 //
 //  Choose "Create NSManagedObject Subclass…" from the Core Data editor menu
@@ -22,6 +22,9 @@ extension User {
     @NSManaged var profileBackgroundColor: String?
     @NSManaged var profileImageUrl: String?
     @NSManaged var screenName: String?
+    @NSManaged var profileBackgroundImageUrl: String?
+    @NSManaged var followingCount: NSNumber?
+    @NSManaged var tweetCount: NSNumber?
     @NSManaged var recommendedUser: RecommendedUser?
 
 }

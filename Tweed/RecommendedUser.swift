@@ -15,7 +15,7 @@ class RecommendedUser: NSManagedObject {
 // Insert code here to add functionality to your managed object subclass
     
     class func createOrUpdateRecommendedUser(ruObject: [String: AnyObject]) -> RecommendedUser {
-        let moc = DataManager.sharedInstance().managedObjectContext!
+        let moc = DataManager.sharedInstance().managedObjectContext!!
         let recommendedUser = NSEntityDescription.insertNewObjectForEntityForName("RecommendedUser", inManagedObjectContext: moc) as! RecommendedUser
         recommendedUser.user = User.createOrUpdateUserWithObject(ruObject)
         return recommendedUser
@@ -41,12 +41,12 @@ class RecommendedUser: NSManagedObject {
             }
             
             }) { (task, error) in
-                
+                print("error")
         }
     }
     
     class func getAllRecommendedUsers() -> [RecommendedUser] {
-        let moc = DataManager.sharedInstance().managedObjectContext!
+        let moc = DataManager.sharedInstance().managedObjectContext!!
         let allRUs = NSFetchRequest()
         allRUs.entity = NSEntityDescription.entityForName("RecommendedUser", inManagedObjectContext: moc)
         allRUs.includesPropertyValues = false
