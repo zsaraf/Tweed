@@ -98,6 +98,8 @@
 		86D29A171CA7434900AA8739 /* TweedAuthManager.m in Sources */ = {isa = PBXBuildFile; fileRef = 86D29A151CA7434900AA8739 /* TweedAuthManager.m */; };
 		86D29A1B1CA7475F00AA8739 /* LoadingViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 86D29A1A1CA7475F00AA8739 /* LoadingViewController.swift */; };
 		86D29A1D1CA749F200AA8739 /* tweed_loading.png in Resources */ = {isa = PBXBuildFile; fileRef = 86D29A1C1CA749F200AA8739 /* tweed_loading.png */; };
+		AF615DC41CA84CA800161B56 /* payment_check.png in Resources */ = {isa = PBXBuildFile; fileRef = AF615DC21CA84CA800161B56 /* payment_check.png */; };
+		AF615DC51CA84CA800161B56 /* payment_check@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = AF615DC31CA84CA800161B56 /* payment_check@2x.png */; };
 		AF8883751CA732D40097DCDA /* SF-UI-Text-Regular.otf in Resources */ = {isa = PBXBuildFile; fileRef = AF8883731CA732D40097DCDA /* SF-UI-Text-Regular.otf */; };
 		AF8883791CA734210097DCDA /* User+CoreDataProperties.swift in Sources */ = {isa = PBXBuildFile; fileRef = AF8883771CA734210097DCDA /* User+CoreDataProperties.swift */; };
 		AF88837A1CA734210097DCDA /* User.swift in Sources */ = {isa = PBXBuildFile; fileRef = AF8883781CA734210097DCDA /* User.swift */; };
@@ -250,6 +252,8 @@
 		86D29A151CA7434900AA8739 /* TweedAuthManager.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = TweedAuthManager.m; sourceTree = "<group>"; };
 		86D29A1A1CA7475F00AA8739 /* LoadingViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = LoadingViewController.swift; sourceTree = "<group>"; };
 		86D29A1C1CA749F200AA8739 /* tweed_loading.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = tweed_loading.png; sourceTree = "<group>"; };
+		AF615DC21CA84CA800161B56 /* payment_check.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = payment_check.png; sourceTree = "<group>"; };
+		AF615DC31CA84CA800161B56 /* payment_check@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "payment_check@2x.png"; sourceTree = "<group>"; };
 		AF8883731CA732D40097DCDA /* SF-UI-Text-Regular.otf */ = {isa = PBXFileReference; lastKnownFileType = file; path = "SF-UI-Text-Regular.otf"; sourceTree = "<group>"; };
 		AF8883771CA734210097DCDA /* User+CoreDataProperties.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "User+CoreDataProperties.swift"; sourceTree = "<group>"; };
 		AF8883781CA734210097DCDA /* User.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = User.swift; sourceTree = "<group>"; };
@@ -433,6 +437,8 @@
 		86D2998D1CA608BB00AA8739 /* Icons */ = {
 			isa = PBXGroup;
 			children = (
+				AF615DC21CA84CA800161B56 /* payment_check.png */,
+				AF615DC31CA84CA800161B56 /* payment_check@2x.png */,
 				862A4A2C1CA77DCD009B29F4 /* circle3.png */,
 				86D299EE1CA7396600AA8739 /* cancel_circle.png */,
 				86D299EF1CA7396600AA8739 /* cancel_circle@2x.png */,
@@ -751,6 +757,7 @@
 				86D2999F1CA6094600AA8739 /* Gotham-Black.otf in Resources */,
 				AF8883751CA732D40097DCDA /* SF-UI-Text-Regular.otf in Resources */,
 				86D29A0B1CA7396600AA8739 /* check@3x.png in Resources */,
+				AF615DC51CA84CA800161B56 /* payment_check@2x.png in Resources */,
 				86D29A0D1CA7396600AA8739 /* plus_circle@2x.png in Resources */,
 				86D29A0E1CA7396600AA8739 /* plus_circle@3x.png in Resources */,
 				86D299C51CA71E5F00AA8739 /* plus_white.png in Resources */,
@@ -792,6 +799,7 @@
 				86D29A021CA7396600AA8739 /* cancel_circle@3x.png in Resources */,
 				8614E8141CA5F39600DF48EA /* LaunchScreen.storyboard in Resources */,
 				8614E8111CA5F39600DF48EA /* Assets.xcassets in Resources */,
+				AF615DC41CA84CA800161B56 /* payment_check.png in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

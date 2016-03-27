@@ -180,6 +180,12 @@ class FollowViewController: UIViewController, UIViewControllerAnimatedTransition
         self.tableView.dataSource = self
         self.tableView.delegate = self
         self.contentView.addSubview(self.tableView)
+        
+        // To get rid of sticky section headers
+        let dummyViewHeight: CGFloat = 40.0;
+        let dummyView = UIView(frame: CGRect(x: 0, y: 0, width: Int(self.tableView.bounds.size.width), height: Int(dummyViewHeight)))
+        self.tableView.tableHeaderView = dummyView;
+        self.tableView.contentInset = UIEdgeInsets(top: -dummyViewHeight, left: 0, bottom: 0, right: 0)
 
         self.tableView.snp_makeConstraints { (make) -> Void in
             make.top.equalTo(self.errorLabel.snp_bottom).offset(10)
@@ -253,6 +259,9 @@ class FollowViewController: UIViewController, UIViewControllerAnimatedTransition
         }
 
         TweedNetworking.addHandles(Array(self.addedHandles), successHandler: { (task, responseObject) -> Void in
+            for ro in responseObject as! [[String: AnyObject]] {
+                User.createOrUpdateUserWithObject(ro)
+            }
             animationView.completionBlock = { (Void) -> Void in
                 self.delegate?.followViewControllerDidFinish(self)
             }

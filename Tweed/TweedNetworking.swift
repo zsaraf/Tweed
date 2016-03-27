@@ -67,12 +67,7 @@ class TweedNetworking: NSObject {
     }
 
     static func addHandles(handles: [String], successHandler: TweedNetworkingSuccessHandler?, failureHandler: TweedNetworkingFailureHandler) {
-        var addedHandles = [[String:AnyObject]]()
-        for handle in handles {
-            addedHandles.append(["screen_name": handle])
-        }
-
-        self.request("accounts/follows/", method: .Post, params: ["additions": addedHandles], successHandler: successHandler, failureHandler: failureHandler)
+        self.request("accounts/follows/", method: .Post, params: ["additions": handles], successHandler: successHandler, failureHandler: failureHandler)
     }
 
 }
