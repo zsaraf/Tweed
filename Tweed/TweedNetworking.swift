@@ -69,5 +69,9 @@ class TweedNetworking: NSObject {
     static func addHandles(handles: [String], successHandler: TweedNetworkingSuccessHandler?, failureHandler: TweedNetworkingFailureHandler) {
         self.request("accounts/follows/", method: .Post, params: ["additions": handles], successHandler: successHandler, failureHandler: failureHandler)
     }
+    
+    static func refreshTweets(successHandler: TweedNetworkingSuccessHandler?, failureHandler: TweedNetworkingFailureHandler) {
+        self.request("accounts/users/refresh/", method: .Post, params: [String: AnyObject](), successHandler: successHandler, failureHandler: failureHandler)
+    }
 
 }

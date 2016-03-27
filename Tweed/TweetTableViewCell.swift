@@ -16,9 +16,9 @@ class TweetTableViewCell: UITableViewCell {
     }
 
     var profileImageView = UIImageView.init()
-    var nameLabel = UILabel(font: UIFont.bookGotham(12.0)!, textColor: UIColor.tweedDarkGray(), text: "", textAlignment: .Center)
-    var handleLabel = UILabel(font: UIFont.bookGotham(12.0)!, textColor: UIColor.tweedDarkGray(), text: "", textAlignment: .Center)
-    var dateLabel = UILabel(font: UIFont.bookGotham(11.0)!, textColor: UIColor.tweedLightGray(), text: "", textAlignment: .Center)
+    var nameLabel = UILabel(font: UIFont.SFMedium(14.0)!, textColor: UIColor.tweedGray(), text: "", textAlignment: .Center)
+    var handleLabel = UILabel(font: UIFont.SFRegular(12.0)!, textColor: UIColor.tweedGray(), text: "", textAlignment: .Center)
+    var dateLabel = UILabel(font: UIFont.SFRegular(11.0)!, textColor: UIColor.tweedLightGray(), text: "", textAlignment: .Center)
     var messageTextView = UITextView(frame: CGRectZero, textContainer: nil)
 
     override init(style: UITableViewCellStyle, reuseIdentifier: String?) {
@@ -35,39 +35,61 @@ class TweetTableViewCell: UITableViewCell {
         // Create wrapper views
         let leftWrapperView = self.createLeftWrapperView()
         let rightWrapperView = self.createRightWrapperView()
-
+        let dividerView = self.createDividerView()
+        
         self.contentView.addSubview(leftWrapperView)
         self.contentView.addSubview(rightWrapperView)
+        self.contentView.addSubview(dividerView)
 
         // Make constraints
         leftWrapperView.snp_makeConstraints { (make) -> Void in
             make.width.equalTo(self.contentView).multipliedBy(TweedViewConstants.CellLeftContentInsetMultiplier)
-            make.left.equalTo(self.contentView)
-            make.top.equalTo(self.contentView).inset(Constants.TopPadding)
+            make.top.left.equalTo(self.contentView).inset(Constants.TopPadding)
         }
 
         rightWrapperView.snp_makeConstraints { (make) -> Void in
-            make.left.equalTo(leftWrapperView.snp_right)
+            make.left.equalTo(leftWrapperView.snp_right).offset(Constants.TopPadding)
             make.right.equalTo(self.contentView)
             make.top.equalTo(self.contentView).inset(Constants.TopPadding)
-            make.bottom.equalTo(self.contentView).inset(Constants.BottomPadding)
+            make.bottom.equalTo(dividerView.snp_top).offset(-Constants.TopPadding)
         }
+        
+        dividerView.snp_makeConstraints { (make) in
+            make.left.equalTo(leftWrapperView.snp_right).offset(Constants.TopPadding)
+            make.bottom.right.equalTo(self.contentView)
+            make.height.equalTo(UIScreen.mainScreen().scale / 2)
+        }
+    }
+    
+    func createDividerView() -> UIView {
+        let dividerView = UIView()
+        dividerView.backgroundColor = UIColor.tweedDividerColor()
+        return dividerView
     }
 
     func createLeftWrapperView() -> UIView {
         let leftWrapperView = UIView()
-        leftWrapperView.addSubview(profileImageView)
 
-        // Necessary for corner radius
-        profileImageView.clipsToBounds = true
-
-        // Make constraints
-        profileImageView.snp_makeConstraints { (make) -> Void in
-            make.width.equalTo(leftWrapperView.snp_width).multipliedBy(0.8)
-            make.height.equalTo(profileImageView.snp_width)
+        let profileShadowView = UIView()
+        profileShadowView.layer.shadowColor = UIColor.blackColor().CGColor
+        profileShadowView.layer.shadowRadius = 1.0
+        profileShadowView.layer.shadowOpacity = 0.5
+        profileShadowView.layer.shadowOffset = CGSize(width: 0.0, height: 1.0)
+        leftWrapperView.addSubview(profileShadowView)
+        profileShadowView.snp_makeConstraints { (make) -> Void in
+            make.width.equalTo(leftWrapperView.snp_width)
+            make.height.equalTo(profileShadowView.snp_width)
             make.top.bottom.equalTo(leftWrapperView).inset(1.5)
             make.centerX.equalTo(leftWrapperView)
         }
+        
+        // Necessary for corner radius
+        profileImageView.clipsToBounds = true
+        profileShadowView.addSubview(profileImageView)
+        profileImageView.snp_makeConstraints { (make) in
+            make.edges.equalTo(profileShadowView)
+        }
+        
 
         return leftWrapperView
     }
@@ -79,7 +101,8 @@ class TweetTableViewCell: UITableViewCell {
         rightWrapperView.addSubview(nameAndTimeView)
 
         messageTextView.scrollEnabled = false
-        messageTextView.font = UIFont.bookGotham(12.0)
+        messageTextView.font = UIFont.SFRegular(12.0)
+        messageTextView.textColor = UIColor.tweedGray()
         messageTextView.editable = false
         messageTextView.contentInset = UIEdgeInsetsZero
         messageTextView.textContainer.lineFragmentPadding = 0.0
@@ -96,7 +119,7 @@ class TweetTableViewCell: UITableViewCell {
         messageTextView.snp_makeConstraints { (make) -> Void in
             make.right.equalTo(rightWrapperView)
             make.left.equalTo(rightWrapperView)
-            make.top.equalTo(nameAndTimeView.snp_bottom)
+            make.top.equalTo(nameAndTimeView.snp_bottom).offset(Constants.TopPadding / 2)
             make.bottom.equalTo(rightWrapperView)
         }
 
@@ -117,8 +140,8 @@ class TweetTableViewCell: UITableViewCell {
         }
 
         handleLabel.snp_makeConstraints { (make) -> Void in
-            make.top.equalTo(nameAndTimeView)
-            make.left.equalTo(nameLabel.snp_right).offset(5)
+            make.top.equalTo(nameAndTimeView).offset(1)
+            make.left.equalTo(nameLabel.snp_right).offset(Constants.TopPadding)
         }
 
         dateLabel.snp_makeConstraints { (make) -> Void in

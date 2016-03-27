@@ -57,7 +57,7 @@ class TweedTextField: UITextField {
     }
 
     func setupTextField() {
-        self.font = UIFont.bookGotham(15.0)
+        self.font = UIFont.SFRegular(15.0)
         self.textColor = UIColor.tweedBlue()
         self.attributedPlaceholder = NSAttributedString(string: "Enter username handle", attributes: [NSForegroundColorAttributeName: self.textColor!, NSFontAttributeName: self.font!])
     }

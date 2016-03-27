@@ -73,7 +73,7 @@ class FollowViewController: UIViewController, UIViewControllerAnimatedTransition
     func setupTopBarView() {
         self.topBarView = UIView()
 
-        let titleLabel = UILabel(font: UIFont.bookGotham(18.0)!, textColor: UIColor.whiteColor(), text: "Follow", textAlignment: .Center)
+        let titleLabel = UILabel(font: UIFont.SFMedium(18.0)!, textColor: UIColor.whiteColor(), text: "Follow", textAlignment: .Center)
         titleLabel.shadowColor = UIColor(white: 0.0, alpha: 0.8)
         titleLabel.shadowOffset = CGSizeMake(0, 1)
         self.topBarView.addSubview(titleLabel)
@@ -153,7 +153,7 @@ class FollowViewController: UIViewController, UIViewControllerAnimatedTransition
 
         NSNotificationCenter.defaultCenter().addObserver(self, selector: "textFieldDidChange:", name: "UITextFieldTextDidChangeNotification", object: self.textField)
 
-        self.errorLabel = UILabel(font: UIFont.bookGotham(14.0)!, textColor: UIColor.grayColor(), text: "User not found", textAlignment: .Center)
+        self.errorLabel = UILabel(font: UIFont.SFRegular(14.0)!, textColor: UIColor.grayColor(), text: "User not found", textAlignment: .Center)
         self.errorLabel.alpha = 0.0
         self.contentView.addSubview(self.errorLabel)
 
@@ -227,7 +227,7 @@ class FollowViewController: UIViewController, UIViewControllerAnimatedTransition
     }
 
     func tableView(tableView: UITableView, viewForHeaderInSection section: Int) -> UIView? {
-        let label = UILabel(font: UIFont.mediumGotham(15.0)!, textColor: UIColor.grayColor(), text: "Recently Added:", textAlignment: .Center)
+        let label = UILabel(font: UIFont.SFMedium(15.0)!, textColor: UIColor.grayColor(), text: "Recently Added:", textAlignment: .Center)
         label.backgroundColor = UIColor.clearColor()
 
         return label

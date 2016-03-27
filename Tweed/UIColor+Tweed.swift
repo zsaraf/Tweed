@@ -17,6 +17,10 @@ extension UIColor {
     static func tweedLightBlue() -> UIColor {
         return UIColor(red:0.43, green:0.55, blue:0.71, alpha:1)
     }
+    
+    static func tweedDividerColor() -> UIColor {
+        return UIColor(red:0.91, green:0.93, blue:0.96, alpha:1)
+    }
 
     
     static func tweedDarkGray() -> UIColor {

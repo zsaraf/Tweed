@@ -25,6 +25,8 @@ class HomeViewController: UIViewController, UITableViewDelegate, UITableViewData
         self.tableView.estimatedRowHeight = 60.0
         self.tableView.rowHeight = UITableViewAutomaticDimension
         self.tableView.separatorInset = UIEdgeInsetsMake(0, UIScreen.mainScreen().bounds.size.width * CGFloat(TweedViewConstants.CellLeftContentInsetMultiplier), 0, 0)
+        self.tableView.separatorStyle = .None
+        self.tableView.allowsSelection = false
         self.view.addSubview(self.tableView)
 
         self.tableView.snp_makeConstraints { (make) -> Void in
@@ -33,7 +35,7 @@ class HomeViewController: UIViewController, UITableViewDelegate, UITableViewData
     }
 
     func configureNavigationBar() {
-        self.title = "TWEED"
+        self.title = "Timeline"
 
         let addFollowsButton = UIButton(type: .Custom)
         addFollowsButton.bounds = CGRectMake(0, 0, 20, 20)
@@ -101,7 +103,7 @@ class HomeViewController: UIViewController, UITableViewDelegate, UITableViewData
     }
 
     func followViewControllerDidFinish(fvc: FollowViewController) {
-
+        
     }
 
 }

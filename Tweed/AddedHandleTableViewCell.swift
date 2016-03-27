@@ -9,7 +9,7 @@
 import UIKit
 
 class AddedHandleTableViewCell: UITableViewCell {
-    let addedHandleLabel = UILabel(font: UIFont.bookGotham(13.0)!, textColor: UIColor.grayColor(), text: "", textAlignment: .Center)
+    let addedHandleLabel = UILabel(font: UIFont.SFRegular(13.0)!, textColor: UIColor.grayColor(), text: "", textAlignment: .Center)
 
     override init(style: UITableViewCellStyle, reuseIdentifier: String?) {
         super.init(style: style, reuseIdentifier: reuseIdentifier)
