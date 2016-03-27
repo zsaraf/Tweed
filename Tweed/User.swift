@@ -27,6 +27,8 @@ class User: NSManagedObject {
         user!.profileImageUrl = (userObject["profile_image"] as? String)?.stringByReplacingOccurrencesOfString("_normal", withString: "")
         user!.name = userObject["name"] as? String
         user!.followersCount = NSNumber(integer: (userObject["followers_count"] as! Int))
+        user!.followingCount = NSNumber(integer: (userObject["following_count"] as! Int))
+        user!.tweetCount = NSNumber(integer: (userObject["tweets_count"] as! Int))
         user!.location = userObject["location"] as? String
         user!.bio = userObject["description"] as? String
         user!.profileBackgroundColor = userObject["profile_background_color"] as? String
@@ -143,16 +145,20 @@ class User: NSManagedObject {
         
         if (results == nil || results?.count == 0) {
             user = NSEntityDescription.insertNewObjectForEntityForName("User", inManagedObjectContext: moc) as? User
-        } else if (results?.count == 1) {
-            user = results![0] as? User
         } else {
-            print("Should not happen help!")
-            return nil;
+            user = results![0] as? User
         }
         
-        user!.screenName = "rayfkjklo.heysaomee"
+        user!.screenName = "rayfk"
         user!.name = "RaymondLong Kennedy"
-        user!.profileImageUrl = "https://placeholdit.imgix.net/~text?txtsize=20&txt=100%C3%97100&w=100&h=100"
+        user!.profileImageUrl = "https://media.licdn.com/mpr/mpr/shrinknp_200_200/p/7/000/211/124/06ee517.jpg"
+        user!.profileBackgroundImageUrl = "http://www.f-covers.com/namecovers/image/i-love-my-life.jpg"
+        user!.bio = "Hey my name is Raymond I love doing fun things and going out, and having fun, and run on sentences."
+        user!.profileBackgroundColor = "FF55FF"
+        user!.location = "Palo Alto, CA"
+        user!.followersCount = 236000000
+        user!.followingCount = 180
+        user!.tweetCount = 2360
         DataManager.sharedInstance().saveContext(nil)
         return user
     }

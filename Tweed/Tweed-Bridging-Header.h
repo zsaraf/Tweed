@@ -3,6 +3,7 @@
 //
 
 #import "UIImage+SeshUtils.h"
+#import "UIImage+ImageEffects.h"
 #import "SeshConfirmationAnimationView.h"
 #import "TweedAuthManager.h"
 #import "SeshActivityIndicator.h"

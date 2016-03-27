@@ -8,8 +8,13 @@
 
 import UIKit
 
+enum TweedBorderedButtonType {
+    case Gray;
+    case Blue;
+}
 
 class TweedBorderedButton: UIButton {
+    var type: TweedBorderedButtonType
 
     struct TweedBorderedButtonConstants {
         static let BorderWidth: CGFloat = 1.0
@@ -19,8 +24,10 @@ class TweedBorderedButton: UIButton {
         static let SidePading: CGFloat = 20
     }
     
-    override init(frame: CGRect) {
-        super.init(frame: frame)
+    init(type: TweedBorderedButtonType) {
+        self.type = type
+
+        super.init(frame: CGRectZero)
         self.setupDefaultValues()
     }
     
@@ -36,11 +43,18 @@ class TweedBorderedButton: UIButton {
         self.titleLabel?.font = UIFont.SFRegular(TweedBorderedButtonConstants.FontSize)!
         self.titleLabel?.lineBreakMode = .ByWordWrapping
         self.titleEdgeInsets = UIEdgeInsets(top: TweedBorderedButtonConstants.TopPadding, left: TweedBorderedButtonConstants.SidePading, bottom: TweedBorderedButtonConstants.TopPadding, right: TweedBorderedButtonConstants.SidePading)
-        
-        self.layer.borderColor = UIColor.tweedLightBlue().CGColor
-        self.setTitleColor(UIColor.tweedLightBlue(), forState: .Normal)
-        self.setTitleColor(UIColor.whiteColor(), forState: .Highlighted)
-        self.setBackgroundImage(UIImage(color: UIColor.tweedLightBlue()), forState: .Highlighted)
+
+        if self.type == .Blue {
+            self.layer.borderColor = UIColor.tweedLightBlue().CGColor
+            self.setTitleColor(UIColor.tweedLightBlue(), forState: .Normal)
+            self.setTitleColor(UIColor.whiteColor(), forState: .Highlighted)
+            self.setBackgroundImage(UIImage(color: UIColor.tweedLightBlue()), forState: .Highlighted)
+        } else {
+            self.layer.borderColor = UIColor.tweedGray().CGColor
+            self.setTitleColor(UIColor.tweedGray(), forState: .Normal)
+            self.setTitleColor(UIColor.whiteColor(), forState: .Highlighted)
+            self.setBackgroundImage(UIImage(color: UIColor.tweedGray()), forState: .Highlighted)
+        }
     }
     
     func typicalSize() -> CGSize {

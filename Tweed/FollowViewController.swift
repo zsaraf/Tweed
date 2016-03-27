@@ -269,7 +269,7 @@ class FollowViewController: UIViewController, UIViewControllerAnimatedTransition
             animationView.alpha = 1.0
         }
 
-        TweedNetworking.addHandles(Array(self.addedHandles), successHandler: { (task, responseObject) -> Void in
+        TweedNetworking.editHandles(Array(self.addedHandles), deletions: Array(), successHandler: { (task, responseObject) -> Void in
             for ro in responseObject as! [[String: AnyObject]] {
                 let user = User.createOrUpdateUserWithObject(ro)
                 user?.isFollowing = NSNumber(bool: true)

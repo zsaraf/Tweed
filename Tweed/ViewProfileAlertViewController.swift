@@ -9,10 +9,10 @@
 import UIKit
 import SDWebImage
 import SnapKit
+import HexColors
 
 protocol ViewProfileAlertViewControllerDelegate: class {
-    func profileAlertViewControllerDidTapCreateConversation(controller: ViewProfileAlertViewController)
-    func profileAlertViewControllerDidTapDirectRequest(controller: ViewProfileAlertViewController)
+    func profileAlertViewControllerDidUnfollow(alertViewController: ViewProfileAlertViewController)
 }
 
 class ViewProfileAlertViewController: SeshAlertViewController {
@@ -26,12 +26,13 @@ class ViewProfileAlertViewController: SeshAlertViewController {
     let customView = UIView(frame: CGRectZero)
 
     var contentViewTopConstraint: Constraint?
+    var coverImageViewBottomConstraint: Constraint?
 
     weak var viewProfileDelegate: ViewProfileAlertViewControllerDelegate?
 
     struct Constants {
-        static let LabelHorizontalWidthProportion = 0.8
-        static let GradientHeight = CGFloat(20.0)
+        static let HorizontalInset = 20.0
+        static let FontSize = CGFloat(17.0)
     }
 
     init(user: User) {
@@ -60,13 +61,12 @@ class ViewProfileAlertViewController: SeshAlertViewController {
     }
 
     func maskImageView() {
-        self.imageWrapperView.layer.cornerRadius = self.imageWrapperView.bounds.size.width/2.0
-        self.imageView.layer.cornerRadius = self.imageView.bounds.size.width/2.0
+//        self.imageWrapperView.layer.cornerRadius = self.imageWrapperView.bounds.size.width/2.0
     }
 
     func updateContentViewTopConstraint() {
         let convertedPoint = self.topView.convertPoint(CGPointMake(0, self.topView.bounds.size.height), toView:self.view)
-        self.contentViewTopConstraint?.updateOffset(convertedPoint.y + 15)
+        self.coverImageViewBottomConstraint?.updateOffset(convertedPoint.y + 15)
     }
 
     // MARK: Top view setup
@@ -86,12 +86,15 @@ class ViewProfileAlertViewController: SeshAlertViewController {
         self.imageWrapperView.snp_makeConstraints { (make) -> Void in
             make.top.equalTo(self.topView)
             make.centerX.equalTo(self.topView)
-            make.width.equalTo(self.topView).multipliedBy(0.5)
+            make.width.equalTo(self.topView).multipliedBy(0.4)
             make.height.equalTo(self.imageWrapperView.snp_width)
         }
 
         let displayName = user.displayName()
-        let titleLabel = UILabel(font: UIFont.SFRegular(18.0)!, textColor: UIColor.tweedBlue(), text: displayName, textAlignment: .Center)
+        let titleLabel = UILabel(font: UIFont.SFRegular(26.0)!, textColor: UIColor.whiteColor(), text: displayName, textAlignment: .Center)
+        titleLabel.shadowColor = UIColor(white: 0, alpha: 0.4)
+        titleLabel.shadowOffset = CGSizeMake(0, 1)
+        titleLabel.layer.shadowRadius = 4.0
         self.topView.addSubview(titleLabel)
 
         titleLabel.snp_makeConstraints { (make) -> Void in
@@ -99,7 +102,6 @@ class ViewProfileAlertViewController: SeshAlertViewController {
             make.top.equalTo(self.imageWrapperView.snp_bottom).offset(10)
             make.bottom.equalTo(self.topView)
         }
-
     }
 
     func setupImageView() {
@@ -108,8 +110,12 @@ class ViewProfileAlertViewController: SeshAlertViewController {
         self.imageWrapperView.layer.shadowOffset = CGSizeMake(0, 0);
         self.imageWrapperView.layer.shadowOpacity = 0.4;
         self.imageWrapperView.layer.shadowRadius = 3;
+        self.imageWrapperView.layer.cornerRadius = 5.0
 
         imageView.layer.masksToBounds = true
+        imageView.layer.cornerRadius = 5.0
+        imageView.layer.borderColor = UIColor.whiteColor().CGColor
+        imageView.layer.borderWidth = 2.0
         imageView.sd_setImageWithURL(NSURL(string: self.user.profileImageUrl!))
         self.imageWrapperView.addSubview(imageView)
 
@@ -118,10 +124,22 @@ class ViewProfileAlertViewController: SeshAlertViewController {
         }
     }
 
-    func setupCoverImageView() {
+    func setupCoverImageView() -> UIImageView {
         let coverImageView = UIImageView()
         coverImageView.contentMode = .ScaleAspectFill
-        coverImageView.sd_setImageWithURL(NSURL(string: self.user.profileBackgroundImageUrl!))
+        coverImageView.clipsToBounds = true
+
+        if self.user.profileBackgroundColor != nil {
+            coverImageView.backgroundColor = UIColor.hx_colorWithHexRGBAString("#\(self.user.profileBackgroundColor!)")
+        }
+
+        if self.user.profileBackgroundImageUrl != nil {
+            SDWebImageManager.sharedManager().downloadImageWithURL(NSURL(string: self.user.profileBackgroundImageUrl!), options: SDWebImageOptions(), progress: nil) { (image: UIImage!, error: NSError!, type: SDImageCacheType, finished: Bool, url: NSURL!) -> Void in
+                let blurredImage = image.applyBlurWithRadius(10.0, tintColor: UIColor(white: 0, alpha: 0.2), saturationDeltaFactor: 1.2, maskImage: nil)
+                coverImageView.image = blurredImage
+            }
+        }
+        return coverImageView
     }
 
     // MARK: Custom view setup
@@ -133,89 +151,146 @@ class ViewProfileAlertViewController: SeshAlertViewController {
 
         customContentView.snp_makeConstraints { (make) -> Void in
             make.left.right.bottom.equalTo(self.customView)
-            self.contentViewTopConstraint = make.top.equalTo(self.customView).constraint
+            self.contentViewTopConstraint = make.top.equalTo(self.view).constraint
         }
     }
 
     func setupCustomContentView() -> UIView {
         let customContentView = UIView()
 
+        // Add subviews
+        let coverImageView = self.setupCoverImageView()
+        customContentView.addSubview(coverImageView)
+
+        let handleLabel = UILabel(font: UIFont.SFRegular(Constants.FontSize)!, textColor: UIColor.tweedGray(), text: "@\(self.user.screenName!)", textAlignment: .Left)
+        customContentView.addSubview(handleLabel)
+
+        let dotView = SeshDotView(frame: CGRectZero)
+        customContentView.addSubview(dotView)
+
+        let locationLabel = UILabel(font: UIFont.SFRegular(Constants.FontSize)!, textColor: UIColor.tweedGray(), text: self.user.location!, textAlignment: .Left)
+        customContentView.addSubview(locationLabel)
+
+        let bioLabel = UILabel(font: UIFont.SFRegular(Constants.FontSize)!, textColor: UIColor.tweedGray(), text: self.user.bio!, textAlignment: .Left)
+        bioLabel.numberOfLines = 0
+        bioLabel.lineBreakMode = .ByWordWrapping
+        customContentView.addSubview(bioLabel)
+
+        let countsViewWrapper = UIView()
+        customContentView.addSubview(countsViewWrapper)
+
+        let countsView = self.setupProfileCountsView()
+        countsViewWrapper.addSubview(countsView)
+
+        let unfollowButton = TweedBorderedButton(type: .Gray)
+        unfollowButton.setTitle("Unfollow", forState: .Normal)
+        unfollowButton.addTarget(self, action: "unfollow:", forControlEvents: .TouchUpInside)
+        customContentView.addSubview(unfollowButton)
+
+        // Setup constraints
+
+        coverImageView.snp_makeConstraints { (make) -> Void in
+            make.top.equalTo(customContentView)
+            make.left.right.equalTo(customContentView)
+            self.coverImageViewBottomConstraint = make.bottom.equalTo(customContentView.snp_top).constraint
+        }
+
+        handleLabel.snp_makeConstraints { (make) -> Void in
+            make.top.equalTo(coverImageView.snp_bottom).offset(Constants.HorizontalInset)
+            make.left.equalTo(customContentView).offset(Constants.HorizontalInset)
+        }
+
+        dotView.snp_makeConstraints { (make) -> Void in
+            make.width.height.equalTo(3.0)
+            make.left.equalTo(handleLabel.snp_right).offset(5)
+            make.centerY.equalTo(handleLabel)
+        }
+
+        locationLabel.snp_makeConstraints { (make) -> Void in
+            make.top.equalTo(handleLabel)
+            make.left.equalTo(dotView.snp_right).offset(5)
+        }
+
+        bioLabel.snp_makeConstraints { (make) -> Void in
+            make.left.right.equalTo(customContentView).inset(Constants.HorizontalInset)
+            make.top.equalTo(handleLabel.snp_bottom).offset(10)
+        }
+
+        countsViewWrapper.snp_makeConstraints { (make) -> Void in
+            make.left.right.equalTo(customContentView)
+            make.top.equalTo(bioLabel.snp_bottom)
+            make.bottom.equalTo(unfollowButton.snp_top)
+        }
+
+        countsView.snp_makeConstraints { (make) -> Void in
+            make.left.right.centerY.equalTo(countsViewWrapper)
+        }
+
+        unfollowButton.snp_makeConstraints { (make) -> Void in
+            make.bottom.equalTo(customContentView).inset(Constants.HorizontalInset)
+            make.centerX.equalTo(customContentView)
+        }
 
         return customContentView
     }
 
-//    func setupContentHorizontalScrollViewFirstPage() -> UIView {
-//        let firstPage = UIScrollView(frame: CGRectZero)
-//        firstPage.showsHorizontalScrollIndicator = false
-//        firstPage.showsVerticalScrollIndicator = false
-//
-//        let contentView = UIView(frame: CGRectZero)
-//        firstPage.addSubview(contentView)
-//
-//        /* Setup auto fitting scroll view */
-//        contentView.snp_makeConstraints { (make) -> Void in
-//            make.edges.equalTo(firstPage)
-//            make.width.equalTo(firstPage)
-//        }
-//
-//        let labelHeight = SeshInformationLabel.typicalSizeForBoundingSize(self.view.bounds.size).height
-//
-//        let major = self.user.major != nil && self.user.major!?.isEmpty != true ? self.user.major! : "Unspecified"
-//        let majorLabel = SeshInformationLabel(frame: CGRectZero, item: SeshInformationLabelItem(text: major, imageName: "book"))
-//        contentView.addSubview(majorLabel)
-//
-//        let classYear = self.user.class_year as? Int
-//        let classYearString = classYear != nil ? "\(classYear!)" : "Unspecified"
-//        let classYearLabel = SeshInformationLabel(frame: CGRectZero, item: SeshInformationLabelItem(text: classYearString, imageName: "hashtag"))
-//        contentView.addSubview(classYearLabel)
-//
-//        let bio = (self.user.bio! == nil || self.user.bio!!.isEmpty) ? "No bio" : self.user.bio!!
-//        let bioTextView = UITextView(frame: CGRectZero, textContainer: nil)
-//        bioTextView.textAlignment = .Center
-//        bioTextView.scrollEnabled = false
-//        bioTextView.font = UIFont.bookGothamWithSize(classYearLabel.font.pointSize)
-//        bioTextView.textColor = classYearLabel.textColor
-//        bioTextView.text = bio
-//        bioTextView.editable = false
-//        contentView.addSubview(bioTextView)
-//
-//        majorLabel.snp_makeConstraints { (make) -> Void in
-//            make.width.equalTo(firstPage).multipliedBy(Constants.LabelHorizontalWidthProportion)
-//            make.height.equalTo(labelHeight)
-//            make.centerX.equalTo(contentView)
-//            make.top.equalTo(contentView).inset(Constants.GradientHeight)
-//        }
-//
-//        classYearLabel.snp_makeConstraints { (make) -> Void in
-//            make.width.equalTo(firstPage).multipliedBy(Constants.LabelHorizontalWidthProportion)
-//            make.height.equalTo(labelHeight)
-//            make.top.equalTo(majorLabel.snp_bottom)
-//            make.centerX.equalTo(contentView)
-//        }
-//        
-//        bioTextView.snp_makeConstraints { (make) -> Void in
-//            make.top.equalTo(classYearLabel.snp_bottom).offset(10)
-//            make.centerX.equalTo(contentView)
-//            make.bottom.equalTo(contentView).inset(Constants.GradientHeight)
-//            make.width.equalTo(firstPage).multipliedBy(Constants.LabelHorizontalWidthProportion)
-//        }
-//
-//        return firstPage
-//    }
+    func setupProfileCountsView() -> UIView {
+        let countsView = UIView()
 
-//    func setupContentHorizontalScrollViewSecondPage() -> UIView {
-//        let secondPage = ViewProfileClassesView(userId: self.user.user_id! as! Int, isTutor: self.user.is_tutor! as! Bool)
-//        return secondPage
-//    }
+        let tweetCountView = self.setupProfileCountView(self.user.tweetCount!.abbreviated(), explanation: "Tweets")
+        countsView.addSubview(tweetCountView)
+
+        let followingCountView = self.setupProfileCountView(self.user.followingCount!.abbreviated(), explanation: "Following")
+        countsView.addSubview(followingCountView)
+
+        let followerCountView = self.setupProfileCountView(self.user.followersCount!.abbreviated(), explanation: "Followers")
+        countsView.addSubview(followerCountView)
+
+        tweetCountView.snp_makeConstraints { (make) -> Void in
+            make.left.top.bottom.equalTo(countsView)
+            make.width.equalTo(countsView).dividedBy(3.0)
+        }
+
+        followingCountView.snp_makeConstraints { (make) -> Void in
+            make.top.bottom.equalTo(countsView)
+            make.left.equalTo(tweetCountView.snp_right)
+            make.width.equalTo(countsView).dividedBy(3.0)
+        }
+
+        followerCountView.snp_makeConstraints { (make) -> Void in
+            make.top.bottom.right.equalTo(countsView)
+            make.left.equalTo(tweetCountView.snp_right)
+            make.width.equalTo(countsView).dividedBy(3.0)
+        }
+
+        return countsView
+    }
+
+    func setupProfileCountView(num: String, explanation: String) -> UIView {
+        let view = UIView()
+
+        let numLabel = UILabel(font: UIFont.SFRegular(Constants.FontSize)!, textColor: UIColor.tweedGray(), text: num, textAlignment: .Center)
+        view.addSubview(numLabel)
+
+        let explanationLabel = UILabel(font: UIFont.SFRegular(Constants.FontSize - CGFloat(2.0))!, textColor: UIColor.tweedGray(), text: explanation, textAlignment: .Center)
+        view.addSubview(explanationLabel)
+
+        numLabel.snp_makeConstraints { (make) -> Void in
+            make.left.right.top.equalTo(view)
+        }
+
+        explanationLabel.snp_makeConstraints { (make) -> Void in
+            make.left.right.bottom.equalTo(view)
+            make.top.equalTo(numLabel.snp_bottom).offset(5)
+        }
+
+        return view
+    }
 
     // MARK: Action methods
 
-    func tapped(button: UIButton) {
-//        if user.is_tutor as! Bool {
-//            self.viewProfileDelegate?.profileAlertViewControllerDidTapDirectRequest(self)
-//        } else {
-//            self.viewProfileDelegate?.profileAlertViewControllerDidTapCreateConversation(self)
-//        }
+    func unfollow(button: UIButton) {
+        self.viewProfileDelegate?.profileAlertViewControllerDidUnfollow(self)
     }
 
 }

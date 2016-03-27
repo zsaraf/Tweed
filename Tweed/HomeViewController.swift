@@ -10,7 +10,7 @@ import UIKit
 import SnapKit
 import SDWebImage
 
-class HomeViewController: UIViewController, UITableViewDelegate, UITableViewDataSource, FollowViewControllerDelegate {
+class HomeViewController: UIViewController, UITableViewDelegate, UITableViewDataSource, FollowViewControllerDelegate, ViewProfileAlertViewDelegate {
     let tableView = UITableView()
 
     private var tweets = [Tweet]()
@@ -28,7 +28,6 @@ class HomeViewController: UIViewController, UITableViewDelegate, UITableViewData
         self.tableView.rowHeight = UITableViewAutomaticDimension
         self.tableView.separatorInset = UIEdgeInsetsMake(0, UIScreen.mainScreen().bounds.size.width * CGFloat(TweedViewConstants.CellLeftContentInsetMultiplier), 0, 0)
         self.tableView.separatorStyle = .None
-        self.tableView.allowsSelection = false
         self.view.addSubview(self.tableView)
 
         self.tableView.snp_makeConstraints { (make) -> Void in
@@ -75,8 +74,9 @@ class HomeViewController: UIViewController, UITableViewDelegate, UITableViewData
     }
 
     func tableView(tableView: UITableView, didSelectRowAtIndexPath indexPath: NSIndexPath) {
-        let user = User.testUser()
-        let alertView = ViewProfileAlertView(user: user!)
+        let user = self.tweets[indexPath.row].user!
+        let alertView = ViewProfileAlertView(user: user)
+        alertView.viewProfileDelegate = self
         alertView.show()
     }
 
@@ -143,6 +143,43 @@ class HomeViewController: UIViewController, UITableViewDelegate, UITableViewData
         }) { (task, error) in
             print("Failed to refresh tweets with error: \(error.localizedDescription)")
         }
+    }
+
+    // MARK: ViewProfileAlertViewDelegate methods
+
+    func viewProfileAlertViewDidTapUnfollow(alertView: ViewProfileAlertView) {
+        let user = alertView.user!
+        alertView.dismissWithCompletion { (av: SeshBlurWindow!) -> Void in
+            let animationView = SeshConfirmationAnimationView(frame: self.view.bounds)
+            animationView.alpha = 0.0;
+            animationView.confirmationText = "Unfollowed!"
+            self.navigationController!.view.addSubview(animationView)
+
+            UIView.animateWithDuration(0.3) { () -> Void in
+                animationView.alpha = 1.0
+            }
+
+            TweedNetworking.editHandles(Array(), deletions: [user.screenName!], successHandler: { (task, responseObject) -> Void in
+                user.
+                DataManager.sharedInstance().deleteObject(user, context: nil)
+                animationView.completionBlock = { (confirmationView: SeshConfirmationAnimationView!) -> Void in
+                    UIView.animateWithDuration(0.3, animations: { () -> Void in
+                        animationView.alpha = 0.0
+                    }, completion: { (success: Bool) -> Void in
+                            animationView.removeFromSuperview()
+                    })
+                }
+                animationView.startAnimating()
+            }) { (task, error) -> Void in
+                UIView.animateWithDuration(0.1, animations: { () -> Void in
+                    animationView.alpha = 0.0
+                    }, completion: { (success: Bool) -> Void in
+                        animationView.removeFromSuperview()
+                        SeshAlertView.init(swiftWithTitle: "Error!", message: "We couldn't unfollow \(user.displayName())! Please check your internet connection and try again!", delegate: nil, cancelButtonTitle: nil, otherButtonTitles: ["OKAY"]).show()
+                })
+            }
+        }
+
     }
 
 }

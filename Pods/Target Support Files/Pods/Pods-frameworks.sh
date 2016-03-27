@@ -85,6 +85,7 @@ strip_invalid_archs() {
 
 if [[ "$CONFIGURATION" == "Debug" ]]; then
   install_framework "Pods/AFNetworking.framework"
+  install_framework "Pods/HexColors.framework"
   install_framework "Pods/NSDate_TimeAgo.framework"
   install_framework "Pods/SDWebImage.framework"
   install_framework "Pods/SnapKit.framework"
@@ -93,6 +94,7 @@ if [[ "$CONFIGURATION" == "Debug" ]]; then
 fi
 if [[ "$CONFIGURATION" == "Release" ]]; then
   install_framework "Pods/AFNetworking.framework"
+  install_framework "Pods/HexColors.framework"
   install_framework "Pods/NSDate_TimeAgo.framework"
   install_framework "Pods/SDWebImage.framework"
   install_framework "Pods/SnapKit.framework"

@@ -19,7 +19,7 @@ class RecommendationTableViewCell: UICollectionViewCell {
     private let avatarImageView = UIImageView()
     private let screenNameLabel = UILabel(font: UIFont.SFRegular(16)!, textColor: UIColor.tweedGray(), text: "", textAlignment: .Left)
     private let fullNameLabel = UILabel(font: UIFont.SFMedium(20)!, textColor: UIColor.tweedGray(), text: "", textAlignment: .Left)
-    private let followButton = TweedBorderedButton()
+    private let followButton = TweedBorderedButton(type: .Blue)
 
     var delegate: RecommendationTableViewCellDelegate?
     
