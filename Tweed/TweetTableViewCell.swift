@@ -17,9 +17,9 @@ class TweetTableViewCell: UITableViewCell {
     }
 
     private let profileImageView = UIImageView.init()
-    private let nameLabel = UILabel(font: UIFont.SFMedium(14.0)!, textColor: UIColor.tweedGray(), text: "", textAlignment: .Center)
-    private let handleLabel = UILabel(font: UIFont.SFRegular(12.0)!, textColor: UIColor.tweedGray(), text: "", textAlignment: .Center)
-    private let dateLabel = UILabel(font: UIFont.SFRegular(11.0)!, textColor: UIColor.tweedLightGray(), text: "", textAlignment: .Center)
+    private let nameLabel = UILabel(font: UIFont.SFMedium(17.0)!, textColor: UIColor.tweedGray(), text: "", textAlignment: .Center)
+    private let handleLabel = UILabel(font: UIFont.SFRegular(14.0)!, textColor: UIColor.tweedGray(), text: "", textAlignment: .Center)
+    private let dateLabel = UILabel(font: UIFont.SFRegular(12.0)!, textColor: UIColor.tweedLightGray(), text: "", textAlignment: .Center)
     private let messageTextView = UITextView(frame: CGRectZero, textContainer: nil)
     
     var tweet: Tweet? {
@@ -28,7 +28,7 @@ class TweetTableViewCell: UITableViewCell {
             self.dateLabel.text = self.tweet?.createdAt?.timeAgo()
             self.nameLabel.text = self.tweet?.user?.displayName()
             self.handleLabel.text = "@" + (self.tweet?.user?.screenName)!
-            self.profileImageView.sd_setImageWithURL(NSURL(string: (self.tweet?.user?.profileImageUrl)!))
+            self.profileImageView.sd_setImageWithURL(NSURL(string: (self.tweet?.user?.smallProfileImageUrl())!))
 
         }
     }
@@ -69,7 +69,7 @@ class TweetTableViewCell: UITableViewCell {
         dividerView.snp_makeConstraints { (make) in
             make.left.equalTo(leftWrapperView.snp_right).offset(Constants.TopPadding)
             make.bottom.right.equalTo(self.contentView)
-            make.height.equalTo(UIScreen.mainScreen().scale / 2)
+            make.height.equalTo(3 / UIScreen.mainScreen().scale)
         }
     }
     
@@ -113,7 +113,7 @@ class TweetTableViewCell: UITableViewCell {
         rightWrapperView.addSubview(nameAndTimeView)
 
         messageTextView.scrollEnabled = false
-        messageTextView.font = UIFont.SFRegular(12.0)
+        messageTextView.font = UIFont.SFRegular(14.0)
         messageTextView.textColor = UIColor.tweedGray()
         messageTextView.editable = false
         messageTextView.contentInset = UIEdgeInsetsZero

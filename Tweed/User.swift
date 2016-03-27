@@ -123,6 +123,10 @@ class User: NSManagedObject {
         }
         return abbreviatedName!
     }
+    
+    func smallProfileImageUrl() -> String {
+        return (self.profileImageUrl?.stringByReplacingOccurrencesOfString(".jpeg", withString: "_normal.jpeg"))!
+    }
 
     
     class func testUser() -> User? {
