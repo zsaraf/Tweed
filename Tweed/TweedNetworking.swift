@@ -61,6 +61,10 @@ class TweedNetworking: NSObject {
     static func getAnonymousToken(successHandler: TweedNetworkingSuccessHandler?, failureHandler: TweedNetworkingFailureHandler) {
         self.request("accounts/tokens/", method: .Post, params: [String: AnyObject](), successHandler: successHandler, failureHandler: failureHandler)
     }
+    
+    static func getSuggestions(successHandler: TweedNetworkingSuccessHandler?, failureHandler: TweedNetworkingFailureHandler) {
+        self.request("accounts/follows/get_suggestions", method: .Get, params: [String: AnyObject](), successHandler: successHandler, failureHandler: failureHandler)
+    }
 
     static func addHandles(handles: [String], successHandler: TweedNetworkingSuccessHandler?, failureHandler: TweedNetworkingFailureHandler) {
         var addedHandles = [[String:AnyObject]]()

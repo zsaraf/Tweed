@@ -16,8 +16,11 @@ protocol FollowViewControllerDelegate: class {
 
 class FollowViewController: UIViewController, UIViewControllerAnimatedTransitioning, UIViewControllerTransitioningDelegate, UITableViewDataSource, UITableViewDelegate, UITextFieldDelegate {
 
+    struct FollowViewConstants {
+        static let RecommendationsHeightPercent = 0.175
+    }
+    
     let blurredImage: UIImage
-    var delegate: FollowViewControllerDelegate?
 
     // Top bar view
     var topBarView: UIView!
@@ -25,12 +28,15 @@ class FollowViewController: UIViewController, UIViewControllerAnimatedTransition
 
     // Content view
     var contentView: UIView!
+    
     var textField: TweedTextField!
     var errorLabel: UILabel!
     var tableView: UITableView!
 
     // Data
     var addedHandles = [String]()
+    var reccomendationsView: RecommendationsView
+    var delegate: FollowViewControllerDelegate?
 
     // Constraints
     var topBarViewTopConstraint: Constraint?
@@ -38,7 +44,7 @@ class FollowViewController: UIViewController, UIViewControllerAnimatedTransition
 
     init(blurredImage: UIImage) {
         self.blurredImage = blurredImage
-
+        self.reccomendationsView = RecommendationsView(recommendations: RecommendedUser.getAllRecommendedUsers())
         super.init(nibName: nil, bundle: nil)
     }
 
@@ -56,6 +62,11 @@ class FollowViewController: UIViewController, UIViewControllerAnimatedTransition
         self.setupBackgroundView()
         self.setupTopBarView()
         self.setupContentView()
+        
+        RecommendedUser.refreshRecommendedUsers { 
+            self.reccomendationsView.recommendations = RecommendedUser.getAllRecommendedUsers()
+        }
+
     }
 
     // MARK: View Setup
@@ -111,6 +122,7 @@ class FollowViewController: UIViewController, UIViewControllerAnimatedTransition
     }
 
     func setupContentView() {
+        self.automaticallyAdjustsScrollViewInsets = false;
         self.contentView = UIView()
         self.view.addSubview(self.contentView)
 
@@ -125,6 +137,14 @@ class FollowViewController: UIViewController, UIViewControllerAnimatedTransition
     }
 
     func setupTextField() {
+
+        self.contentView.addSubview(self.reccomendationsView)
+        self.reccomendationsView.snp_makeConstraints { (make) in
+            make.top.equalTo(self.contentView).offset(20)
+            make.left.right.equalTo(self.contentView)
+            make.height.equalTo(UIScreen.mainScreen().bounds.size.height * CGFloat(FollowViewConstants.RecommendationsHeightPercent));
+        }
+        
         self.textField = TweedTextField(frame: CGRectZero, icon: UIImage(named: "email_gray")!)
         self.textField.delegate = self
         self.textField.returnKeyType = .Done
@@ -139,7 +159,7 @@ class FollowViewController: UIViewController, UIViewControllerAnimatedTransition
         self.contentView.addSubview(self.errorLabel)
 
         self.textField.snp_makeConstraints { (make) -> Void in
-            make.top.equalTo(self.contentView).offset(20.0)
+            make.top.equalTo(self.reccomendationsView.snp_bottom).offset(20.0)
             make.centerX.equalTo(self.contentView)
         }
 

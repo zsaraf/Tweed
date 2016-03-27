@@ -98,10 +98,15 @@
 		86D29A171CA7434900AA8739 /* TweedAuthManager.m in Sources */ = {isa = PBXBuildFile; fileRef = 86D29A151CA7434900AA8739 /* TweedAuthManager.m */; };
 		86D29A1B1CA7475F00AA8739 /* LoadingViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 86D29A1A1CA7475F00AA8739 /* LoadingViewController.swift */; };
 		86D29A1D1CA749F200AA8739 /* tweed_loading.png in Resources */ = {isa = PBXBuildFile; fileRef = 86D29A1C1CA749F200AA8739 /* tweed_loading.png */; };
-		AF8883741CA732D40097DCDA /* SF-UI-Text-Light.otf in Resources */ = {isa = PBXBuildFile; fileRef = AF8883721CA732D40097DCDA /* SF-UI-Text-Light.otf */; };
 		AF8883751CA732D40097DCDA /* SF-UI-Text-Regular.otf in Resources */ = {isa = PBXBuildFile; fileRef = AF8883731CA732D40097DCDA /* SF-UI-Text-Regular.otf */; };
 		AF8883791CA734210097DCDA /* User+CoreDataProperties.swift in Sources */ = {isa = PBXBuildFile; fileRef = AF8883771CA734210097DCDA /* User+CoreDataProperties.swift */; };
 		AF88837A1CA734210097DCDA /* User.swift in Sources */ = {isa = PBXBuildFile; fileRef = AF8883781CA734210097DCDA /* User.swift */; };
+		AF88837D1CA73AE60097DCDA /* RecommendationsView.swift in Sources */ = {isa = PBXBuildFile; fileRef = AF88837C1CA73AE60097DCDA /* RecommendationsView.swift */; };
+		AF88837F1CA73AFB0097DCDA /* RecommendationTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = AF88837E1CA73AFB0097DCDA /* RecommendationTableViewCell.swift */; };
+		AF8883831CA745BD0097DCDA /* TweedBorderedButton.swift in Sources */ = {isa = PBXBuildFile; fileRef = AF8883821CA745BD0097DCDA /* TweedBorderedButton.swift */; };
+		AFD802481CA7902C00375E4F /* SF-UI-Text-Medium.otf in Resources */ = {isa = PBXBuildFile; fileRef = AFD802471CA78F0300375E4F /* SF-UI-Text-Medium.otf */; };
+		AFD8024B1CA79EC900375E4F /* RecommendedUser+CoreDataProperties.swift in Sources */ = {isa = PBXBuildFile; fileRef = AFD802491CA79EC900375E4F /* RecommendedUser+CoreDataProperties.swift */; };
+		AFD8024C1CA79EC900375E4F /* RecommendedUser.swift in Sources */ = {isa = PBXBuildFile; fileRef = AFD8024A1CA79EC900375E4F /* RecommendedUser.swift */; };
 		C429FE23F637B9810327BB16 /* Pods.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = B808E2B0FC48822C25B15FCE /* Pods.framework */; };
 /* End PBXBuildFile section */
 
@@ -245,10 +250,15 @@
 		86D29A151CA7434900AA8739 /* TweedAuthManager.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = TweedAuthManager.m; sourceTree = "<group>"; };
 		86D29A1A1CA7475F00AA8739 /* LoadingViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = LoadingViewController.swift; sourceTree = "<group>"; };
 		86D29A1C1CA749F200AA8739 /* tweed_loading.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = tweed_loading.png; sourceTree = "<group>"; };
-		AF8883721CA732D40097DCDA /* SF-UI-Text-Light.otf */ = {isa = PBXFileReference; lastKnownFileType = file; path = "SF-UI-Text-Light.otf"; sourceTree = "<group>"; };
 		AF8883731CA732D40097DCDA /* SF-UI-Text-Regular.otf */ = {isa = PBXFileReference; lastKnownFileType = file; path = "SF-UI-Text-Regular.otf"; sourceTree = "<group>"; };
 		AF8883771CA734210097DCDA /* User+CoreDataProperties.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "User+CoreDataProperties.swift"; sourceTree = "<group>"; };
 		AF8883781CA734210097DCDA /* User.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = User.swift; sourceTree = "<group>"; };
+		AF88837C1CA73AE60097DCDA /* RecommendationsView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = RecommendationsView.swift; sourceTree = "<group>"; };
+		AF88837E1CA73AFB0097DCDA /* RecommendationTableViewCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = RecommendationTableViewCell.swift; sourceTree = "<group>"; };
+		AF8883821CA745BD0097DCDA /* TweedBorderedButton.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = TweedBorderedButton.swift; sourceTree = "<group>"; };
+		AFD802471CA78F0300375E4F /* SF-UI-Text-Medium.otf */ = {isa = PBXFileReference; lastKnownFileType = file; path = "SF-UI-Text-Medium.otf"; sourceTree = "<group>"; };
+		AFD802491CA79EC900375E4F /* RecommendedUser+CoreDataProperties.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "RecommendedUser+CoreDataProperties.swift"; sourceTree = "<group>"; };
+		AFD8024A1CA79EC900375E4F /* RecommendedUser.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = RecommendedUser.swift; sourceTree = "<group>"; };
 		B808E2B0FC48822C25B15FCE /* Pods.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		C8015E868E43487347046249 /* Pods.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = Pods.debug.xcconfig; path = "Pods/Target Support Files/Pods/Pods.debug.xcconfig"; sourceTree = "<group>"; };
 /* End PBXFileReference section */
@@ -455,7 +465,7 @@
 		86D2998E1CA608C400AA8739 /* Fonts */ = {
 			isa = PBXGroup;
 			children = (
-				AF8883721CA732D40097DCDA /* SF-UI-Text-Light.otf */,
+				AFD802471CA78F0300375E4F /* SF-UI-Text-Medium.otf */,
 				AF8883731CA732D40097DCDA /* SF-UI-Text-Regular.otf */,
 				86D2998F1CA608EE00AA8739 /* Gotham-Black.otf */,
 				86D299901CA608EE00AA8739 /* Gotham-BlackItalic.otf */,
@@ -511,6 +521,7 @@
 		86D299BC1CA7148B00AA8739 /* Follow */ = {
 			isa = PBXGroup;
 			children = (
+				AF88837B1CA73AC00097DCDA /* Reccomendations */,
 				86D299BD1CA714A500AA8739 /* FollowViewController.swift */,
 				862A4A521CA78B0B009B29F4 /* AddedHandleTableViewCell.swift */,
 			);
@@ -550,6 +561,7 @@
 			children = (
 				86D299DE1CA737BA00AA8739 /* Sesh (All necessary for SeshConfirmationAnimationView) */,
 				86D299D21CA729F800AA8739 /* TweedTextField.swift */,
+				AF8883821CA745BD0097DCDA /* TweedBorderedButton.swift */,
 			);
 			name = "Reusable Components";
 			sourceTree = "<group>";
@@ -591,10 +603,21 @@
 		AF8883761CA7340C0097DCDA /* NSManagedObjects */ = {
 			isa = PBXGroup;
 			children = (
+				AFD802491CA79EC900375E4F /* RecommendedUser+CoreDataProperties.swift */,
+				AFD8024A1CA79EC900375E4F /* RecommendedUser.swift */,
 				AF8883771CA734210097DCDA /* User+CoreDataProperties.swift */,
 				AF8883781CA734210097DCDA /* User.swift */,
 			);
 			name = NSManagedObjects;
+			sourceTree = "<group>";
+		};
+		AF88837B1CA73AC00097DCDA /* Reccomendations */ = {
+			isa = PBXGroup;
+			children = (
+				AF88837C1CA73AE60097DCDA /* RecommendationsView.swift */,
+				AF88837E1CA73AFB0097DCDA /* RecommendationTableViewCell.swift */,
+			);
+			name = Reccomendations;
 			sourceTree = "<group>";
 		};
 		E88152B23AB8FC9772C3D7B9 /* Frameworks */ = {
@@ -722,6 +745,7 @@
 			isa = PBXResourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				AFD802481CA7902C00375E4F /* SF-UI-Text-Medium.otf in Resources */,
 				86D299D91CA72C8300AA8739 /* email_gray@2x.png in Resources */,
 				86D29A071CA7396600AA8739 /* check_circle@2x.png in Resources */,
 				86D2999F1CA6094600AA8739 /* Gotham-Black.otf in Resources */,
@@ -738,7 +762,6 @@
 				86D299A11CA6094600AA8739 /* Gotham-Bold.otf in Resources */,
 				86D299A21CA6094600AA8739 /* Gotham-BoldItalic.otf in Resources */,
 				86D299A31CA6094600AA8739 /* Gotham-Book.otf in Resources */,
-				AF8883741CA732D40097DCDA /* SF-UI-Text-Light.otf in Resources */,
 				86D29A0A1CA7396600AA8739 /* check@2x.png in Resources */,
 				86D29A041CA7396600AA8739 /* cancel@2x.png in Resources */,
 				86D299A41CA6094600AA8739 /* Gotham-BookItalic.otf in Resources */,
@@ -841,16 +864,19 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				AF8883831CA745BD0097DCDA /* TweedBorderedButton.swift in Sources */,
 				86D299CD1CA71F3700AA8739 /* UIImage+SeshUtils.m in Sources */,
 				8614E83E1CA5F6EC00DF48EA /* HomeViewController.swift in Sources */,
 				8614E80F1CA5F39600DF48EA /* Tweed.xcdatamodeld in Sources */,
 				86D299ED1CA7385D00AA8739 /* SeshActivityIndicator.m in Sources */,
 				8614E83A1CA5F64000DF48EA /* DataManager.m in Sources */,
 				AF88837A1CA734210097DCDA /* User.swift in Sources */,
+				AF88837F1CA73AFB0097DCDA /* RecommendationTableViewCell.swift in Sources */,
 				86D299B71CA60C2100AA8739 /* UILabel+Tweed.swift in Sources */,
 				86D29A1B1CA7475F00AA8739 /* LoadingViewController.swift in Sources */,
 				862A4A531CA78B0B009B29F4 /* AddedHandleTableViewCell.swift in Sources */,
 				86D299B01CA609A200AA8739 /* UIFont+Tweed.swift in Sources */,
+				AFD8024B1CA79EC900375E4F /* RecommendedUser+CoreDataProperties.swift in Sources */,
 				8614E8071CA5F39600DF48EA /* AppDelegate.swift in Sources */,
 				86D299E91CA7384100AA8739 /* UIFont+Sesh.m in Sources */,
 				86D299E81CA7384100AA8739 /* UIColor+Sesh.m in Sources */,
@@ -860,6 +886,7 @@
 				86D29A161CA7434900AA8739 /* AccessToken.m in Sources */,
 				AF8883791CA734210097DCDA /* User+CoreDataProperties.swift in Sources */,
 				86D299BE1CA714A500AA8739 /* FollowViewController.swift in Sources */,
+				AFD8024C1CA79EC900375E4F /* RecommendedUser.swift in Sources */,
 				862A4A391CA7845D009B29F4 /* SeshAlertViewController.m in Sources */,
 				862A4A3A1CA7845D009B29F4 /* SeshAlertViewItem.m in Sources */,
 				86D299CC1CA71F3700AA8739 /* UIImage+ImageEffects.m in Sources */,
@@ -871,6 +898,7 @@
 				862A4A511CA785CB009B29F4 /* UIWindow+Sesh.m in Sources */,
 				862A4A3F1CA78475009B29F4 /* SeshBlurWindow.m in Sources */,
 				86D299D31CA729F800AA8739 /* TweedTextField.swift in Sources */,
+				AF88837D1CA73AE60097DCDA /* RecommendationsView.swift in Sources */,
 				86D299C11CA7177000AA8739 /* TweedNetworking.swift in Sources */,
 				862A4A3B1CA7845D009B29F4 /* SeshAlertViewManager.m in Sources */,
 				862A4A481CA7855E009B29F4 /* SeshUtils.m in Sources */,

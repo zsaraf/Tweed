@@ -14,13 +14,14 @@ import CoreData
 
 extension User {
 
-    @NSManaged var id: String?
-    @NSManaged var screenName: String?
-    @NSManaged var name: String?
-    @NSManaged var profileImageUrl: String?
-    @NSManaged var location: String?
-    @NSManaged var profileBackgroundColor: String?
-    @NSManaged var followersCount: NSNumber?
     @NSManaged var bio: String?
+    @NSManaged var followersCount: NSNumber?
+    @NSManaged var id: String?
+    @NSManaged var location: String?
+    @NSManaged var name: String?
+    @NSManaged var profileBackgroundColor: String?
+    @NSManaged var profileImageUrl: String?
+    @NSManaged var screenName: String?
+    @NSManaged var recommendedUser: RecommendedUser?
 
 }
