@@ -18,5 +18,7 @@ extension Tweet {
     @NSManaged var text: String?
     @NSManaged var createdAt: NSDate?
     @NSManaged var user: User?
+    @NSManaged var originalTweet: Tweet?
+    @NSManaged var copiedTweets: NSSet?
 
 }

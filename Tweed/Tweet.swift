@@ -47,6 +47,10 @@ class Tweet: NSManagedObject {
         tweet!.text = tweetObject["text"] as? String
         tweet!.createdAt = NSDate.twitterDateFromString(tweetObject["created_at"] as! String)
         
+        if (tweetObject["original_tweet"] != nil) {
+            
+        }
+        
         return tweet
 
     }
