@@ -25,7 +25,7 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
             self.window?.rootViewController = LoadingViewController()
             self.getAccessTokenWithCompletionHandler({ () -> Void in
                 let nvc = UINavigationController(rootViewController: HomeViewController())
-                self.window?.rootViewController?.presentViewController(HomeViewController(), animated: true, completion: nil)
+                self.window?.rootViewController?.presentViewController(nvc, animated: true, completion: nil)
             })
         } else {
             let nvc = UINavigationController(rootViewController: HomeViewController())

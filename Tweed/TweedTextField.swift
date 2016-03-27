@@ -28,15 +28,16 @@ class TweedTextField: UITextField {
                 self.rightView = nil
                 self.rightViewMode = .Never
             } else if accessoryType == .ActivityIndicator {
+                self.rightActivityIndicatorView.startAnimating()
                 self.rightView = rightActivityIndicatorView
                 self.rightViewMode = .Always
             } else {
                 if accessoryType == .Check {
                     self.rightIconView.image = UIImage(named: "check")?.imageWithRenderingMode(.AlwaysTemplate)
-                    self.rightIconView.tintColor = UIColor.greenColor()
+                    self.rightIconView.tintColor = UIColor.tweedGreen()
                 } else {
                     self.rightIconView.image = UIImage(named: "cancel")?.imageWithRenderingMode(.AlwaysTemplate)
-                    self.rightIconView.tintColor = UIColor.redColor()
+                    self.rightIconView.tintColor = UIColor.tweedRed()
                 }
                 self.rightView = self.rightIconView
                 self.rightViewMode = .Always
@@ -72,7 +73,7 @@ class TweedTextField: UITextField {
             make.left.equalTo(iconWrapperView).offset(2)
             make.centerY.equalTo(iconWrapperView)
             make.width.equalTo(self.leftIconView.snp_height)
-            make.top.bottom.equalTo(iconWrapperView).inset(1)
+            make.top.bottom.equalTo(iconWrapperView).inset(5)
         }
 
         iconWrapperView.snp_makeConstraints { (make) -> Void in
@@ -109,7 +110,7 @@ class TweedTextField: UITextField {
     }
 
     override func intrinsicContentSize() -> CGSize {
-        return CGSizeMake(UIScreen.mainScreen().bounds.size.width * 0.7, UIScreen.mainScreen().bounds.size.height * 0.03)
+        return CGSizeMake(UIScreen.mainScreen().bounds.size.width * 0.7, UIScreen.mainScreen().bounds.size.height * 0.04)
     }
 
 }

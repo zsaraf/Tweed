@@ -10,7 +10,7 @@ import UIKit
 import SnapKit
 import SDWebImage
 
-class HomeViewController: UIViewController, UITableViewDelegate, UITableViewDataSource {
+class HomeViewController: UIViewController, UITableViewDelegate, UITableViewDataSource, FollowViewControllerDelegate {
     let tableView = UITableView()
 
     override func viewDidLoad() {
@@ -75,11 +75,25 @@ class HomeViewController: UIViewController, UITableViewDelegate, UITableViewData
         let blurredImage = UIImage.blurredImageWithRootView(rootView, tintColor: UIColor(white: 1, alpha: 0.1), radius: 6, saturationDeltaFactor: 1.2)
 
         let fvc = FollowViewController(blurredImage: blurredImage)
+        fvc.delegate = self
         fvc.modalPresentationStyle = .Custom
         fvc.transitioningDelegate = fvc
         self.presentViewController(fvc, animated: true) { () -> Void in
             fvc.transitioningDelegate = nil
         }
+
+    }
+
+    // MARK: FollowViewControllerDelegate methods
+
+    func followViewControllerDidCancel(fvc: FollowViewController) {
+        fvc.transitioningDelegate = fvc
+        self.dismissViewControllerAnimated(true) { () -> Void in
+            fvc.transitioningDelegate = nil
+        }
+    }
+
+    func followViewControllerDidFinish(fvc: FollowViewController) {
 
     }
 

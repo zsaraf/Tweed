@@ -23,7 +23,6 @@ class TweedNetworking: NSObject {
     }
 
     static func request(relativeUrl: String, method: RequestMethod, params: [String: AnyObject], successHandler: TweedNetworkingSuccessHandler?, failureHandler: TweedNetworkingFailureHandler?) {
-//        let url = baseUrl().stringByAppendingString(relativeUrl)
 
         let manager = AFHTTPSessionManager(baseURL: baseUrl())
         manager.requestSerializer = AFJSONRequestSerializer()
@@ -56,12 +55,20 @@ class TweedNetworking: NSObject {
     }
 
     static func checkHandle(handle: String, successHandler: TweedNetworkingSuccessHandler?, failureHandler: TweedNetworkingFailureHandler) {
-
-        self.request("accounts/follows/check_user/", method: .Post, params: ["screen_name": handle], successHandler: successHandler, failureHandler: failureHandler)
+        self.request("accounts/follows/check_user", method: .Get, params: ["screen_name": handle], successHandler: successHandler, failureHandler: failureHandler)
     }
 
     static func getAnonymousToken(successHandler: TweedNetworkingSuccessHandler?, failureHandler: TweedNetworkingFailureHandler) {
         self.request("accounts/tokens/", method: .Post, params: [String: AnyObject](), successHandler: successHandler, failureHandler: failureHandler)
+    }
+
+    static func addHandles(handles: [String], successHandler: TweedNetworkingSuccessHandler?, failureHandler: TweedNetworkingFailureHandler) {
+        var addedHandles = [[String:AnyObject]]()
+        for handle in handles {
+            addedHandles.append(["screen_name": handle])
+        }
+
+        self.request("accounts/follows/", method: .Post, params: ["additions": addedHandles], successHandler: successHandler, failureHandler: failureHandler)
     }
 
 }

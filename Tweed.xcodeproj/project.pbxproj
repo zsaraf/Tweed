@@ -15,6 +15,19 @@
 		8614E82A1CA5F39600DF48EA /* TweedUITests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8614E8291CA5F39600DF48EA /* TweedUITests.swift */; };
 		8614E83A1CA5F64000DF48EA /* DataManager.m in Sources */ = {isa = PBXBuildFile; fileRef = 8614E8391CA5F64000DF48EA /* DataManager.m */; };
 		8614E83E1CA5F6EC00DF48EA /* HomeViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8614E83D1CA5F6EC00DF48EA /* HomeViewController.swift */; };
+		862A4A2D1CA77DCD009B29F4 /* circle3.png in Resources */ = {isa = PBXBuildFile; fileRef = 862A4A2C1CA77DCD009B29F4 /* circle3.png */; };
+		862A4A381CA7845D009B29F4 /* SeshAlertView.m in Sources */ = {isa = PBXBuildFile; fileRef = 862A4A301CA7845D009B29F4 /* SeshAlertView.m */; };
+		862A4A391CA7845D009B29F4 /* SeshAlertViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 862A4A321CA7845D009B29F4 /* SeshAlertViewController.m */; };
+		862A4A3A1CA7845D009B29F4 /* SeshAlertViewItem.m in Sources */ = {isa = PBXBuildFile; fileRef = 862A4A351CA7845D009B29F4 /* SeshAlertViewItem.m */; };
+		862A4A3B1CA7845D009B29F4 /* SeshAlertViewManager.m in Sources */ = {isa = PBXBuildFile; fileRef = 862A4A371CA7845D009B29F4 /* SeshAlertViewManager.m */; };
+		862A4A3F1CA78475009B29F4 /* SeshBlurWindow.m in Sources */ = {isa = PBXBuildFile; fileRef = 862A4A3E1CA78475009B29F4 /* SeshBlurWindow.m */; };
+		862A4A421CA7851D009B29F4 /* SeshTopBarView.m in Sources */ = {isa = PBXBuildFile; fileRef = 862A4A411CA7851D009B29F4 /* SeshTopBarView.m */; };
+		862A4A451CA78533009B29F4 /* SeshIncreaseTapRadiusButton.m in Sources */ = {isa = PBXBuildFile; fileRef = 862A4A441CA78533009B29F4 /* SeshIncreaseTapRadiusButton.m */; };
+		862A4A481CA7855E009B29F4 /* SeshUtils.m in Sources */ = {isa = PBXBuildFile; fileRef = 862A4A471CA7855E009B29F4 /* SeshUtils.m */; };
+		862A4A4B1CA78573009B29F4 /* SeshButton.m in Sources */ = {isa = PBXBuildFile; fileRef = 862A4A4A1CA78573009B29F4 /* SeshButton.m */; };
+		862A4A4E1CA785BE009B29F4 /* UIApplication+SeshUtils.m in Sources */ = {isa = PBXBuildFile; fileRef = 862A4A4D1CA785BE009B29F4 /* UIApplication+SeshUtils.m */; };
+		862A4A511CA785CB009B29F4 /* UIWindow+Sesh.m in Sources */ = {isa = PBXBuildFile; fileRef = 862A4A501CA785CB009B29F4 /* UIWindow+Sesh.m */; };
+		862A4A531CA78B0B009B29F4 /* AddedHandleTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 862A4A521CA78B0B009B29F4 /* AddedHandleTableViewCell.swift */; };
 		86D299821CA5F87300AA8739 /* CFNetwork.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 86D2997A1CA5F87300AA8739 /* CFNetwork.framework */; };
 		86D299831CA5F87300AA8739 /* Foundation.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 86D2997B1CA5F87300AA8739 /* Foundation.framework */; };
 		86D299841CA5F87300AA8739 /* GameKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 86D2997C1CA5F87300AA8739 /* GameKit.framework */; };
@@ -127,6 +140,31 @@
 		8614E8381CA5F64000DF48EA /* DataManager.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = DataManager.h; sourceTree = "<group>"; };
 		8614E8391CA5F64000DF48EA /* DataManager.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = DataManager.m; sourceTree = "<group>"; };
 		8614E83D1CA5F6EC00DF48EA /* HomeViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = HomeViewController.swift; sourceTree = "<group>"; };
+		862A4A2C1CA77DCD009B29F4 /* circle3.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = circle3.png; sourceTree = "<group>"; };
+		862A4A2F1CA7845D009B29F4 /* SeshAlertView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SeshAlertView.h; sourceTree = "<group>"; };
+		862A4A301CA7845D009B29F4 /* SeshAlertView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = SeshAlertView.m; sourceTree = "<group>"; };
+		862A4A311CA7845D009B29F4 /* SeshAlertViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SeshAlertViewController.h; sourceTree = "<group>"; };
+		862A4A321CA7845D009B29F4 /* SeshAlertViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = SeshAlertViewController.m; sourceTree = "<group>"; };
+		862A4A331CA7845D009B29F4 /* SeshAlertViewInternal.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SeshAlertViewInternal.h; sourceTree = "<group>"; };
+		862A4A341CA7845D009B29F4 /* SeshAlertViewItem.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SeshAlertViewItem.h; sourceTree = "<group>"; };
+		862A4A351CA7845D009B29F4 /* SeshAlertViewItem.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = SeshAlertViewItem.m; sourceTree = "<group>"; };
+		862A4A361CA7845D009B29F4 /* SeshAlertViewManager.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SeshAlertViewManager.h; sourceTree = "<group>"; };
+		862A4A371CA7845D009B29F4 /* SeshAlertViewManager.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = SeshAlertViewManager.m; sourceTree = "<group>"; };
+		862A4A3D1CA78475009B29F4 /* SeshBlurWindow.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SeshBlurWindow.h; sourceTree = "<group>"; };
+		862A4A3E1CA78475009B29F4 /* SeshBlurWindow.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = SeshBlurWindow.m; sourceTree = "<group>"; };
+		862A4A401CA7851D009B29F4 /* SeshTopBarView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SeshTopBarView.h; sourceTree = "<group>"; };
+		862A4A411CA7851D009B29F4 /* SeshTopBarView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = SeshTopBarView.m; sourceTree = "<group>"; };
+		862A4A431CA78533009B29F4 /* SeshIncreaseTapRadiusButton.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SeshIncreaseTapRadiusButton.h; sourceTree = "<group>"; };
+		862A4A441CA78533009B29F4 /* SeshIncreaseTapRadiusButton.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = SeshIncreaseTapRadiusButton.m; sourceTree = "<group>"; };
+		862A4A461CA7855E009B29F4 /* SeshUtils.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SeshUtils.h; sourceTree = "<group>"; };
+		862A4A471CA7855E009B29F4 /* SeshUtils.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = SeshUtils.m; sourceTree = "<group>"; };
+		862A4A491CA78573009B29F4 /* SeshButton.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SeshButton.h; sourceTree = "<group>"; };
+		862A4A4A1CA78573009B29F4 /* SeshButton.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = SeshButton.m; sourceTree = "<group>"; };
+		862A4A4C1CA785BD009B29F4 /* UIApplication+SeshUtils.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "UIApplication+SeshUtils.h"; sourceTree = "<group>"; };
+		862A4A4D1CA785BE009B29F4 /* UIApplication+SeshUtils.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "UIApplication+SeshUtils.m"; sourceTree = "<group>"; };
+		862A4A4F1CA785CB009B29F4 /* UIWindow+Sesh.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "UIWindow+Sesh.h"; sourceTree = "<group>"; };
+		862A4A501CA785CB009B29F4 /* UIWindow+Sesh.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "UIWindow+Sesh.m"; sourceTree = "<group>"; };
+		862A4A521CA78B0B009B29F4 /* AddedHandleTableViewCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = AddedHandleTableViewCell.swift; sourceTree = "<group>"; };
 		86D2997A1CA5F87300AA8739 /* CFNetwork.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = CFNetwork.framework; path = System/Library/Frameworks/CFNetwork.framework; sourceTree = SDKROOT; };
 		86D2997B1CA5F87300AA8739 /* Foundation.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Foundation.framework; path = System/Library/Frameworks/Foundation.framework; sourceTree = SDKROOT; };
 		86D2997C1CA5F87300AA8739 /* GameKit.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = GameKit.framework; path = System/Library/Frameworks/GameKit.framework; sourceTree = SDKROOT; };
@@ -325,6 +363,49 @@
 			name = "Core Data";
 			sourceTree = "<group>";
 		};
+		862A4A2E1CA78436009B29F4 /* Extensions */ = {
+			isa = PBXGroup;
+			children = (
+				86D299E21CA7384000AA8739 /* UIColor+Sesh.h */,
+				86D299E31CA7384000AA8739 /* UIColor+Sesh.m */,
+				86D299E41CA7384000AA8739 /* UIFont+Sesh.h */,
+				86D299E51CA7384000AA8739 /* UIFont+Sesh.m */,
+				86D299E61CA7384100AA8739 /* UILabel+Sesh.h */,
+				86D299E71CA7384100AA8739 /* UILabel+Sesh.m */,
+			);
+			name = Extensions;
+			sourceTree = "<group>";
+		};
+		862A4A3C1CA78464009B29F4 /* SeshAlertView */ = {
+			isa = PBXGroup;
+			children = (
+				862A4A4F1CA785CB009B29F4 /* UIWindow+Sesh.h */,
+				862A4A501CA785CB009B29F4 /* UIWindow+Sesh.m */,
+				862A4A4C1CA785BD009B29F4 /* UIApplication+SeshUtils.h */,
+				862A4A4D1CA785BE009B29F4 /* UIApplication+SeshUtils.m */,
+				862A4A491CA78573009B29F4 /* SeshButton.h */,
+				862A4A4A1CA78573009B29F4 /* SeshButton.m */,
+				862A4A461CA7855E009B29F4 /* SeshUtils.h */,
+				862A4A471CA7855E009B29F4 /* SeshUtils.m */,
+				862A4A431CA78533009B29F4 /* SeshIncreaseTapRadiusButton.h */,
+				862A4A441CA78533009B29F4 /* SeshIncreaseTapRadiusButton.m */,
+				862A4A401CA7851D009B29F4 /* SeshTopBarView.h */,
+				862A4A411CA7851D009B29F4 /* SeshTopBarView.m */,
+				862A4A3D1CA78475009B29F4 /* SeshBlurWindow.h */,
+				862A4A3E1CA78475009B29F4 /* SeshBlurWindow.m */,
+				862A4A2F1CA7845D009B29F4 /* SeshAlertView.h */,
+				862A4A301CA7845D009B29F4 /* SeshAlertView.m */,
+				862A4A311CA7845D009B29F4 /* SeshAlertViewController.h */,
+				862A4A321CA7845D009B29F4 /* SeshAlertViewController.m */,
+				862A4A331CA7845D009B29F4 /* SeshAlertViewInternal.h */,
+				862A4A341CA7845D009B29F4 /* SeshAlertViewItem.h */,
+				862A4A351CA7845D009B29F4 /* SeshAlertViewItem.m */,
+				862A4A361CA7845D009B29F4 /* SeshAlertViewManager.h */,
+				862A4A371CA7845D009B29F4 /* SeshAlertViewManager.m */,
+			);
+			name = SeshAlertView;
+			sourceTree = "<group>";
+		};
 		86D2998C1CA608A200AA8739 /* Resources */ = {
 			isa = PBXGroup;
 			children = (
@@ -342,6 +423,7 @@
 		86D2998D1CA608BB00AA8739 /* Icons */ = {
 			isa = PBXGroup;
 			children = (
+				862A4A2C1CA77DCD009B29F4 /* circle3.png */,
 				86D299EE1CA7396600AA8739 /* cancel_circle.png */,
 				86D299EF1CA7396600AA8739 /* cancel_circle@2x.png */,
 				86D299F01CA7396600AA8739 /* cancel_circle@3x.png */,
@@ -430,6 +512,7 @@
 			isa = PBXGroup;
 			children = (
 				86D299BD1CA714A500AA8739 /* FollowViewController.swift */,
+				862A4A521CA78B0B009B29F4 /* AddedHandleTableViewCell.swift */,
 			);
 			name = Follow;
 			sourceTree = "<group>";
@@ -474,14 +557,10 @@
 		86D299DE1CA737BA00AA8739 /* Sesh (All necessary for SeshConfirmationAnimationView) */ = {
 			isa = PBXGroup;
 			children = (
+				862A4A3C1CA78464009B29F4 /* SeshAlertView */,
 				86D299EB1CA7385D00AA8739 /* SeshActivityIndicator.h */,
 				86D299EC1CA7385D00AA8739 /* SeshActivityIndicator.m */,
-				86D299E21CA7384000AA8739 /* UIColor+Sesh.h */,
-				86D299E31CA7384000AA8739 /* UIColor+Sesh.m */,
-				86D299E41CA7384000AA8739 /* UIFont+Sesh.h */,
-				86D299E51CA7384000AA8739 /* UIFont+Sesh.m */,
-				86D299E61CA7384100AA8739 /* UILabel+Sesh.h */,
-				86D299E71CA7384100AA8739 /* UILabel+Sesh.m */,
+				862A4A2E1CA78436009B29F4 /* Extensions */,
 				86D299DF1CA737E400AA8739 /* SeshProgressIndicator.h */,
 				86D299E01CA737E400AA8739 /* SeshProgressIndicator.m */,
 				86D299DB1CA737AF00AA8739 /* SeshConfirmationAnimationView.h */,
@@ -606,6 +685,7 @@
 				TargetAttributes = {
 					8614E8021CA5F39600DF48EA = {
 						CreatedOnToolsVersion = 7.2.1;
+						DevelopmentTeam = E6K9T3S697;
 					};
 					8614E8191CA5F39600DF48EA = {
 						CreatedOnToolsVersion = 7.2.1;
@@ -665,6 +745,7 @@
 				86D299A51CA6094600AA8739 /* Gotham-Light.otf in Resources */,
 				86D299D01CA721CA00AA8739 /* tweed_texture.png in Resources */,
 				86D29A031CA7396600AA8739 /* cancel.png in Resources */,
+				862A4A2D1CA77DCD009B29F4 /* circle3.png in Resources */,
 				86D29A091CA7396600AA8739 /* check.png in Resources */,
 				86D29A081CA7396600AA8739 /* check_circle@3x.png in Resources */,
 				86D299A61CA6094600AA8739 /* Gotham-LightItalic.otf in Resources */,
@@ -768,6 +849,7 @@
 				AF88837A1CA734210097DCDA /* User.swift in Sources */,
 				86D299B71CA60C2100AA8739 /* UILabel+Tweed.swift in Sources */,
 				86D29A1B1CA7475F00AA8739 /* LoadingViewController.swift in Sources */,
+				862A4A531CA78B0B009B29F4 /* AddedHandleTableViewCell.swift in Sources */,
 				86D299B01CA609A200AA8739 /* UIFont+Tweed.swift in Sources */,
 				8614E8071CA5F39600DF48EA /* AppDelegate.swift in Sources */,
 				86D299E91CA7384100AA8739 /* UIFont+Sesh.m in Sources */,
@@ -778,12 +860,23 @@
 				86D29A161CA7434900AA8739 /* AccessToken.m in Sources */,
 				AF8883791CA734210097DCDA /* User+CoreDataProperties.swift in Sources */,
 				86D299BE1CA714A500AA8739 /* FollowViewController.swift in Sources */,
+				862A4A391CA7845D009B29F4 /* SeshAlertViewController.m in Sources */,
+				862A4A3A1CA7845D009B29F4 /* SeshAlertViewItem.m in Sources */,
 				86D299CC1CA71F3700AA8739 /* UIImage+ImageEffects.m in Sources */,
 				86D299DD1CA737AF00AA8739 /* SeshConfirmationAnimationView.m in Sources */,
+				862A4A381CA7845D009B29F4 /* SeshAlertView.m in Sources */,
+				862A4A421CA7851D009B29F4 /* SeshTopBarView.m in Sources */,
 				86D299B91CA60D4500AA8739 /* UIColor+Tweed.swift in Sources */,
 				86D299EA1CA7384100AA8739 /* UILabel+Sesh.m in Sources */,
+				862A4A511CA785CB009B29F4 /* UIWindow+Sesh.m in Sources */,
+				862A4A3F1CA78475009B29F4 /* SeshBlurWindow.m in Sources */,
 				86D299D31CA729F800AA8739 /* TweedTextField.swift in Sources */,
 				86D299C11CA7177000AA8739 /* TweedNetworking.swift in Sources */,
+				862A4A3B1CA7845D009B29F4 /* SeshAlertViewManager.m in Sources */,
+				862A4A481CA7855E009B29F4 /* SeshUtils.m in Sources */,
+				862A4A451CA78533009B29F4 /* SeshIncreaseTapRadiusButton.m in Sources */,
+				862A4A4B1CA78573009B29F4 /* SeshButton.m in Sources */,
+				862A4A4E1CA785BE009B29F4 /* UIApplication+SeshUtils.m in Sources */,
 				86D299BB1CA7110700AA8739 /* TweedViewConstants.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
@@ -918,9 +1011,10 @@
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				CLANG_ENABLE_MODULES = YES;
+				CODE_SIGN_IDENTITY = "iPhone Developer";
 				INFOPLIST_FILE = Tweed/Info.plist;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
-				PRODUCT_BUNDLE_IDENTIFIER = vanfordinc.Tweed;
+				PRODUCT_BUNDLE_IDENTIFIER = com.seshtutoring.cinchdevapp;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				SWIFT_OBJC_BRIDGING_HEADER = "Tweed/Tweed-Bridging-Header.h";
 				SWIFT_OPTIMIZATION_LEVEL = "-Onone";
@@ -933,9 +1027,10 @@
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				CLANG_ENABLE_MODULES = YES;
+				CODE_SIGN_IDENTITY = "iPhone Developer";
 				INFOPLIST_FILE = Tweed/Info.plist;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
-				PRODUCT_BUNDLE_IDENTIFIER = vanfordinc.Tweed;
+				PRODUCT_BUNDLE_IDENTIFIER = com.seshtutoring.cinchdevapp;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				SWIFT_OBJC_BRIDGING_HEADER = "Tweed/Tweed-Bridging-Header.h";
 			};

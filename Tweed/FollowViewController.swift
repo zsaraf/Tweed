@@ -14,12 +14,23 @@ protocol FollowViewControllerDelegate: class {
     func followViewControllerDidCancel(fvc: FollowViewController)
 }
 
-class FollowViewController: UIViewController, UIViewControllerAnimatedTransitioning, UIViewControllerTransitioningDelegate {
+class FollowViewController: UIViewController, UIViewControllerAnimatedTransitioning, UIViewControllerTransitioningDelegate, UITableViewDataSource, UITableViewDelegate, UITextFieldDelegate {
+
     let blurredImage: UIImage
+    var delegate: FollowViewControllerDelegate?
+
+    // Top bar view
     var topBarView: UIView!
+    var acceptButton: UIButton!
+
+    // Content view
     var contentView: UIView!
     var textField: TweedTextField!
-    var delegate: FollowViewControllerDelegate?
+    var errorLabel: UILabel!
+    var tableView: UITableView!
+
+    // Data
+    var addedHandles = [String]()
 
     // Constraints
     var topBarViewTopConstraint: Constraint?
@@ -60,8 +71,9 @@ class FollowViewController: UIViewController, UIViewControllerAnimatedTransition
         let cancelButton = self.topBarButton(UIImage(named: "cancel_circle")!, action: "cancel:")
         self.topBarView.addSubview(cancelButton)
 
-        let acceptButton = self.topBarButton(UIImage(named: "check_circle")!, action: "accept:")
-        self.topBarView.addSubview(acceptButton)
+        self.acceptButton = self.topBarButton(UIImage(named: "check_circle")!, action: "accept:")
+        self.acceptButton.alpha = 0.0
+        self.topBarView.addSubview(self.acceptButton)
 
         titleLabel.snp_makeConstraints { (make) -> Void in
             make.edges.equalTo(self.topBarView)
@@ -73,7 +85,7 @@ class FollowViewController: UIViewController, UIViewControllerAnimatedTransition
             make.centerY.equalTo(self.topBarView)
         }
 
-        acceptButton.snp_makeConstraints { (make) -> Void in
+        self.acceptButton.snp_makeConstraints { (make) -> Void in
             make.right.equalTo(self.topBarView).inset(20.0)
             make.height.equalTo(self.topBarView).multipliedBy(0.8)
             make.centerY.equalTo(self.topBarView)
@@ -88,10 +100,10 @@ class FollowViewController: UIViewController, UIViewControllerAnimatedTransition
         }
     }
 
-    func topBarButton(image: UIImage, action: String) -> UIButton {
+    func topBarButton(image: UIImage, action: Selector) -> UIButton {
         let btn = UIButton(type: .Custom)
-        btn.setImage(UIImage(named: "check_circle"), forState: .Normal)
-        btn.addTarget(self, action: "accept:", forControlEvents: .TouchUpInside)
+        btn.setImage(image, forState: .Normal)
+        btn.addTarget(self, action: action, forControlEvents: .TouchUpInside)
         btn.layer.shadowColor = UIColor(white: 0, alpha: 0.1).CGColor
         btn.layer.shadowOffset = CGSizeMake(0, 1)
         btn.layer.shadowRadius = 2.0
@@ -100,8 +112,21 @@ class FollowViewController: UIViewController, UIViewControllerAnimatedTransition
 
     func setupContentView() {
         self.contentView = UIView()
+        self.view.addSubview(self.contentView)
 
+        self.setupTextField()
+        self.setupRecentlyAddedTableView()
+
+        self.contentView.snp_makeConstraints { (make) -> Void in
+            make.top.equalTo(self.topBarView.snp_bottom)
+            make.bottom.right.equalTo(self.view)
+            self.contentViewLeftConstraint = make.left.equalTo(self.view).constraint
+        }
+    }
+
+    func setupTextField() {
         self.textField = TweedTextField(frame: CGRectZero, icon: UIImage(named: "email_gray")!)
+        self.textField.delegate = self
         self.textField.returnKeyType = .Done
         self.textField.autocapitalizationType = .None
         self.textField.autocorrectionType = .No
@@ -109,17 +134,37 @@ class FollowViewController: UIViewController, UIViewControllerAnimatedTransition
 
         NSNotificationCenter.defaultCenter().addObserver(self, selector: "textFieldDidChange:", name: "UITextFieldTextDidChangeNotification", object: self.textField)
 
+        self.errorLabel = UILabel(font: UIFont.bookGotham(14.0)!, textColor: UIColor.grayColor(), text: "User not found", textAlignment: .Center)
+        self.errorLabel.alpha = 0.0
+        self.contentView.addSubview(self.errorLabel)
+
         self.textField.snp_makeConstraints { (make) -> Void in
             make.top.equalTo(self.contentView).offset(20.0)
             make.centerX.equalTo(self.contentView)
         }
 
-        self.view.addSubview(self.contentView)
+        self.errorLabel.snp_makeConstraints { (make) -> Void in
+            make.top.equalTo(self.textField.snp_bottom).offset(10)
+            make.left.right.equalTo(self.contentView)
+        }
+    }
 
-        self.contentView.snp_makeConstraints { (make) -> Void in
-            make.top.equalTo(self.topBarView.snp_bottom)
-            make.bottom.right.equalTo(self.view)
-            self.contentViewLeftConstraint = make.left.equalTo(self.view).constraint
+    func setupRecentlyAddedTableView() {
+        self.tableView = UITableView()
+        self.tableView.estimatedRowHeight = 30.0
+        self.tableView.estimatedSectionHeaderHeight = 30.0
+        self.tableView.rowHeight = UITableViewAutomaticDimension
+        self.tableView.sectionHeaderHeight = UITableViewAutomaticDimension
+        self.tableView.separatorColor = UIColor.clearColor()
+        self.tableView.backgroundColor = UIColor.clearColor()
+        self.tableView.alpha = 0.0
+        self.tableView.dataSource = self
+        self.tableView.delegate = self
+        self.contentView.addSubview(self.tableView)
+
+        self.tableView.snp_makeConstraints { (make) -> Void in
+            make.top.equalTo(self.errorLabel.snp_bottom).offset(10)
+            make.bottom.left.right.equalTo(self.contentView)
         }
     }
 
@@ -141,6 +186,36 @@ class FollowViewController: UIViewController, UIViewControllerAnimatedTransition
         }
     }
 
+    // MARK: UITableViewDelegate/DataSource Methods
+
+    func tableView(tableView: UITableView, cellForRowAtIndexPath indexPath: NSIndexPath) -> UITableViewCell {
+        let identifier = "AddedTwitterHandleCell"
+        var cell = tableView.dequeueReusableCellWithIdentifier(identifier) as? AddedHandleTableViewCell
+        if cell == nil {
+            cell = AddedHandleTableViewCell(style: .Default, reuseIdentifier: identifier)
+        }
+
+        let handle = self.addedHandles[indexPath.row]
+        cell?.addedHandleLabel.text = handle
+
+        return cell!
+    }
+
+    func tableView(tableView: UITableView, viewForHeaderInSection section: Int) -> UIView? {
+        let label = UILabel(font: UIFont.mediumGotham(15.0)!, textColor: UIColor.grayColor(), text: "Recently Added:", textAlignment: .Center)
+        label.backgroundColor = UIColor.clearColor()
+
+        return label
+    }
+
+    func tableView(tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
+        return self.addedHandles.count
+    }
+
+    func numberOfSectionsInTableView(tableView: UITableView) -> Int {
+        return 1
+    }
+
     // MARK: Action Methods
 
     func cancel(button: UIButton) {
@@ -153,16 +228,41 @@ class FollowViewController: UIViewController, UIViewControllerAnimatedTransition
         animationView.confirmationText = "Added Followers!"
         self.view.addSubview(animationView)
 
+        UIView.animateWithDuration(0.3) { () -> Void in
+            animationView.alpha = 1.0
+        }
+
+        TweedNetworking.addHandles(self.addedHandles, successHandler: { (task, responseObject) -> Void in
+            animationView.completionBlock = { (Void) -> Void in
+                self.delegate?.followViewControllerDidFinish(self)
+            }
+            animationView.startAnimating()
+        }) { (task, error) -> Void in
+            SeshAlertView.init(swiftWithTitle: "Error!", message: "We couldn't add your handles! Please check your internet connection and try again!", delegate: nil, cancelButtonTitle: nil, otherButtonTitles: ["OKAY"]).show()
+
+            UIView.animateWithDuration(0.3, animations: { () -> Void in
+                animationView.alpha = 0.0
+            }, completion: { (success: Bool) -> Void in
+                animationView.removeFromSuperview()
+            })
+        }
     }
 
     // MARK: Notification observers
 
     func textFieldDidChange(notification: NSNotification) {
-        self.textField.accessoryType = .ActivityIndicator
-        TweedNetworking.checkHandle(self.textField.text!, successHandler: { (task, responseObject) -> Void in
-            self.textField.accessoryType = .Check
-        }) { (task, error) -> Void in
-            self.textField.accessoryType = .X
+        // Remove error label
+        self.errorLabel.alpha = 0.0
+
+        if self.textField.text?.characters.count != 0 {
+            self.textField.accessoryType = .ActivityIndicator
+            TweedNetworking.checkHandle(self.textField.text!, successHandler: { (task, responseObject) -> Void in
+                self.textField.accessoryType = .Check
+                }) { (task, error) -> Void in
+                    self.textField.accessoryType = .X
+            }
+        } else {
+            self.textField.accessoryType = .None
         }
     }
 
@@ -213,6 +313,33 @@ class FollowViewController: UIViewController, UIViewControllerAnimatedTransition
                 transitionContext.completeTransition(true)
             })
         }
+    }
+
+    // MARK: UITextFieldDelegate Methods
+
+    func textFieldShouldReturn(textField: UITextField) -> Bool {
+        if (textField == self.textField) {
+            if self.textField.accessoryType == .Check {
+                self.acceptButton.alpha = 1.0
+
+                self.addedHandles.append(self.textField.text!)
+
+                self.tableView.reloadData()
+                self.textField.text = ""
+
+                if self.addedHandles.count == 1 {
+                    UIView.animateWithDuration(0.2, animations: { () -> Void in
+                        self.tableView.alpha = 1.0
+                    })
+                }
+            } else if self.textField.accessoryType == .X {
+                UIView.animateWithDuration(0.2, animations: { () -> Void in
+                    self.errorLabel.alpha = 1.0
+                })
+            }
+        }
+
+        return false
     }
 
 }
