@@ -12,16 +12,14 @@ import CoreData
 
 class User: NSManagedObject {
 
-    class func createOrUpdateUserWithObject(userObject: [String: AnyObject], isRecommended: Bool, isFollowing: Bool) -> User? {
+    class func createOrUpdateUserWithObject(userObject: [String: AnyObject]) -> User? {
         
         let moc = DataManager.sharedInstance().managedObjectContext!!
         var user = self.getUserWithId(String(userObject["id"] as! Int))
         if (user == nil) {
             user = NSEntityDescription.insertNewObjectForEntityForName("User", inManagedObjectContext: moc) as? User
-            
-            // Only set is recommended and is following the first time
-            user!.isRecommended = NSNumber(bool: isRecommended)
-            user!.isFollowing = NSNumber(bool: isFollowing)
+            user!.isRecommended = NSNumber(bool: false)
+            user!.isFollowing = NSNumber(bool: false)
         }
         
         user!.id = String(userObject["id"] as! Int)
@@ -63,8 +61,9 @@ class User: NSManagedObject {
     class func getRecommendedUsers() -> [User]? {
         let moc = DataManager.sharedInstance().managedObjectContext!!
         let request = NSFetchRequest()
-        let predicate = NSPredicate(format: "isRecommended == %@", NSNumber(bool: true))
+        let predicate = NSPredicate(format: "isRecommended == %@ && isFollowing == %@", NSNumber(bool: true), NSNumber(bool: false))
         request.entity = NSEntityDescription.entityForName("User", inManagedObjectContext: moc)
+        request.sortDescriptors = [NSSortDescriptor(key: "name", ascending: true)]
         request.predicate = predicate
         var results: [AnyObject]?
         do {
@@ -97,7 +96,8 @@ class User: NSManagedObject {
             
             // Insert the new ones
             for object in responseObject as! [[String: AnyObject]] {
-                self.createOrUpdateUserWithObject(object, isRecommended: true, isFollowing: false)
+                let user = self.createOrUpdateUserWithObject(object)
+                user?.isRecommended = NSNumber(bool: true)
             }
             
             // Save the context

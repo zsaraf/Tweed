@@ -36,8 +36,8 @@ class HomeViewController: UIViewController, UITableViewDelegate, UITableViewData
         }
     }
     
-    override func viewWillAppear(animated: Bool) {
-        super.viewWillAppear(animated)
+    override func viewDidAppear(animated: Bool) {
+        super.viewDidAppear(animated)
         self.refreshTweets()
     }
 
@@ -110,6 +110,7 @@ class HomeViewController: UIViewController, UITableViewDelegate, UITableViewData
         self.dismissViewControllerAnimated(true) { () -> Void in
             fvc.transitioningDelegate = nil
         }
+        self.refreshTweets()
     }
     
     // MARK: Private Methods
@@ -123,7 +124,9 @@ class HomeViewController: UIViewController, UITableViewDelegate, UITableViewData
             
             // Parse users first
             for u in users {
-                User.createOrUpdateUserWithObject(u, isRecommended: false, isFollowing: true)
+                let user = User.createOrUpdateUserWithObject(u)
+                user?.isFollowing = NSNumber(bool: true)
+                
             }
             
             for t in tweets {

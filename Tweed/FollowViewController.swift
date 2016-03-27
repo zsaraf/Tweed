@@ -271,8 +271,10 @@ class FollowViewController: UIViewController, UIViewControllerAnimatedTransition
 
         TweedNetworking.addHandles(Array(self.addedHandles), successHandler: { (task, responseObject) -> Void in
             for ro in responseObject as! [[String: AnyObject]] {
-                User.createOrUpdateUserWithObject(ro, isRecommended: false, isFollowing: true)
+                let user = User.createOrUpdateUserWithObject(ro)
+                user?.isFollowing = NSNumber(bool: true)
             }
+            DataManager.sharedInstance().saveContext(nil)
             animationView.completionBlock = { (Void) -> Void in
                 self.delegate?.followViewControllerDidFinish(self)
             }
