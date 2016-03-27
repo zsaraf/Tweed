@@ -9,6 +9,7 @@
 #import "UILabel+Sesh.h"
 #import "UIColor+Sesh.h"
 #import "UIFont+Sesh.h"
+#import "Tweed-Swift.h"
 
 @implementation UILabel (Sesh)
 
@@ -28,11 +29,11 @@
 {
     UILabel *label = [[UILabel alloc] initWithFrame:CGRectZero];
     if (fontType == kSeshLabelFontBold) {
-        label.font = [UIFont bookGothamWithSize:fontSize];
+        label.font = [UIFont SFMedium:fontSize];
     } else if (fontType == kSeshLabelFontRegular) {
-        label.font = [UIFont bookGothamWithSize:fontSize];
+        label.font = [UIFont SFRegular:fontSize];
     } else if (fontType == kSeshLabelFontLight) {
-        label.font = [UIFont lightGothamWithSize:fontSize];
+        label.font = [UIFont SFRegular:fontSize];
     }
 
     label.text = text;

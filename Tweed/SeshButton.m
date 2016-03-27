@@ -53,13 +53,13 @@ static const float kButtonHeight = 40;
         [self setTitleColor:[UIColor whiteColor] forState:UIControlStateHighlighted];
         [self setTitleColor:[UIColor whiteColor] forState:UIControlStateSelected];
         
-        [self.titleLabel setFont:[UIFont mediumGothamWithSize:[SeshUtils scaledFontSizeForFontSize:kButtonFontSize]]];
+        [self.titleLabel setFont:[UIFont SFMedium:[SeshUtils scaledFontSizeForFontSize:kButtonFontSize]]];
     } else if (type == SeshButtonTypeGray) {
         [self setBackgroundImage:[UIImage imageWithColor:[UIColor colorWithWhite:.9 alpha:1.0]] forState:UIControlStateNormal];
         [self setBackgroundImage:[UIImage imageWithColor:[UIColor colorWithWhite:.5 alpha:1.0]] forState:UIControlStateHighlighted];
         [self setTitleColor:[UIColor colorWithWhite:.4 alpha:1.0] forState:UIControlStateNormal];
         
-        self.titleLabel.font = [UIFont mediumGothamWithSize:[SeshUtils scaledFontSizeForFontSize:kButtonFontSize]];
+        self.titleLabel.font = [UIFont SFMedium:[SeshUtils scaledFontSizeForFontSize:kButtonFontSize]];
     }
 }
 

@@ -13,6 +13,8 @@ import SDWebImage
 class HomeViewController: UIViewController, UITableViewDelegate, UITableViewDataSource, FollowViewControllerDelegate {
     let tableView = UITableView()
 
+    private var tweets = [Tweet]()
+    
     override func viewDidLoad() {
         super.viewDidLoad()
 
@@ -33,6 +35,11 @@ class HomeViewController: UIViewController, UITableViewDelegate, UITableViewData
             make.edges.equalTo(self.view)
         }
     }
+    
+    override func viewWillAppear(animated: Bool) {
+        super.viewWillAppear(animated)
+        self.refreshTweets()
+    }
 
     func configureNavigationBar() {
         self.title = "Timeline"
@@ -47,7 +54,7 @@ class HomeViewController: UIViewController, UITableViewDelegate, UITableViewData
     // MARK: UITableViewDelegate & UITableViewDataSource methods
 
     func tableView(tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
-        return 1
+        return self.tweets.count
     }
 
     func tableView(tableView: UITableView, cellForRowAtIndexPath indexPath: NSIndexPath) -> UITableViewCell {
@@ -58,11 +65,7 @@ class HomeViewController: UIViewController, UITableViewDelegate, UITableViewData
             cell?.selectionStyle = .None
         }
 
-        cell?.messageTextView.text = "Hey this is my first tweet. Feels good to be alive! Read all of my tweets. Catch up on everything."
-        cell?.dateLabel.text = "4/15/15"
-        cell?.nameLabel.text = "Zach S."
-        cell?.handleLabel.text = "@zacharysaraf"
-        cell?.profileImageView.sd_setImageWithURL(NSURL(string: "https://media.licdn.com/mpr/mpr/shrinknp_200_200/p/7/000/211/124/06ee517.jpg"))
+        cell?.tweet = self.tweets[indexPath.row]
 
         return cell!
     }
@@ -106,6 +109,36 @@ class HomeViewController: UIViewController, UITableViewDelegate, UITableViewData
         fvc.transitioningDelegate = fvc
         self.dismissViewControllerAnimated(true) { () -> Void in
             fvc.transitioningDelegate = nil
+        }
+    }
+    
+    // MARK: Private Methods
+    
+    func refreshTweets() {
+        TweedNetworking.refreshTweets({ (task, responseObject) in
+            
+            // Get users and tweets
+            let users = responseObject!["twitter_users"] as! [[String: AnyObject]]
+            let tweets = responseObject!["tweets"] as! [[String: AnyObject]]
+            
+            // Parse users first
+            for u in users {
+                User.createOrUpdateUserWithObject(u, isRecommended: false, isFollowing: true)
+            }
+            
+            for t in tweets {
+                Tweet.createOrUpdateTweetWithObject(t)
+            }
+            
+            // Save the shared context
+            DataManager.sharedInstance().saveContext(nil)
+            
+            // Assign tweets and resume operations as normal
+            self.tweets = Tweet.getAllTweets()
+            self.tableView.reloadData()
+            
+        }) { (task, error) in
+            print("Failed to refresh tweets with error: \(error.localizedDescription)")
         }
     }
 

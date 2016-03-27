@@ -19,7 +19,7 @@ class RecommendationsView: UIView, UICollectionViewDelegate, UICollectionViewDat
         }
     }
 
-    var recommendations: [RecommendedUser] {
+    var recommendations: [User] {
         didSet {
             self.toggleViewVisibility()
             if (self.collectionView != nil) {
@@ -35,7 +35,7 @@ class RecommendationsView: UIView, UICollectionViewDelegate, UICollectionViewDat
     
     // MARK: Init Methods
     
-    init(recommendations: [RecommendedUser], dataSource: FollowViewController) {
+    init(recommendations: [User], dataSource: FollowViewController) {
         self.recommendations = recommendations
         self.dataSource = dataSource
         super.init(frame: CGRectZero)
@@ -95,22 +95,14 @@ class RecommendationsView: UIView, UICollectionViewDelegate, UICollectionViewDat
         }
     }
     
-    
-    
-    // MARK: UICollectionViewDelegate
-    
-    
-    
-    
-    
     // MARK: UICollectionViewDataSource
     
     func collectionView(collectionView: UICollectionView, cellForItemAtIndexPath indexPath: NSIndexPath) -> UICollectionViewCell {
         let cell = collectionView.dequeueReusableCellWithReuseIdentifier(RecommendationsViewConstants.CollectionView.ReuseIdentifier, forIndexPath: indexPath) as! RecommendationTableViewCell
         let recommendation = self.recommendations[indexPath.row]
-        cell.user = recommendation.user
+        cell.user = recommendation
         cell.delegate = self
-        if (self.dataSource!.addedHandles.contains((recommendation.user?.screenName)!)) {
+        if (self.dataSource!.addedHandles.contains((recommendation.screenName)!)) {
             cell.setFollowButtonTitle("Unfollow");
         } else {
             cell.setFollowButtonTitle("Follow");

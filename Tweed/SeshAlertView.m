@@ -73,7 +73,7 @@
 
     
     if (cancelButtonTitle) {
-        [items addObject:[SeshAlertViewItem alertViewViewButtonItemWithTitle:[cancelButtonTitle uppercaseString] backgroundColor:[UIColor seshAlertViewCancelColor] selectedBackgroundColor:[UIColor seshAlertViewCancelSelectedColor]]];
+        [items addObject:[SeshAlertViewItem alertViewViewButtonItemWithTitle:cancelButtonTitle backgroundColor:[UIColor seshAlertViewCancelColor] selectedBackgroundColor:[UIColor seshAlertViewCancelSelectedColor]]];
     }
     
     UIWindow *keyWindow = [UIApplication sharedApplication].keyWindow;
@@ -193,7 +193,7 @@
         }
         
         if (!buttonTitle) {
-            buttonTitle = @"OKAY";
+            buttonTitle = @"Okay";
         }
         NSArray *buttonItems = @[[SeshAlertViewItem alertViewViewButtonItemWithTitle:buttonTitle backgroundColor:[UIColor colorWithWhite:.8 alpha:1.0] selectedBackgroundColor:[UIColor colorWithWhite:.6 alpha:1.0]]];
         SeshAlertViewController *vc = [[SeshAlertViewController alloc] initWithTitle:title description:description buttonItems:buttonItems image:nil];
@@ -307,7 +307,7 @@
                          [self.mainViewController.view removeFromSuperview];
                          self.mainViewController = nil;
                         
-                        NSArray *buttonItems = @[[SeshAlertViewItem alertViewViewButtonItemWithTitle:@"OKAY" backgroundColor:[UIColor colorWithWhite:.8 alpha:1.0] selectedBackgroundColor:[UIColor colorWithWhite:.6 alpha:1.0]]];
+                        NSArray *buttonItems = @[[SeshAlertViewItem alertViewViewButtonItemWithTitle:@"Okay" backgroundColor:[UIColor colorWithWhite:.8 alpha:1.0] selectedBackgroundColor:[UIColor colorWithWhite:.6 alpha:1.0]]];
                          SeshAlertViewController *vc = [[SeshAlertViewController alloc] initWithTitle:title description:reason buttonItems:buttonItems image:nil];
                          vc.delegate = self;
                          self.mainViewController = vc;

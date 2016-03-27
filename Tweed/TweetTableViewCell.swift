@@ -7,6 +7,7 @@
 //
 
 import UIKit
+import NSDate_TimeAgo
 
 class TweetTableViewCell: UITableViewCell {
 
@@ -15,11 +16,22 @@ class TweetTableViewCell: UITableViewCell {
         static let BottomPadding = 10.0
     }
 
-    var profileImageView = UIImageView.init()
-    var nameLabel = UILabel(font: UIFont.SFMedium(14.0)!, textColor: UIColor.tweedGray(), text: "", textAlignment: .Center)
-    var handleLabel = UILabel(font: UIFont.SFRegular(12.0)!, textColor: UIColor.tweedGray(), text: "", textAlignment: .Center)
-    var dateLabel = UILabel(font: UIFont.SFRegular(11.0)!, textColor: UIColor.tweedLightGray(), text: "", textAlignment: .Center)
-    var messageTextView = UITextView(frame: CGRectZero, textContainer: nil)
+    private let profileImageView = UIImageView.init()
+    private let nameLabel = UILabel(font: UIFont.SFMedium(14.0)!, textColor: UIColor.tweedGray(), text: "", textAlignment: .Center)
+    private let handleLabel = UILabel(font: UIFont.SFRegular(12.0)!, textColor: UIColor.tweedGray(), text: "", textAlignment: .Center)
+    private let dateLabel = UILabel(font: UIFont.SFRegular(11.0)!, textColor: UIColor.tweedLightGray(), text: "", textAlignment: .Center)
+    private let messageTextView = UITextView(frame: CGRectZero, textContainer: nil)
+    
+    var tweet: Tweet? {
+        didSet {
+            self.messageTextView.text = (self.tweet?.text)!
+            self.dateLabel.text = self.tweet?.createdAt?.timeAgo()
+            self.nameLabel.text = self.tweet?.user?.displayName()
+            self.handleLabel.text = "@" + (self.tweet?.user?.screenName)!
+            self.profileImageView.sd_setImageWithURL(NSURL(string: (self.tweet?.user?.profileImageUrl)!))
+
+        }
+    }
 
     override init(style: UITableViewCellStyle, reuseIdentifier: String?) {
         super.init(style: style, reuseIdentifier: reuseIdentifier)

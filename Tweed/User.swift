@@ -12,28 +12,16 @@ import CoreData
 
 class User: NSManagedObject {
 
-    class func createOrUpdateUserWithObject(userObject: [String: AnyObject]) -> User? {
+    class func createOrUpdateUserWithObject(userObject: [String: AnyObject], isRecommended: Bool, isFollowing: Bool) -> User? {
         
         let moc = DataManager.sharedInstance().managedObjectContext!!
-        var user: User?
-        let request = NSFetchRequest()
-        let predicate = NSPredicate(format: "id == %@", String(userObject["id"] as! Int))
-        request.entity = NSEntityDescription.entityForName("User", inManagedObjectContext: moc)
-        request.predicate = predicate
-        var results: [AnyObject]?
-        do {
-            results = try moc.executeFetchRequest(request)
-        } catch let error as NSError {
-            print(error.localizedDescription)
-        }
-        
-        if (results == nil || results?.count == 0) {
+        var user = self.getUserWithId(String(userObject["id"] as! Int))
+        if (user == nil) {
             user = NSEntityDescription.insertNewObjectForEntityForName("User", inManagedObjectContext: moc) as? User
-        } else if (results?.count == 1) {
-            user = results![0] as? User
-        } else {
-            print("Should not happen help!")
-            return nil;
+            
+            // Only set is recommended and is following the first time
+            user!.isRecommended = NSNumber(bool: isRecommended)
+            user!.isFollowing = NSNumber(bool: isFollowing)
         }
         
         user!.id = String(userObject["id"] as! Int)
@@ -46,13 +34,97 @@ class User: NSManagedObject {
         user!.profileBackgroundColor = userObject["profile_background_color"] as? String
         user!.profileBackgroundImageUrl = userObject["profile_background_image"] as? String
         
-        DataManager.sharedInstance().saveContext(nil)
         return user
-        
-        
     }
     
-    // Insert code here to add functionality to your managed object subclass
+    class func getUserWithId(id: String) -> User? {
+        let moc = DataManager.sharedInstance().managedObjectContext!!
+        let request = NSFetchRequest()
+        let predicate = NSPredicate(format: "id == %@", id)
+        request.entity = NSEntityDescription.entityForName("User", inManagedObjectContext: moc)
+        request.predicate = predicate
+        var results: [AnyObject]?
+        do {
+            results = try moc.executeFetchRequest(request)
+        } catch let error as NSError {
+            print(error.localizedDescription)
+        }
+        
+        if (results == nil || results?.count == 0) {
+            return nil;
+        } else if (results?.count == 1) {
+            return results![0] as? User
+        } else {
+            print("Should not happen help!")
+            return nil;
+        }
+    }
+    
+    class func getRecommendedUsers() -> [User]? {
+        let moc = DataManager.sharedInstance().managedObjectContext!!
+        let request = NSFetchRequest()
+        let predicate = NSPredicate(format: "isRecommended == %@", NSNumber(bool: true))
+        request.entity = NSEntityDescription.entityForName("User", inManagedObjectContext: moc)
+        request.predicate = predicate
+        var results: [AnyObject]?
+        do {
+            results = try moc.executeFetchRequest(request)
+        } catch let error as NSError {
+            print(error.localizedDescription)
+        }
+        
+        if (results == nil || results?.count == 0) {
+            return [User]();
+        } else {
+            return results as? [User]
+        }
+    }
+    
+    class func removeAllRecommendedUsers() {
+        let results = self.getRecommendedUsers()
+        
+        for ru in results! {
+            DataManager.sharedInstance().deleteObject(ru, context: nil)
+        }
+    }
+    
+    class func refreshRecommendedUsers(withCompletionHandler completionHandler: (() -> Void)?) {
+        
+        TweedNetworking.getSuggestions({ (task, responseObject) in
+            
+            // Remove all the old ones
+            self.removeAllRecommendedUsers()
+            
+            // Insert the new ones
+            for object in responseObject as! [[String: AnyObject]] {
+                self.createOrUpdateUserWithObject(object, isRecommended: true, isFollowing: false)
+            }
+            
+            // Save the context
+            DataManager.sharedInstance().saveContext(nil)
+            
+            if (completionHandler != nil) {
+                completionHandler!()
+            }
+            
+        }) { (task, error) in
+            print("error")
+        }
+    }
+    
+    func displayName() -> String {
+        var abbreviatedName = self.name?.stringByTrimmingCharactersInSet(NSCharacterSet.whitespaceCharacterSet())
+        let components = abbreviatedName?.componentsSeparatedByString(" ")
+        abbreviatedName = components![0]
+        if (components?.count > 1) {
+            let lastPart = components![(components?.count)! - 1]
+            let range = lastPart.startIndex..<lastPart.startIndex.advancedBy(1)
+            abbreviatedName = abbreviatedName?.stringByAppendingFormat(" %@.", lastPart.substringWithRange(range))
+        }
+        return abbreviatedName!
+    }
+
+    
     class func testUser() -> User? {
         let moc = DataManager.sharedInstance().managedObjectContext!!
         var user: User?
@@ -80,17 +152,4 @@ class User: NSManagedObject {
         DataManager.sharedInstance().saveContext(nil)
         return user
     }
-    
-    func displayName() -> String {
-        var abbreviatedName = self.name?.stringByTrimmingCharactersInSet(NSCharacterSet.whitespaceCharacterSet())
-        let components = abbreviatedName?.componentsSeparatedByString(" ")
-        abbreviatedName = components![0]
-        if (components?.count > 1) {
-            let lastPart = components![(components?.count)! - 1]
-            let range = lastPart.startIndex..<lastPart.startIndex.advancedBy(1)
-            abbreviatedName = abbreviatedName?.stringByAppendingFormat(" %@.", lastPart.substringWithRange(range))
-        }
-        return abbreviatedName!
-    }
-
 }

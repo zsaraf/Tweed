@@ -25,7 +25,8 @@ extension User {
     @NSManaged var profileImageUrl: String?
     @NSManaged var screenName: String?
     @NSManaged var tweetCount: NSNumber?
-    @NSManaged var recommendedUser: RecommendedUser?
+    @NSManaged var isRecommended: NSNumber?
+    @NSManaged var isFollowing: NSNumber?
     @NSManaged var tweets: NSSet?
 
 }

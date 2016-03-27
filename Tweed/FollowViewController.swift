@@ -62,8 +62,8 @@ class FollowViewController: UIViewController, UIViewControllerAnimatedTransition
         self.setupTopBarView()
         self.setupContentView()
         
-        RecommendedUser.refreshRecommendedUsers { 
-            self.reccomendationsView.recommendations = RecommendedUser.getAllRecommendedUsers()
+        User.refreshRecommendedUsers {
+            self.reccomendationsView.recommendations = User.getRecommendedUsers()!
         }
 
     }
@@ -136,7 +136,7 @@ class FollowViewController: UIViewController, UIViewControllerAnimatedTransition
 
     func setupTextField() {
         
-        self.reccomendationsView = RecommendationsView(recommendations: RecommendedUser.getAllRecommendedUsers(), dataSource: self)
+        self.reccomendationsView = RecommendationsView(recommendations: User.getRecommendedUsers()!, dataSource: self)
         self.contentView.addSubview(self.reccomendationsView)
         self.reccomendationsView.snp_makeConstraints { (make) in
             make.top.equalTo(self.contentView).offset(20)
@@ -271,14 +271,14 @@ class FollowViewController: UIViewController, UIViewControllerAnimatedTransition
 
         TweedNetworking.addHandles(Array(self.addedHandles), successHandler: { (task, responseObject) -> Void in
             for ro in responseObject as! [[String: AnyObject]] {
-                User.createOrUpdateUserWithObject(ro)
+                User.createOrUpdateUserWithObject(ro, isRecommended: false, isFollowing: true)
             }
             animationView.completionBlock = { (Void) -> Void in
                 self.delegate?.followViewControllerDidFinish(self)
             }
             animationView.startAnimating()
         }) { (task, error) -> Void in
-            SeshAlertView.init(swiftWithTitle: "Error!", message: "We couldn't add your handles! Please check your internet connection and try again!", delegate: nil, cancelButtonTitle: nil, otherButtonTitles: ["OKAY"]).show()
+            SeshAlertView.init(swiftWithTitle: "Error!", message: "We couldn't add your handles! Please check your internet connection and try again!", delegate: nil, cancelButtonTitle: nil, otherButtonTitles: ["Okay"]).show()
 
             UIView.animateWithDuration(0.3, animations: { () -> Void in
                 animationView.alpha = 0.0
