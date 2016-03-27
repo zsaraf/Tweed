@@ -121,7 +121,7 @@ class ViewProfileAlertViewController: SeshAlertViewController {
     func setupCoverImageView() {
         let coverImageView = UIImageView()
         coverImageView.contentMode = .ScaleAspectFill
-        coverImageView.sd_setImageWithURL(self.user.)
+        coverImageView.sd_setImageWithURL(NSURL(string: self.user.profileBackgroundImageUrl!))
     }
 
     // MARK: Custom view setup
