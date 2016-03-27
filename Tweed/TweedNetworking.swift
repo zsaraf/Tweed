@@ -5,11 +5,10 @@
 //  Created by Zachary Saraf on 3/26/16.
 //  Copyright © 2016 Zachary Saraf. All rights reserved.
 //
-
 import UIKit
 import AFNetworking
 
-typealias TweedNetworkingSuccessHandler = ((task: NSURLSessionTask, responseObject: AnyObject) -> Void)
+typealias TweedNetworkingSuccessHandler = ((task: NSURLSessionTask, responseObject: AnyObject?) -> Void)
 typealias TweedNetworkingFailureHandler = ((task: NSURLSessionTask, error: NSError) -> Void)
 
 class TweedNetworking: NSObject {
@@ -20,7 +19,7 @@ class TweedNetworking: NSObject {
     }
 
     static func baseUrl() -> NSURL {
-        return NSURL(string: "ec2-54-201-37-165.us-west-2.compute.amazonaws.com/django/")!
+        return NSURL(string: "http://ec2-54-201-37-165.us-west-2.compute.amazonaws.com/django/")!
     }
 
     static func request(relativeUrl: String, method: RequestMethod, params: [String: AnyObject], successHandler: TweedNetworkingSuccessHandler?, failureHandler: TweedNetworkingFailureHandler?) {
@@ -31,27 +30,38 @@ class TweedNetworking: NSObject {
         manager.responseSerializer = AFJSONResponseSerializer()
 
         manager.requestSerializer.clearAuthorizationHeader()
+        if TweedAuthManager.sharedManager().isValidSession() {
+            manager.requestSerializer.setValue(TweedAuthManager.sharedManager().accessToken(), forHTTPHeaderField: "X-Session-Id")
+        }
 
         UIApplication.sharedApplication().networkActivityIndicatorVisible = true
 
         if method == .Post {
             manager.POST(relativeUrl, parameters: params, success: { (task: NSURLSessionDataTask, responseObject: AnyObject?) -> Void in
-                successHandler?(task: task, responseObject: responseObject!)
+                successHandler?(task: task, responseObject: responseObject)
+                UIApplication.sharedApplication().networkActivityIndicatorVisible = false
             }, failure: { (task: NSURLSessionDataTask?, error: NSError) -> Void in
                 failureHandler?(task: task!, error: error)
+                UIApplication.sharedApplication().networkActivityIndicatorVisible = false
             })
         } else {
             manager.GET(relativeUrl, parameters: params, success: { (task: NSURLSessionDataTask, responseObject: AnyObject?) -> Void in
-                successHandler?(task: task, responseObject: responseObject!)
+                successHandler?(task: task, responseObject: responseObject)
+                UIApplication.sharedApplication().networkActivityIndicatorVisible = false
             }, failure: { (task: NSURLSessionDataTask?, error: NSError) -> Void in
                 failureHandler?(task: task!, error: error)
+                UIApplication.sharedApplication().networkActivityIndicatorVisible = false
             })
         }
     }
 
     static func checkHandle(handle: String, successHandler: TweedNetworkingSuccessHandler?, failureHandler: TweedNetworkingFailureHandler) {
 
-        self.request("check", method: .Post, params: ["handle": handle], successHandler: successHandler, failureHandler: failureHandler)
+        self.request("accounts/follows/check_user/", method: .Post, params: ["screen_name": handle], successHandler: successHandler, failureHandler: failureHandler)
+    }
+
+    static func getAnonymousToken(successHandler: TweedNetworkingSuccessHandler?, failureHandler: TweedNetworkingFailureHandler) {
+        self.request("accounts/tokens/", method: .Post, params: [String: AnyObject](), successHandler: successHandler, failureHandler: failureHandler)
     }
 
 }

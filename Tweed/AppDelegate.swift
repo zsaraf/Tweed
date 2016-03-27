@@ -19,13 +19,32 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
 
         self.customizeAppearance()
 
-        let nvc = UINavigationController(rootViewController: HomeViewController())
-
         self.window = UIWindow(frame: UIScreen.mainScreen().bounds)
-        self.window?.rootViewController = nvc
+
+        if TweedAuthManager.sharedManager().isValidSession() == false {
+            self.window?.rootViewController = LoadingViewController()
+            self.getAccessTokenWithCompletionHandler({ () -> Void in
+                let nvc = UINavigationController(rootViewController: HomeViewController())
+                self.window?.rootViewController?.presentViewController(HomeViewController(), animated: true, completion: nil)
+            })
+        } else {
+            let nvc = UINavigationController(rootViewController: HomeViewController())
+            self.window?.rootViewController = nvc
+        }
+
         self.window?.makeKeyAndVisible()
 
         return true
+    }
+
+    func getAccessTokenWithCompletionHandler(handler: () -> Void) {
+        TweedAuthManager.sharedManager().getAccessTokenWithCompletionHandler({ (success: Bool) -> Void in
+            if success == false {
+                self.getAccessTokenWithCompletionHandler(handler)
+            } else {
+                handler()
+            }
+        })
     }
 
     func customizeAppearance() {

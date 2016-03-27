@@ -57,10 +57,6 @@
 		86D299D81CA72C8300AA8739 /* email_gray.png in Resources */ = {isa = PBXBuildFile; fileRef = 86D299D51CA72C8300AA8739 /* email_gray.png */; };
 		86D299D91CA72C8300AA8739 /* email_gray@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 86D299D61CA72C8300AA8739 /* email_gray@2x.png */; };
 		86D299DA1CA72C8300AA8739 /* email_gray@3x.png in Resources */ = {isa = PBXBuildFile; fileRef = 86D299D71CA72C8300AA8739 /* email_gray@3x.png */; };
-		AF8883741CA732D40097DCDA /* SF-UI-Text-Light.otf in Resources */ = {isa = PBXBuildFile; fileRef = AF8883721CA732D40097DCDA /* SF-UI-Text-Light.otf */; };
-		AF8883751CA732D40097DCDA /* SF-UI-Text-Regular.otf in Resources */ = {isa = PBXBuildFile; fileRef = AF8883731CA732D40097DCDA /* SF-UI-Text-Regular.otf */; };
-		AF8883791CA734210097DCDA /* User+CoreDataProperties.swift in Sources */ = {isa = PBXBuildFile; fileRef = AF8883771CA734210097DCDA /* User+CoreDataProperties.swift */; };
-		AF88837A1CA734210097DCDA /* User.swift in Sources */ = {isa = PBXBuildFile; fileRef = AF8883781CA734210097DCDA /* User.swift */; };
 		86D299DD1CA737AF00AA8739 /* SeshConfirmationAnimationView.m in Sources */ = {isa = PBXBuildFile; fileRef = 86D299DC1CA737AF00AA8739 /* SeshConfirmationAnimationView.m */; };
 		86D299E11CA737E400AA8739 /* SeshProgressIndicator.m in Sources */ = {isa = PBXBuildFile; fileRef = 86D299E01CA737E400AA8739 /* SeshProgressIndicator.m */; };
 		86D299E81CA7384100AA8739 /* UIColor+Sesh.m in Sources */ = {isa = PBXBuildFile; fileRef = 86D299E31CA7384000AA8739 /* UIColor+Sesh.m */; };
@@ -85,6 +81,14 @@
 		86D29A0F1CA7396600AA8739 /* plus.png in Resources */ = {isa = PBXBuildFile; fileRef = 86D299FD1CA7396600AA8739 /* plus.png */; };
 		86D29A101CA7396600AA8739 /* plus@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 86D299FE1CA7396600AA8739 /* plus@2x.png */; };
 		86D29A111CA7396600AA8739 /* plus@3x.png in Resources */ = {isa = PBXBuildFile; fileRef = 86D299FF1CA7396600AA8739 /* plus@3x.png */; };
+		86D29A161CA7434900AA8739 /* AccessToken.m in Sources */ = {isa = PBXBuildFile; fileRef = 86D29A131CA7434900AA8739 /* AccessToken.m */; };
+		86D29A171CA7434900AA8739 /* TweedAuthManager.m in Sources */ = {isa = PBXBuildFile; fileRef = 86D29A151CA7434900AA8739 /* TweedAuthManager.m */; };
+		86D29A1B1CA7475F00AA8739 /* LoadingViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 86D29A1A1CA7475F00AA8739 /* LoadingViewController.swift */; };
+		86D29A1D1CA749F200AA8739 /* tweed_loading.png in Resources */ = {isa = PBXBuildFile; fileRef = 86D29A1C1CA749F200AA8739 /* tweed_loading.png */; };
+		AF8883741CA732D40097DCDA /* SF-UI-Text-Light.otf in Resources */ = {isa = PBXBuildFile; fileRef = AF8883721CA732D40097DCDA /* SF-UI-Text-Light.otf */; };
+		AF8883751CA732D40097DCDA /* SF-UI-Text-Regular.otf in Resources */ = {isa = PBXBuildFile; fileRef = AF8883731CA732D40097DCDA /* SF-UI-Text-Regular.otf */; };
+		AF8883791CA734210097DCDA /* User+CoreDataProperties.swift in Sources */ = {isa = PBXBuildFile; fileRef = AF8883771CA734210097DCDA /* User+CoreDataProperties.swift */; };
+		AF88837A1CA734210097DCDA /* User.swift in Sources */ = {isa = PBXBuildFile; fileRef = AF8883781CA734210097DCDA /* User.swift */; };
 		C429FE23F637B9810327BB16 /* Pods.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = B808E2B0FC48822C25B15FCE /* Pods.framework */; };
 /* End PBXBuildFile section */
 
@@ -167,10 +171,6 @@
 		86D299D51CA72C8300AA8739 /* email_gray.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = email_gray.png; sourceTree = "<group>"; };
 		86D299D61CA72C8300AA8739 /* email_gray@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "email_gray@2x.png"; sourceTree = "<group>"; };
 		86D299D71CA72C8300AA8739 /* email_gray@3x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "email_gray@3x.png"; sourceTree = "<group>"; };
-		AF8883721CA732D40097DCDA /* SF-UI-Text-Light.otf */ = {isa = PBXFileReference; lastKnownFileType = file; path = "SF-UI-Text-Light.otf"; sourceTree = "<group>"; };
-		AF8883731CA732D40097DCDA /* SF-UI-Text-Regular.otf */ = {isa = PBXFileReference; lastKnownFileType = file; path = "SF-UI-Text-Regular.otf"; sourceTree = "<group>"; };
-		AF8883771CA734210097DCDA /* User+CoreDataProperties.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "User+CoreDataProperties.swift"; sourceTree = "<group>"; };
-		AF8883781CA734210097DCDA /* User.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = User.swift; sourceTree = "<group>"; };
 		86D299DB1CA737AF00AA8739 /* SeshConfirmationAnimationView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SeshConfirmationAnimationView.h; sourceTree = "<group>"; };
 		86D299DC1CA737AF00AA8739 /* SeshConfirmationAnimationView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = SeshConfirmationAnimationView.m; sourceTree = "<group>"; };
 		86D299DF1CA737E400AA8739 /* SeshProgressIndicator.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SeshProgressIndicator.h; sourceTree = "<group>"; };
@@ -201,6 +201,16 @@
 		86D299FD1CA7396600AA8739 /* plus.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = plus.png; sourceTree = "<group>"; };
 		86D299FE1CA7396600AA8739 /* plus@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "plus@2x.png"; sourceTree = "<group>"; };
 		86D299FF1CA7396600AA8739 /* plus@3x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "plus@3x.png"; sourceTree = "<group>"; };
+		86D29A121CA7434900AA8739 /* AccessToken.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = AccessToken.h; sourceTree = "<group>"; };
+		86D29A131CA7434900AA8739 /* AccessToken.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = AccessToken.m; sourceTree = "<group>"; };
+		86D29A141CA7434900AA8739 /* TweedAuthManager.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = TweedAuthManager.h; sourceTree = "<group>"; };
+		86D29A151CA7434900AA8739 /* TweedAuthManager.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = TweedAuthManager.m; sourceTree = "<group>"; };
+		86D29A1A1CA7475F00AA8739 /* LoadingViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = LoadingViewController.swift; sourceTree = "<group>"; };
+		86D29A1C1CA749F200AA8739 /* tweed_loading.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = tweed_loading.png; sourceTree = "<group>"; };
+		AF8883721CA732D40097DCDA /* SF-UI-Text-Light.otf */ = {isa = PBXFileReference; lastKnownFileType = file; path = "SF-UI-Text-Light.otf"; sourceTree = "<group>"; };
+		AF8883731CA732D40097DCDA /* SF-UI-Text-Regular.otf */ = {isa = PBXFileReference; lastKnownFileType = file; path = "SF-UI-Text-Regular.otf"; sourceTree = "<group>"; };
+		AF8883771CA734210097DCDA /* User+CoreDataProperties.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "User+CoreDataProperties.swift"; sourceTree = "<group>"; };
+		AF8883781CA734210097DCDA /* User.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = User.swift; sourceTree = "<group>"; };
 		B808E2B0FC48822C25B15FCE /* Pods.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		C8015E868E43487347046249 /* Pods.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = Pods.debug.xcconfig; path = "Pods/Target Support Files/Pods/Pods.debug.xcconfig"; sourceTree = "<group>"; };
 /* End PBXFileReference section */
@@ -274,6 +284,7 @@
 		8614E8051CA5F39600DF48EA /* Tweed */ = {
 			isa = PBXGroup;
 			children = (
+				86D29A181CA7434F00AA8739 /* Auth */,
 				86D299D41CA72A0400AA8739 /* Reusable Components */,
 				86D299BF1CA7175E00AA8739 /* Networking */,
 				86D299B51CA60C0D00AA8739 /* Extensions */,
@@ -387,6 +398,7 @@
 		86D299B11CA60B5700AA8739 /* View Controllers */ = {
 			isa = PBXGroup;
 			children = (
+				86D29A191CA7474D00AA8739 /* Loading */,
 				86D299BC1CA7148B00AA8739 /* Follow */,
 				86D299B21CA60B6400AA8739 /* Home */,
 			);
@@ -444,6 +456,7 @@
 		86D299D11CA721CD00AA8739 /* Textures */ = {
 			isa = PBXGroup;
 			children = (
+				86D29A1C1CA749F200AA8739 /* tweed_loading.png */,
 				86D299CF1CA721CA00AA8739 /* tweed_texture.png */,
 			);
 			name = Textures;
@@ -458,15 +471,6 @@
 			name = "Reusable Components";
 			sourceTree = "<group>";
 		};
-		AF8883761CA7340C0097DCDA /* NSManagedObjects */ = {
-			isa = PBXGroup;
-			children = (
-				AF8883771CA734210097DCDA /* User+CoreDataProperties.swift */,
-				AF8883781CA734210097DCDA /* User.swift */,
-			);
-			name = NSManagedObjects;
-			sourceTree = "<group>";
-                };
 		86D299DE1CA737BA00AA8739 /* Sesh (All necessary for SeshConfirmationAnimationView) */ = {
 			isa = PBXGroup;
 			children = (
@@ -484,6 +488,34 @@
 				86D299DC1CA737AF00AA8739 /* SeshConfirmationAnimationView.m */,
 			);
 			name = "Sesh (All necessary for SeshConfirmationAnimationView)";
+			sourceTree = "<group>";
+		};
+		86D29A181CA7434F00AA8739 /* Auth */ = {
+			isa = PBXGroup;
+			children = (
+				86D29A121CA7434900AA8739 /* AccessToken.h */,
+				86D29A131CA7434900AA8739 /* AccessToken.m */,
+				86D29A141CA7434900AA8739 /* TweedAuthManager.h */,
+				86D29A151CA7434900AA8739 /* TweedAuthManager.m */,
+			);
+			name = Auth;
+			sourceTree = "<group>";
+		};
+		86D29A191CA7474D00AA8739 /* Loading */ = {
+			isa = PBXGroup;
+			children = (
+				86D29A1A1CA7475F00AA8739 /* LoadingViewController.swift */,
+			);
+			name = Loading;
+			sourceTree = "<group>";
+		};
+		AF8883761CA7340C0097DCDA /* NSManagedObjects */ = {
+			isa = PBXGroup;
+			children = (
+				AF8883771CA734210097DCDA /* User+CoreDataProperties.swift */,
+				AF8883781CA734210097DCDA /* User.swift */,
+			);
+			name = NSManagedObjects;
 			sourceTree = "<group>";
 		};
 		E88152B23AB8FC9772C3D7B9 /* Frameworks */ = {
@@ -638,6 +670,7 @@
 				86D299A61CA6094600AA8739 /* Gotham-LightItalic.otf in Resources */,
 				86D299A71CA6094600AA8739 /* Gotham-Medium.otf in Resources */,
 				86D299A81CA6094600AA8739 /* Gotham-MediumItalic.otf in Resources */,
+				86D29A1D1CA749F200AA8739 /* tweed_loading.png in Resources */,
 				86D29A061CA7396600AA8739 /* check_circle.png in Resources */,
 				86D299A91CA6094600AA8739 /* Gotham-Thin.otf in Resources */,
 				86D299AA1CA6094600AA8739 /* Gotham-ThinItalic.otf in Resources */,
@@ -734,12 +767,15 @@
 				8614E83A1CA5F64000DF48EA /* DataManager.m in Sources */,
 				AF88837A1CA734210097DCDA /* User.swift in Sources */,
 				86D299B71CA60C2100AA8739 /* UILabel+Tweed.swift in Sources */,
+				86D29A1B1CA7475F00AA8739 /* LoadingViewController.swift in Sources */,
 				86D299B01CA609A200AA8739 /* UIFont+Tweed.swift in Sources */,
 				8614E8071CA5F39600DF48EA /* AppDelegate.swift in Sources */,
 				86D299E91CA7384100AA8739 /* UIFont+Sesh.m in Sources */,
 				86D299E81CA7384100AA8739 /* UIColor+Sesh.m in Sources */,
 				86D299E11CA737E400AA8739 /* SeshProgressIndicator.m in Sources */,
+				86D29A171CA7434900AA8739 /* TweedAuthManager.m in Sources */,
 				86D299B41CA60BA800AA8739 /* TweetTableViewCell.swift in Sources */,
+				86D29A161CA7434900AA8739 /* AccessToken.m in Sources */,
 				AF8883791CA734210097DCDA /* User+CoreDataProperties.swift in Sources */,
 				86D299BE1CA714A500AA8739 /* FollowViewController.swift in Sources */,
 				86D299CC1CA71F3700AA8739 /* UIImage+ImageEffects.m in Sources */,

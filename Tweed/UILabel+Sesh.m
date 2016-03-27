@@ -28,7 +28,7 @@
 {
     UILabel *label = [[UILabel alloc] initWithFrame:CGRectZero];
     if (fontType == kSeshLabelFontBold) {
-        label.font = [UIFont mediumGothamWithSize:fontSize];
+        label.font = [UIFont bookGothamWithSize:fontSize];
     } else if (fontType == kSeshLabelFontRegular) {
         label.font = [UIFont bookGothamWithSize:fontSize];
     } else if (fontType == kSeshLabelFontLight) {

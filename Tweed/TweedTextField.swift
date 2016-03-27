@@ -10,17 +10,48 @@ import UIKit
 import SnapKit
 
 class TweedTextField: UITextField {
-    let iconView: UIImageView
+
+    enum TweedTextFieldAccessoryType {
+        case None, ActivityIndicator, Check, X;
+    }
+
+    let leftIconView: UIImageView
+    let rightIconView = UIImageView(frame: CGRectMake(0, 0, 20, 20))
+    let rightActivityIndicatorView = SeshActivityIndicator(frame: CGRectMake(0, 0, 20, 20))
     let lineView = UIView()
+
     var iconWrapperViewHeightConstraint: Constraint?
 
+    var accessoryType = TweedTextFieldAccessoryType.None {
+        didSet {
+            if accessoryType == .None {
+                self.rightView = nil
+                self.rightViewMode = .Never
+            } else if accessoryType == .ActivityIndicator {
+                self.rightView = rightActivityIndicatorView
+                self.rightViewMode = .Always
+            } else {
+                if accessoryType == .Check {
+                    self.rightIconView.image = UIImage(named: "check")?.imageWithRenderingMode(.AlwaysTemplate)
+                    self.rightIconView.tintColor = UIColor.greenColor()
+                } else {
+                    self.rightIconView.image = UIImage(named: "cancel")?.imageWithRenderingMode(.AlwaysTemplate)
+                    self.rightIconView.tintColor = UIColor.redColor()
+                }
+                self.rightView = self.rightIconView
+                self.rightViewMode = .Always
+            }
+        }
+    }
+
     init(frame: CGRect, icon: UIImage) {
-        self.iconView = UIImageView(image: icon.imageWithRenderingMode(.AlwaysTemplate))
+        self.leftIconView = UIImageView(image: icon.imageWithRenderingMode(.AlwaysTemplate))
 
         super.init(frame: frame)
 
         self.setupTextField()
-        self.setupIconView()
+        self.setupLeftIconView()
+        self.setupRightIconView()
         self.setupLineView()
     }
 
@@ -30,17 +61,17 @@ class TweedTextField: UITextField {
         self.attributedPlaceholder = NSAttributedString(string: "Enter username handle", attributes: [NSForegroundColorAttributeName: self.textColor!, NSFontAttributeName: self.font!])
     }
 
-    func setupIconView() {
-        self.iconView.contentMode = .ScaleAspectFit
-        self.iconView.tintColor = UIColor.tweedBlue()
+    func setupLeftIconView() {
+        self.leftIconView.contentMode = .ScaleAspectFit
+        self.leftIconView.tintColor = UIColor.tweedBlue()
 
         let iconWrapperView = UIView()
-        iconWrapperView.addSubview(self.iconView)
+        iconWrapperView.addSubview(self.leftIconView)
 
-        self.iconView.snp_makeConstraints { (make) -> Void in
+        self.leftIconView.snp_makeConstraints { (make) -> Void in
             make.left.equalTo(iconWrapperView).offset(2)
             make.centerY.equalTo(iconWrapperView)
-            make.width.equalTo(self.iconView.snp_height)
+            make.width.equalTo(self.leftIconView.snp_height)
             make.top.bottom.equalTo(iconWrapperView).inset(1)
         }
 
@@ -51,6 +82,10 @@ class TweedTextField: UITextField {
 
         self.leftView = iconWrapperView
         self.leftViewMode = .Always
+    }
+
+    func setupRightIconView() {
+        self.rightActivityIndicatorView.startAnimating()
     }
 
     func setupLineView() {

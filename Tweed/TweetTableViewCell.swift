@@ -16,7 +16,7 @@ class TweetTableViewCell: UITableViewCell {
     }
 
     var profileImageView = UIImageView.init()
-    var nameLabel = UILabel(font: UIFont.mediumGotham(12.0)!, textColor: UIColor.tweedDarkGray(), text: "", textAlignment: .Center)
+    var nameLabel = UILabel(font: UIFont.bookGotham(12.0)!, textColor: UIColor.tweedDarkGray(), text: "", textAlignment: .Center)
     var handleLabel = UILabel(font: UIFont.bookGotham(12.0)!, textColor: UIColor.tweedDarkGray(), text: "", textAlignment: .Center)
     var dateLabel = UILabel(font: UIFont.bookGotham(11.0)!, textColor: UIColor.tweedLightGray(), text: "", textAlignment: .Center)
     var messageTextView = UITextView(frame: CGRectZero, textContainer: nil)

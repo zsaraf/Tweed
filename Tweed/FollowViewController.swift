@@ -35,6 +35,10 @@ class FollowViewController: UIViewController, UIViewControllerAnimatedTransition
         fatalError("init(coder:) has not been implemented")
     }
 
+    deinit {
+        NSNotificationCenter.defaultCenter().removeObserver(self)
+    }
+
     override func viewDidLoad() {
         super.viewDidLoad()
 
@@ -48,7 +52,7 @@ class FollowViewController: UIViewController, UIViewControllerAnimatedTransition
     func setupTopBarView() {
         self.topBarView = UIView()
 
-        let titleLabel = UILabel(font: UIFont.mediumGotham(18.0)!, textColor: UIColor.whiteColor(), text: "Follow", textAlignment: .Center)
+        let titleLabel = UILabel(font: UIFont.bookGotham(18.0)!, textColor: UIColor.whiteColor(), text: "Follow", textAlignment: .Center)
         titleLabel.shadowColor = UIColor(white: 0.0, alpha: 0.8)
         titleLabel.shadowOffset = CGSizeMake(0, 1)
         self.topBarView.addSubview(titleLabel)
@@ -103,6 +107,8 @@ class FollowViewController: UIViewController, UIViewControllerAnimatedTransition
         self.textField.autocorrectionType = .No
         self.contentView.addSubview(self.textField)
 
+        NSNotificationCenter.defaultCenter().addObserver(self, selector: "textFieldDidChange:", name: "UITextFieldTextDidChangeNotification", object: self.textField)
+
         self.textField.snp_makeConstraints { (make) -> Void in
             make.top.equalTo(self.contentView).offset(20.0)
             make.centerX.equalTo(self.contentView)
@@ -147,6 +153,17 @@ class FollowViewController: UIViewController, UIViewControllerAnimatedTransition
         animationView.confirmationText = "Added Followers!"
         self.view.addSubview(animationView)
 
+    }
+
+    // MARK: Notification observers
+
+    func textFieldDidChange(notification: NSNotification) {
+        self.textField.accessoryType = .ActivityIndicator
+        TweedNetworking.checkHandle(self.textField.text!, successHandler: { (task, responseObject) -> Void in
+            self.textField.accessoryType = .Check
+        }) { (task, error) -> Void in
+            self.textField.accessoryType = .X
+        }
     }
 
     // MARK: UIViewControllerAnimatedTransitioning
