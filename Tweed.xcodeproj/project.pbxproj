@@ -108,6 +108,7 @@
 		AF615DC81CA862F700161B56 /* Tweet+CoreDataProperties.swift in Sources */ = {isa = PBXBuildFile; fileRef = AF615DC61CA862F700161B56 /* Tweet+CoreDataProperties.swift */; };
 		AF615DC91CA862F700161B56 /* Tweet.swift in Sources */ = {isa = PBXBuildFile; fileRef = AF615DC71CA862F700161B56 /* Tweet.swift */; };
 		AF615DCB1CA8671100161B56 /* NSDate+Tweed.swift in Sources */ = {isa = PBXBuildFile; fileRef = AF615DCA1CA8671100161B56 /* NSDate+Tweed.swift */; };
+		AF615DCD1CA898EC00161B56 /* UIScrollView+Tweed.swift in Sources */ = {isa = PBXBuildFile; fileRef = AF615DCC1CA898EC00161B56 /* UIScrollView+Tweed.swift */; };
 		AF8883751CA732D40097DCDA /* SF-UI-Text-Regular.otf in Resources */ = {isa = PBXBuildFile; fileRef = AF8883731CA732D40097DCDA /* SF-UI-Text-Regular.otf */; };
 		AF8883791CA734210097DCDA /* User+CoreDataProperties.swift in Sources */ = {isa = PBXBuildFile; fileRef = AF8883771CA734210097DCDA /* User+CoreDataProperties.swift */; };
 		AF88837A1CA734210097DCDA /* User.swift in Sources */ = {isa = PBXBuildFile; fileRef = AF8883781CA734210097DCDA /* User.swift */; };
@@ -268,6 +269,7 @@
 		AF615DC61CA862F700161B56 /* Tweet+CoreDataProperties.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "Tweet+CoreDataProperties.swift"; sourceTree = "<group>"; };
 		AF615DC71CA862F700161B56 /* Tweet.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Tweet.swift; sourceTree = "<group>"; };
 		AF615DCA1CA8671100161B56 /* NSDate+Tweed.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "NSDate+Tweed.swift"; sourceTree = "<group>"; };
+		AF615DCC1CA898EC00161B56 /* UIScrollView+Tweed.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "UIScrollView+Tweed.swift"; sourceTree = "<group>"; };
 		AF8883731CA732D40097DCDA /* SF-UI-Text-Regular.otf */ = {isa = PBXFileReference; lastKnownFileType = file; path = "SF-UI-Text-Regular.otf"; sourceTree = "<group>"; };
 		AF8883771CA734210097DCDA /* User+CoreDataProperties.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "User+CoreDataProperties.swift"; sourceTree = "<group>"; };
 		AF8883781CA734210097DCDA /* User.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = User.swift; sourceTree = "<group>"; };
@@ -545,6 +547,7 @@
 				86D299B81CA60D4500AA8739 /* UIColor+Tweed.swift */,
 				AF615DCA1CA8671100161B56 /* NSDate+Tweed.swift */,
 				862A4A5B1CA875F3009B29F4 /* NSNumber+Tweed.swift */,
+				AF615DCC1CA898EC00161B56 /* UIScrollView+Tweed.swift */,
 			);
 			name = Extensions;
 			sourceTree = "<group>";
@@ -901,6 +904,7 @@
 				AF8883831CA745BD0097DCDA /* TweedBorderedButton.swift in Sources */,
 				86D299CD1CA71F3700AA8739 /* UIImage+SeshUtils.m in Sources */,
 				8614E83E1CA5F6EC00DF48EA /* HomeViewController.swift in Sources */,
+				AF615DCD1CA898EC00161B56 /* UIScrollView+Tweed.swift in Sources */,
 				8614E80F1CA5F39600DF48EA /* Tweed.xcdatamodeld in Sources */,
 				86D299ED1CA7385D00AA8739 /* SeshActivityIndicator.m in Sources */,
 				8614E83A1CA5F64000DF48EA /* DataManager.m in Sources */,

@@ -51,6 +51,7 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
 
     func customizeAppearance() {
         UINavigationBar.appearance().titleTextAttributes = [NSFontAttributeName: UIFont.SFMedium(17.0)!, NSForegroundColorAttributeName: UIColor.whiteColor()]
+        UINavigationBar.appearance().opaque = true
         UINavigationBar.appearance().barTintColor = UIColor.tweedBlue()
         UINavigationBar.appearance().translucent = false
     }

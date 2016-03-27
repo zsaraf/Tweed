@@ -10,6 +10,7 @@ import UIKit
 import SnapKit
 import SDWebImage
 import TLYShyNavBar
+import DGElasticPullToRefresh
 
 class HomeViewController: UIViewController, UITableViewDelegate, UITableViewDataSource, UICollectionViewDataSource, UICollectionViewDelegate, FollowViewControllerDelegate, ViewProfileAlertViewDelegate {
     let tableView = UITableView()
@@ -76,6 +77,9 @@ class HomeViewController: UIViewController, UITableViewDelegate, UITableViewData
         self.tableView.snp_makeConstraints { (make) -> Void in
             make.edges.equalTo(self.view)
         }
+        
+        self.addPullToRefresh()
+        
     }
 
     // MARK: UICollectionViewDataSource
@@ -86,6 +90,18 @@ class HomeViewController: UIViewController, UITableViewDelegate, UITableViewData
         cell.user = user
         return cell
     }
+//    
+//    override func viewDidLayoutSubviews() {
+//        if let rect = self.navigationController?.navigationBar.frame {
+//            var y = rect.size.height + rect.origin.y
+//            y += self.followingCollectionView.bounds.size.height
+//            self.tableView.contentInset = UIEdgeInsetsMake(y, 0, 0, 0)
+//        }
+//    }
+    
+    deinit {
+        self.tableView.dg_removePullToRefresh()
+    }
 
     func numberOfSectionsInCollectionView(collectionView: UICollectionView) -> Int {
         return 1
@@ -93,6 +109,17 @@ class HomeViewController: UIViewController, UITableViewDelegate, UITableViewData
 
     func collectionView(collectionView: UICollectionView, numberOfItemsInSection section: Int) -> Int {
         return self.following.count
+    }
+    
+    func addPullToRefresh() {
+        let loadingView = DGElasticPullToRefreshLoadingViewCircle()
+        loadingView.tintColor = UIColor.whiteColor()
+        self.tableView.dg_addPullToRefreshWithActionHandler({
+            self.refreshTweets()
+
+            }, loadingView: loadingView)
+        self.tableView.dg_setPullToRefreshFillColor(UIColor.tweedBlue())
+        self.tableView.dg_setPullToRefreshBackgroundColor(self.tableView.backgroundColor!)
     }
 
     // MARK: UITableViewDelegate & UITableViewDataSource methods
@@ -190,6 +217,8 @@ class HomeViewController: UIViewController, UITableViewDelegate, UITableViewData
             DataManager.sharedInstance().saveContext(nil)
 
             self.updateViewsWithCoreData()
+            
+            self.tableView.dg_stopLoading()
             
         }) { (task, error) in
             print("Failed to refresh tweets with error: \(error.localizedDescription)")

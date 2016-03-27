@@ -10,3 +10,4 @@ pod 'SnapKit', '~> 0.15.0'
 pod 'NSDate+TimeAgo'
 pod 'HexColors'
 pod 'TLYShyNavBar'
+pod "DGElasticPullToRefresh"
