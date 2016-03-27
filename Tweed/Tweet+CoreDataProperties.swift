@@ -1,5 +1,5 @@
 //
-//  RecommendedUser+CoreDataProperties.swift
+//  Tweet+CoreDataProperties.swift
 //  Tweed
 //
 //  Created by Raymond Kennedy on 3/27/16.
@@ -12,8 +12,11 @@
 import Foundation
 import CoreData
 
-extension RecommendedUser {
+extension Tweet {
 
+    @NSManaged var id: String?
+    @NSManaged var text: String?
+    @NSManaged var createdAt: NSDate?
     @NSManaged var user: User?
 
 }

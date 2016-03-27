@@ -102,6 +102,8 @@
 		86D29A1D1CA749F200AA8739 /* tweed_loading.png in Resources */ = {isa = PBXBuildFile; fileRef = 86D29A1C1CA749F200AA8739 /* tweed_loading.png */; };
 		AF615DC41CA84CA800161B56 /* payment_check.png in Resources */ = {isa = PBXBuildFile; fileRef = AF615DC21CA84CA800161B56 /* payment_check.png */; };
 		AF615DC51CA84CA800161B56 /* payment_check@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = AF615DC31CA84CA800161B56 /* payment_check@2x.png */; };
+		AF615DC81CA862F700161B56 /* Tweet+CoreDataProperties.swift in Sources */ = {isa = PBXBuildFile; fileRef = AF615DC61CA862F700161B56 /* Tweet+CoreDataProperties.swift */; };
+		AF615DC91CA862F700161B56 /* Tweet.swift in Sources */ = {isa = PBXBuildFile; fileRef = AF615DC71CA862F700161B56 /* Tweet.swift */; };
 		AF8883751CA732D40097DCDA /* SF-UI-Text-Regular.otf in Resources */ = {isa = PBXBuildFile; fileRef = AF8883731CA732D40097DCDA /* SF-UI-Text-Regular.otf */; };
 		AF8883791CA734210097DCDA /* User+CoreDataProperties.swift in Sources */ = {isa = PBXBuildFile; fileRef = AF8883771CA734210097DCDA /* User+CoreDataProperties.swift */; };
 		AF88837A1CA734210097DCDA /* User.swift in Sources */ = {isa = PBXBuildFile; fileRef = AF8883781CA734210097DCDA /* User.swift */; };
@@ -258,6 +260,8 @@
 		86D29A1C1CA749F200AA8739 /* tweed_loading.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = tweed_loading.png; sourceTree = "<group>"; };
 		AF615DC21CA84CA800161B56 /* payment_check.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = payment_check.png; sourceTree = "<group>"; };
 		AF615DC31CA84CA800161B56 /* payment_check@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "payment_check@2x.png"; sourceTree = "<group>"; };
+		AF615DC61CA862F700161B56 /* Tweet+CoreDataProperties.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "Tweet+CoreDataProperties.swift"; sourceTree = "<group>"; };
+		AF615DC71CA862F700161B56 /* Tweet.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Tweet.swift; sourceTree = "<group>"; };
 		AF8883731CA732D40097DCDA /* SF-UI-Text-Regular.otf */ = {isa = PBXFileReference; lastKnownFileType = file; path = "SF-UI-Text-Regular.otf"; sourceTree = "<group>"; };
 		AF8883771CA734210097DCDA /* User+CoreDataProperties.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "User+CoreDataProperties.swift"; sourceTree = "<group>"; };
 		AF8883781CA734210097DCDA /* User.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = User.swift; sourceTree = "<group>"; };
@@ -623,6 +627,8 @@
 		AF8883761CA7340C0097DCDA /* NSManagedObjects */ = {
 			isa = PBXGroup;
 			children = (
+				AF615DC61CA862F700161B56 /* Tweet+CoreDataProperties.swift */,
+				AF615DC71CA862F700161B56 /* Tweet.swift */,
 				AFD802491CA79EC900375E4F /* RecommendedUser+CoreDataProperties.swift */,
 				AFD8024A1CA79EC900375E4F /* RecommendedUser.swift */,
 				AF8883771CA734210097DCDA /* User+CoreDataProperties.swift */,
@@ -920,6 +926,7 @@
 				862A4A511CA785CB009B29F4 /* UIWindow+Sesh.m in Sources */,
 				862A4A3F1CA78475009B29F4 /* SeshBlurWindow.m in Sources */,
 				86D299D31CA729F800AA8739 /* TweedTextField.swift in Sources */,
+				AF615DC81CA862F700161B56 /* Tweet+CoreDataProperties.swift in Sources */,
 				AF88837D1CA73AE60097DCDA /* RecommendationsView.swift in Sources */,
 				86D299C11CA7177000AA8739 /* TweedNetworking.swift in Sources */,
 				862A4A3B1CA7845D009B29F4 /* SeshAlertViewManager.m in Sources */,
@@ -930,6 +937,7 @@
 				862A4A571CA852B4009B29F4 /* ViewProfileAlertView.swift in Sources */,
 				862A4A4E1CA785BE009B29F4 /* UIApplication+SeshUtils.m in Sources */,
 				86D299BB1CA7110700AA8739 /* TweedViewConstants.swift in Sources */,
+				AF615DC91CA862F700161B56 /* Tweet.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

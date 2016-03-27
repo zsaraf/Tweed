@@ -103,7 +103,10 @@ class HomeViewController: UIViewController, UITableViewDelegate, UITableViewData
     }
 
     func followViewControllerDidFinish(fvc: FollowViewController) {
-        
+        fvc.transitioningDelegate = fvc
+        self.dismissViewControllerAnimated(true) { () -> Void in
+            fvc.transitioningDelegate = nil
+        }
     }
 
 }
