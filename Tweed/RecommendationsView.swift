@@ -8,7 +8,7 @@
 
 import UIKit
 
-class RecommendationsView: UIView, UICollectionViewDelegate, UICollectionViewDataSource {
+class RecommendationsView: UIView, UICollectionViewDelegate, UICollectionViewDataSource, RecommendationTableViewCellDelegate {
 
     struct RecommendationsViewConstants {
         struct CollectionView {
@@ -28,13 +28,16 @@ class RecommendationsView: UIView, UICollectionViewDelegate, UICollectionViewDat
         }
     }
     
-    private var collectionView: UICollectionView!
+    var collectionView: UICollectionView!
     private var loadingLabel = UILabel(font: UIFont.SFRegular(18)!, textColor: UIColor.tweedGray(), text: "Loading...", textAlignment: .Left)
+    
+    private var dataSource: FollowViewController?
     
     // MARK: Init Methods
     
-    init(recommendations: [RecommendedUser]) {
+    init(recommendations: [RecommendedUser], dataSource: FollowViewController) {
         self.recommendations = recommendations
+        self.dataSource = dataSource
         super.init(frame: CGRectZero)
         self.setupViews()
     }
@@ -106,6 +109,12 @@ class RecommendationsView: UIView, UICollectionViewDelegate, UICollectionViewDat
         let cell = collectionView.dequeueReusableCellWithReuseIdentifier(RecommendationsViewConstants.CollectionView.ReuseIdentifier, forIndexPath: indexPath) as! RecommendationTableViewCell
         let recommendation = self.recommendations[indexPath.row]
         cell.user = recommendation.user
+        cell.delegate = self
+        if (self.dataSource!.addedHandles.contains((recommendation.user?.screenName)!)) {
+            cell.setFollowButtonTitle("Unfollow");
+        } else {
+            cell.setFollowButtonTitle("Follow");
+        }
         return cell
     }
     
@@ -115,6 +124,17 @@ class RecommendationsView: UIView, UICollectionViewDelegate, UICollectionViewDat
     
     func collectionView(collectionView: UICollectionView, numberOfItemsInSection section: Int) -> Int {
         return self.recommendations.count
+    }
+    
+    // MARK: RecommendationTableViewCellDelegate Methods
+    
+    func followButtonHit(screenName: String, cell: UICollectionViewCell) {
+        if (self.dataSource!.addedHandles.contains(screenName)) {
+            self.dataSource!.removeScreenName(screenName)
+        } else {
+            self.dataSource!.addScreenName(screenName)
+        }
+        
     }
     
     

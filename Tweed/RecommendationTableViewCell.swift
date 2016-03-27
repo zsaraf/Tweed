@@ -8,6 +8,11 @@
 
 import UIKit
 import SDWebImage
+import SnapKit
+
+protocol RecommendationTableViewCellDelegate: class {
+    func followButtonHit(screenName: String, cell: UICollectionViewCell)
+}
 
 class RecommendationTableViewCell: UICollectionViewCell {
     
@@ -15,6 +20,8 @@ class RecommendationTableViewCell: UICollectionViewCell {
     private let screenNameLabel = UILabel(font: UIFont.SFRegular(16)!, textColor: UIColor.tweedGray(), text: "", textAlignment: .Left)
     private let fullNameLabel = UILabel(font: UIFont.SFMedium(20)!, textColor: UIColor.tweedGray(), text: "", textAlignment: .Left)
     private let followButton = TweedBorderedButton()
+
+    var delegate: RecommendationTableViewCellDelegate?
     
     var user: User? {
         didSet {
@@ -118,16 +125,32 @@ class RecommendationTableViewCell: UICollectionViewCell {
         }
         
         self.followButton.setTitle("Follow", forState: .Normal)
+        self.followButton.addTarget(self, action: #selector(RecommendationTableViewCell.followButtonHit(_:)), forControlEvents: .TouchUpInside)
         wrapper.addSubview(self.followButton)
         let buttonSize = self.followButton.typicalSize()
         self.followButton.snp_makeConstraints { (make) in
             make.top.equalTo(lowerSpacer.snp_bottom)
             make.left.bottom.equalTo(wrapper)
-            make.width.equalTo(buttonSize.width)
+            make.width.equalTo(buttonSize.width).constraint
         }
         
         return wrapper
-        
+    }
+    
+    func setFollowButtonTitle(title: String) {
+        self.followButton.setTitle(title, forState: .Normal)
+        let buttonSize = self.followButton.typicalSize()
+        self.followButton.snp_updateConstraints { (make) in
+            make.width.equalTo(buttonSize.width)
+        }
+    }
+    
+    // Private Methods
+    
+    func followButtonHit(sender: UIButton) {
+        if (self.delegate != nil) {
+            self.delegate?.followButtonHit((self.user?.screenName)!, cell: self)
+        }
     }
     
 }

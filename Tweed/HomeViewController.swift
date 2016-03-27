@@ -38,7 +38,7 @@ class HomeViewController: UIViewController, UITableViewDelegate, UITableViewData
         let addFollowsButton = UIButton(type: .Custom)
         addFollowsButton.bounds = CGRectMake(0, 0, 20, 20)
         addFollowsButton.setImage(UIImage(named: "plus_white"), forState: .Normal)
-        addFollowsButton.addTarget(self, action: "addFollows:", forControlEvents: .TouchUpInside)
+        addFollowsButton.addTarget(self, action: #selector(HomeViewController.addFollows(_:)), forControlEvents: .TouchUpInside)
         self.navigationItem.rightBarButtonItem = UIBarButtonItem(customView: addFollowsButton)
     }
 

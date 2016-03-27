@@ -34,8 +34,8 @@ class FollowViewController: UIViewController, UIViewControllerAnimatedTransition
     var tableView: UITableView!
 
     // Data
-    var addedHandles = [String]()
-    var reccomendationsView: RecommendationsView
+    var addedHandles = Set<String>()
+    var reccomendationsView: RecommendationsView!
     var delegate: FollowViewControllerDelegate?
 
     // Constraints
@@ -44,7 +44,6 @@ class FollowViewController: UIViewController, UIViewControllerAnimatedTransition
 
     init(blurredImage: UIImage) {
         self.blurredImage = blurredImage
-        self.reccomendationsView = RecommendationsView(recommendations: RecommendedUser.getAllRecommendedUsers())
         super.init(nibName: nil, bundle: nil)
     }
 
@@ -79,10 +78,10 @@ class FollowViewController: UIViewController, UIViewControllerAnimatedTransition
         titleLabel.shadowOffset = CGSizeMake(0, 1)
         self.topBarView.addSubview(titleLabel)
 
-        let cancelButton = self.topBarButton(UIImage(named: "cancel_circle")!, action: "cancel:")
+        let cancelButton = self.topBarButton(UIImage(named: "cancel_circle")!, action: #selector(FollowViewController.cancel(_:)))
         self.topBarView.addSubview(cancelButton)
 
-        self.acceptButton = self.topBarButton(UIImage(named: "check_circle")!, action: "accept:")
+        self.acceptButton = self.topBarButton(UIImage(named: "check_circle")!, action: #selector(FollowViewController.accept(_:)))
         self.acceptButton.alpha = 0.0
         self.topBarView.addSubview(self.acceptButton)
 
@@ -122,7 +121,6 @@ class FollowViewController: UIViewController, UIViewControllerAnimatedTransition
     }
 
     func setupContentView() {
-        self.automaticallyAdjustsScrollViewInsets = false;
         self.contentView = UIView()
         self.view.addSubview(self.contentView)
 
@@ -137,7 +135,8 @@ class FollowViewController: UIViewController, UIViewControllerAnimatedTransition
     }
 
     func setupTextField() {
-
+        
+        self.reccomendationsView = RecommendationsView(recommendations: RecommendedUser.getAllRecommendedUsers(), dataSource: self)
         self.contentView.addSubview(self.reccomendationsView)
         self.reccomendationsView.snp_makeConstraints { (make) in
             make.top.equalTo(self.contentView).offset(20)
@@ -152,7 +151,7 @@ class FollowViewController: UIViewController, UIViewControllerAnimatedTransition
         self.textField.autocorrectionType = .No
         self.contentView.addSubview(self.textField)
 
-        NSNotificationCenter.defaultCenter().addObserver(self, selector: "textFieldDidChange:", name: "UITextFieldTextDidChangeNotification", object: self.textField)
+        NSNotificationCenter.defaultCenter().addObserver(self, selector: #selector(FollowViewController.textFieldDidChange(_:)), name: "UITextFieldTextDidChangeNotification", object: self.textField)
 
         self.errorLabel = UILabel(font: UIFont.bookGotham(14.0)!, textColor: UIColor.grayColor(), text: "User not found", textAlignment: .Center)
         self.errorLabel.alpha = 0.0
@@ -215,7 +214,7 @@ class FollowViewController: UIViewController, UIViewControllerAnimatedTransition
             cell = AddedHandleTableViewCell(style: .Default, reuseIdentifier: identifier)
         }
 
-        let handle = self.addedHandles[indexPath.row]
+        let handle = Array(self.addedHandles)[indexPath.row]
         cell?.addedHandleLabel.text = handle
 
         return cell!
@@ -243,6 +242,7 @@ class FollowViewController: UIViewController, UIViewControllerAnimatedTransition
     }
 
     func accept(button: UIButton) {
+        self.textField.resignFirstResponder()
         let animationView = SeshConfirmationAnimationView(frame: self.view.bounds)
         animationView.alpha = 0.0;
         animationView.confirmationText = "Added Followers!"
@@ -252,7 +252,7 @@ class FollowViewController: UIViewController, UIViewControllerAnimatedTransition
             animationView.alpha = 1.0
         }
 
-        TweedNetworking.addHandles(self.addedHandles, successHandler: { (task, responseObject) -> Void in
+        TweedNetworking.addHandles(Array(self.addedHandles), successHandler: { (task, responseObject) -> Void in
             animationView.completionBlock = { (Void) -> Void in
                 self.delegate?.followViewControllerDidFinish(self)
             }
@@ -342,16 +342,10 @@ class FollowViewController: UIViewController, UIViewControllerAnimatedTransition
             if self.textField.accessoryType == .Check {
                 self.acceptButton.alpha = 1.0
 
-                self.addedHandles.append(self.textField.text!)
+                self.addScreenName(self.textField.text!)
 
-                self.tableView.reloadData()
                 self.textField.text = ""
 
-                if self.addedHandles.count == 1 {
-                    UIView.animateWithDuration(0.2, animations: { () -> Void in
-                        self.tableView.alpha = 1.0
-                    })
-                }
             } else if self.textField.accessoryType == .X {
                 UIView.animateWithDuration(0.2, animations: { () -> Void in
                     self.errorLabel.alpha = 1.0
@@ -360,6 +354,37 @@ class FollowViewController: UIViewController, UIViewControllerAnimatedTransition
         }
 
         return false
+    }
+    
+    func addScreenName(screenName: String) {
+        if (!self.addedHandles.contains(screenName)) {
+            self.addedHandles.insert(screenName)
+        }
+        self.checkTopBar()
+    }
+    
+    func removeScreenName(screenName: String) {
+        if (self.addedHandles.contains(screenName)) {
+            self.addedHandles.remove(screenName)
+        }
+        self.checkTopBar()
+    }
+    
+    func checkTopBar() {
+        self.tableView.reloadData()
+        self.reccomendationsView.collectionView.reloadData()
+
+        if (self.addedHandles.count > 0) {
+            self.acceptButton.alpha = 1.0
+            UIView.animateWithDuration(0.2, animations: { () -> Void in
+                self.tableView.alpha = 1.0
+            })
+        } else {
+            self.acceptButton.alpha = 0.0
+            UIView.animateWithDuration(0.2, animations: { () -> Void in
+                self.tableView.alpha = 0.0
+            })
+        }
     }
 
 }
