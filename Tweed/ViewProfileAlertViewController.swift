@@ -132,8 +132,10 @@ class ViewProfileAlertViewController: SeshAlertViewController {
 
         if self.user.profileBannerImageUrl != nil {
             SDWebImageManager.sharedManager().downloadImageWithURL(NSURL(string: self.user.profileBannerImageUrl!), options: SDWebImageOptions(), progress: nil) { (image: UIImage!, error: NSError!, type: SDImageCacheType, finished: Bool, url: NSURL!) -> Void in
-                let blurredImage = image.applyBlurWithRadius(10.0, tintColor: UIColor(white: 0, alpha: 0.2), saturationDeltaFactor: 1.2, maskImage: nil)
-                coverImageView.image = blurredImage
+                if image != nil {
+                    let blurredImage = image.applyBlurWithRadius(10.0, tintColor: UIColor(white: 0, alpha: 0.2), saturationDeltaFactor: 1.2, maskImage: nil)
+                    coverImageView.image = blurredImage
+                }
             }
         }
         return coverImageView
