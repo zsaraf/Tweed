@@ -79,10 +79,19 @@ class FollowViewController: UIViewController, UIViewControllerAnimatedTransition
         self.topBarView.addSubview(titleLabel)
 
         let cancelButton = self.topBarButton(UIImage(named: "cancel_circle")!, action: "cancel:")
+        cancelButton.layer.shadowColor = UIColor.blackColor().CGColor
+        cancelButton.layer.shadowOpacity = 0.8
+        cancelButton.layer.shadowOffset = CGSizeMake(0, 1)
+        cancelButton.layer.shadowRadius = 0.3
+
         self.topBarView.addSubview(cancelButton)
 
         self.acceptButton = self.topBarButton(UIImage(named: "check_circle")!, action: "accept:")
         self.acceptButton.alpha = 0.0
+        self.acceptButton.layer.shadowColor = UIColor.blackColor().CGColor
+        self.acceptButton.layer.shadowOpacity = 0.8
+        self.acceptButton.layer.shadowOffset = CGSizeMake(0, 1)
+        self.acceptButton.layer.shadowRadius = 0.3
         self.topBarView.addSubview(self.acceptButton)
 
         titleLabel.snp_makeConstraints { (make) -> Void in
@@ -91,13 +100,13 @@ class FollowViewController: UIViewController, UIViewControllerAnimatedTransition
 
         cancelButton.snp_makeConstraints { (make) -> Void in
             make.left.equalTo(self.topBarView).inset(20.0)
-            make.height.equalTo(self.topBarView).multipliedBy(0.8)
+            make.height.width.equalTo(self.topBarView.snp_height).multipliedBy(0.6)
             make.centerY.equalTo(self.topBarView)
         }
 
         self.acceptButton.snp_makeConstraints { (make) -> Void in
             make.right.equalTo(self.topBarView).inset(20.0)
-            make.height.equalTo(self.topBarView).multipliedBy(0.8)
+            make.height.width.equalTo(self.topBarView.snp_height).multipliedBy(0.6)
             make.centerY.equalTo(self.topBarView)
         }
 

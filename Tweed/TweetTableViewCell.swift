@@ -252,10 +252,9 @@ class TweetTableViewCell: UITableViewCell, TweetTextViewDelegate {
 
         let wrapperView = UIView()
         let retweetedImage = UIImage(named: "retweet")!
-        let resizedImage = UIImage(CGImage: retweetedImage.CGImage!, scale: 2.75, orientation: .Up)
+        let resizedImage = UIImage(CGImage: retweetedImage.CGImage!, scale: (retweetedImage.scale * 1.75), orientation: .Up)
         let retweetedImageView = UIImageView(image: resizedImage)
         retweetedImageView.contentMode = UIViewContentMode.ScaleAspectFit
-//        retweetedImageView.tintColor = UIColor.tweedLightGray()
         
         wrapperView.addSubview(retweetedImageView)
         wrapperView.addSubview(self.retweetedByLabel)

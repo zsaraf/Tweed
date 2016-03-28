@@ -110,7 +110,7 @@ class RecommendationTableViewCell: UICollectionViewCell {
         upperSpacer.snp_makeConstraints { (make) in
             make.left.right.equalTo(wrapper)
             make.top.equalTo(self.fullNameLabel.snp_bottom)
-            make.height.greaterThanOrEqualTo(5)
+            make.height.lessThanOrEqualTo(5)
         }
         
         wrapper.addSubview(self.screenNameLabel)

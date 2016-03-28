@@ -62,6 +62,7 @@ class RecommendationsView: UIView, UICollectionViewDelegate, UICollectionViewDat
         self.collectionView.showsHorizontalScrollIndicator = false
         self.collectionView.alwaysBounceHorizontal = true
         self.collectionView.registerClass(RecommendationTableViewCell.self, forCellWithReuseIdentifier: RecommendationsViewConstants.CollectionView.ReuseIdentifier)
+        self.collectionView.contentInset = UIEdgeInsets(top: 0, left: 5, bottom: 0, right: 5)
     }
     
     
