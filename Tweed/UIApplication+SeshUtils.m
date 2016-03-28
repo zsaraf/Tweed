@@ -26,7 +26,7 @@
         UIViewController *lastViewController = [[navigationController viewControllers] lastObject];
         UIViewController *vc = [self topViewController:lastViewController];
         if (vc == lastViewController) {
-            return rootViewController;
+            return rootViewController.presentedViewController;
         } else {
             return lastViewController;
         }

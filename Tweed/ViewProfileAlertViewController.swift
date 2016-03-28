@@ -58,12 +58,7 @@ class ViewProfileAlertViewController: SeshAlertViewController {
     override func viewDidLayoutSubviews() {
         super.viewDidLayoutSubviews()
 
-        self.maskImageView()
         self.updateContentViewTopConstraint()
-    }
-
-    func maskImageView() {
-//        self.imageWrapperView.layer.cornerRadius = self.imageWrapperView.bounds.size.width/2.0
     }
 
     func updateContentViewTopConstraint() {
@@ -269,7 +264,7 @@ class ViewProfileAlertViewController: SeshAlertViewController {
 
         followerCountView.snp_makeConstraints { (make) -> Void in
             make.top.bottom.right.equalTo(countsView)
-            make.left.equalTo(tweetCountView.snp_right)
+            make.left.equalTo(followingCountView.snp_right)
             make.width.equalTo(countsView).dividedBy(3.0)
         }
 

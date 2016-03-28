@@ -32,7 +32,7 @@ class User: NSManagedObject {
         user!.location = userObject["location"] as? String
         user!.bio = userObject["description"] as? String
         user!.profileBackgroundColor = userObject["profile_background_color"] as? String
-        user!.profileBannerImageUrl = userObject["profile_banner_image"] as? String
+        user!.profileBannerImageUrl = userObject["profile_banner"] as? String
         
         return user
     }
