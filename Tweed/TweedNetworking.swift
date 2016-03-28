@@ -55,7 +55,7 @@ class TweedNetworking: NSObject {
     }
 
     static func checkHandle(handle: String, successHandler: TweedNetworkingSuccessHandler?, failureHandler: TweedNetworkingFailureHandler) {
-        self.request("accounts/follows/check_user", method: .Get, params: ["screen_name": handle], successHandler: successHandler, failureHandler: failureHandler)
+        self.request("accounts/follows/check_user/", method: .Get, params: ["screen_name": handle], successHandler: successHandler, failureHandler: failureHandler)
     }
 
     static func getAnonymousToken(successHandler: TweedNetworkingSuccessHandler?, failureHandler: TweedNetworkingFailureHandler) {
@@ -63,7 +63,7 @@ class TweedNetworking: NSObject {
     }
     
     static func getSuggestions(successHandler: TweedNetworkingSuccessHandler?, failureHandler: TweedNetworkingFailureHandler) {
-        self.request("accounts/follows/get_suggestions", method: .Get, params: [String: AnyObject](), successHandler: successHandler, failureHandler: failureHandler)
+        self.request("accounts/follows/get_suggestions/", method: .Get, params: [String: AnyObject](), successHandler: successHandler, failureHandler: failureHandler)
     }
 
     static func refreshTweets(successHandler: TweedNetworkingSuccessHandler?, failureHandler: TweedNetworkingFailureHandler) {
