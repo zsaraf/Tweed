@@ -52,6 +52,30 @@ class Tweet: NSManagedObject {
         tweet!.user = user
         tweet!.text = tweetObject["text"] as? String
         tweet!.createdAt = NSDate.twitterDateFromString(tweetObject["created_at"] as! String)
+
+        let mediaObjects = tweetObject["media"] as? [[String: AnyObject]]
+        if mediaObjects != nil {
+            for mediaObject in mediaObjects! {
+                let media = Media.createOrUpdateMediaWithObject(mediaObject)
+                media?.tweet = tweet!
+            }
+        }
+
+        let mentionObjects = tweetObject["mentions"] as? [[String: AnyObject]]
+        if mentionObjects != nil {
+            for mentionObject in mentionObjects! {
+                let mention = Mention.createOrUpdateMentionWithObject(mentionObject)
+                mention?.tweet = tweet!
+            }
+        }
+
+        let urlObjects = tweetObject["urls"] as? [String: AnyObject]
+        if urlObjects != nil {
+            for (fakeUrl, realUrl) in urlObjects! {
+                let url = Url.createOrUpdateUrlWithObject(fakeUrl, realUrl: realUrl as! String)
+                url?.tweet = tweet!
+            }
+        }
         
         if ((tweetObject["original_tweet"] as? [String: AnyObject]) != nil) {
             tweet!.originalTweet = self.createOrUpdateTweetWithObject(tweetObject["original_tweet"] as! [String: AnyObject])
@@ -77,9 +101,6 @@ class Tweet: NSManagedObject {
         }
         
         return results as! [Tweet]
-
-        
-        
     }
 
 }

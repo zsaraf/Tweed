@@ -13,7 +13,7 @@ class LoadingViewController: UIViewController {
     override func viewDidLoad() {
         super.viewDidLoad()
 
-        let imageView = UIImageView(image: UIImage(named: ""))
+        let imageView = UIImageView(image: UIImage(named: "tweed_loading"))
         self.view.addSubview(imageView)
 
         imageView.snp_makeConstraints { (make) -> Void in

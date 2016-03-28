@@ -2,7 +2,7 @@
 //  Tweet+CoreDataProperties.swift
 //  Tweed
 //
-//  Created by Raymond Kennedy on 3/27/16.
+//  Created by Zachary Saraf on 3/27/16.
 //  Copyright © 2016 Zachary Saraf. All rights reserved.
 //
 //  Choose "Create NSManagedObject Subclass…" from the Core Data editor menu
@@ -14,11 +14,14 @@ import CoreData
 
 extension Tweet {
 
+    @NSManaged var createdAt: NSDate?
     @NSManaged var id: String?
     @NSManaged var text: String?
-    @NSManaged var createdAt: NSDate?
-    @NSManaged var user: User?
-    @NSManaged var originalTweet: Tweet?
     @NSManaged var copiedTweets: NSSet?
+    @NSManaged var media: NSSet?
+    @NSManaged var mentions: NSSet?
+    @NSManaged var originalTweet: Tweet?
+    @NSManaged var user: User?
+    @NSManaged var urls: NSSet?
 
 }

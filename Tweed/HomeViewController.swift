@@ -12,8 +12,9 @@ import SDWebImage
 import TLYShyNavBar
 import DGElasticPullToRefresh
 import UIScrollView_InfiniteScroll
+import JTSImageViewController
 
-class HomeViewController: UIViewController, UITableViewDelegate, UITableViewDataSource, UICollectionViewDataSource, UICollectionViewDelegate, FollowViewControllerDelegate, ViewProfileAlertViewDelegate {
+class HomeViewController: UIViewController, UITableViewDelegate, UITableViewDataSource, UICollectionViewDataSource, UICollectionViewDelegate, FollowViewControllerDelegate, ViewProfileAlertViewDelegate, TweetTableViewCellDelegate {
     let tableView = UITableView()
     var followingCollectionView: UICollectionView!
 
@@ -137,6 +138,7 @@ class HomeViewController: UIViewController, UITableViewDelegate, UITableViewData
         var cell = tableView.dequeueReusableCellWithIdentifier(identifier) as? TweetTableViewCell
         if cell == nil {
             cell = TweetTableViewCell(style: .Default, reuseIdentifier: identifier)
+            cell?.delegate = self
             cell?.selectionStyle = .None
         }
 
@@ -186,6 +188,7 @@ class HomeViewController: UIViewController, UITableViewDelegate, UITableViewData
         self.dismissViewControllerAnimated(true) { () -> Void in
             fvc.transitioningDelegate = nil
         }
+        self.updateViewsWithCoreData()
         self.refreshTweets()
     }
     
@@ -300,6 +303,29 @@ class HomeViewController: UIViewController, UITableViewDelegate, UITableViewData
             }
         }
 
+    }
+
+    // MARK: TweetTableViewCellDelegate methods
+
+    func tweetTableViewCellDidTapMedia(cell: TweetTableViewCell, media: Media) {
+        let image = cell.mediaImageView.image!
+        let info = JTSImageInfo()
+        info.image = image
+        info.referenceRect = cell.mediaImageView.frame
+        info.referenceView = cell.mediaImageView.superview!
+
+        let imageViewer = JTSImageViewController(imageInfo: info, mode: .Image, backgroundStyle: .Scaled)
+        imageViewer.showFromViewController(self, transition: .FromOriginalPosition)
+    }
+
+    func tweetTableViewCellDidTapMention(cell: TweetTableViewCell, mention: Mention) {
+        let webVC = TweedWebViewController(startingUrl: "https://www.twitter.com/\(mention.screenName!)")
+        self.navigationController?.pushViewController(webVC, animated: true)
+    }
+
+    func tweetTableViewCellDidTapUrl(cell: TweetTableViewCell, url: String) {
+        let webVC = TweedWebViewController(startingUrl: url)
+        self.navigationController?.pushViewController(webVC, animated: true)
     }
 
 }

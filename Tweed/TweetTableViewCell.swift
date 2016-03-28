@@ -10,19 +10,34 @@ import UIKit
 import NSDate_TimeAgo
 import SnapKit
 
-class TweetTableViewCell: UITableViewCell {
+protocol TweetTableViewCellDelegate: class {
+    func tweetTableViewCellDidTapMedia(cell: TweetTableViewCell, media: Media)
+    func tweetTableViewCellDidTapMention(cell: TweetTableViewCell, mention: Mention)
+    func tweetTableViewCellDidTapUrl(cell: TweetTableViewCell, url: String)
+}
+
+class TweetTableViewCell: UITableViewCell, TweetTextViewDelegate {
 
     struct Constants {
         static let TopPadding = 10.0
         static let BottomPadding = 10.0
         static let RetweetPadding = 10.0
+        static let ImageMaxWidth = Double(UIScreen.mainScreen().bounds.size.width) * (1 - TweedViewConstants.CellLeftContentInsetMultiplier)
+        static let ImageMaxHeight = Double(UIScreen.mainScreen().bounds.size.height)/4.0
     }
+
+    var delegate: TweetTableViewCellDelegate?
 
     private let profileImageView = UIImageView.init()
     private let nameLabel = UILabel(font: UIFont.SFMedium(17.0)!, textColor: UIColor.tweedGray(), text: "", textAlignment: .Center)
     private let handleLabel = UILabel(font: UIFont.SFRegular(14.0)!, textColor: UIColor.tweedGray(), text: "", textAlignment: .Center)
     private let dateLabel = UILabel(font: UIFont.SFRegular(12.0)!, textColor: UIColor.tweedLightGray(), text: "", textAlignment: .Center)
-    private let messageTextView = UITextView(frame: CGRectZero, textContainer: nil)
+    private let messageTextView = TweetTextView(frame: CGRectZero, textContainer: nil)
+    var mediaImageView: UIImageView!
+
+    // Constraints
+    var mediaImageWidthConstraint: Constraint?
+    var mediaImageHeightConstraint: Constraint?
     
     // Retweet stuff
     private let retweetedByLabel = UILabel(font: UIFont.SFRegular(12)!, textColor: UIColor.tweedLightGray(), text: "", textAlignment: .Center)
@@ -32,35 +47,49 @@ class TweetTableViewCell: UITableViewCell {
     
     var tweet: Tweet? {
         didSet {
-            
-            // IS it a retweet?
-            if (tweet?.originalTweet != nil) {
+            var t = self.tweet!
+            if tweet?.originalTweet != nil {
                 self.retweetedByViewTopConstraint?.updateOffset(Constants.TopPadding)
                 self.heightConstraint?.uninstall()
-                
-                self.messageTextView.text = (self.tweet?.originalTweet?.text)!
-                self.dateLabel.text = self.tweet?.originalTweet?.createdAt?.timeAgo()
-                self.nameLabel.text = self.tweet?.originalTweet?.user?.displayName()
-                self.handleLabel.text = "@" + (self.tweet?.originalTweet?.user?.screenName)!
-                self.profileImageView.sd_setImageWithURL(NSURL(string: (self.tweet?.originalTweet?.user?.profileImageUrl)!))
                 self.retweetedByLabel.text = (self.tweet?.user?.displayName())!
-                
+
+                t = self.tweet!.originalTweet!
             } else {
-                
-                // No, it's not a retweet
                 self.heightConstraint?.uninstall()
                 self.retweetedByView.snp_makeConstraints(closure: { (make) in
                     self.heightConstraint = make.height.equalTo(0).constraint
                 })
                 self.retweetedByViewTopConstraint?.updateOffset(0)
-                
-                // Set all the properties
-                self.messageTextView.text = (self.tweet?.text)!
-                self.dateLabel.text = self.tweet?.createdAt?.timeAgo()
-                self.nameLabel.text = self.tweet?.user?.displayName()
-                self.handleLabel.text = "@" + (self.tweet?.user?.screenName)!
-                self.profileImageView.sd_setImageWithURL(NSURL(string: (self.tweet?.user?.profileImageUrl)!))
+
                 self.retweetedByLabel.text = ""
+            }
+
+            self.messageTextView.tweet = t
+            self.dateLabel.text = t.createdAt?.timeAgo()
+            self.nameLabel.text = t.user?.displayName()
+            self.handleLabel.text = "@" + (t.user?.screenName)!
+            self.profileImageView.sd_setImageWithURL(NSURL(string: (t.user?.profileImageUrl)!))
+
+            // Handle media size
+            if t.media?.count > 0 {
+                let media = t.media?.sort({ (media1: AnyObject, media2: AnyObject) -> Bool in
+                    return ((media1 as! Media).id as! Int) < ((media2 as! Media).id as! Int)
+                }).first as! Media
+
+                let width = media.width as! Double
+                let height = media.height as! Double
+
+                let widthProportion = width / Constants.ImageMaxWidth
+                let heightProportion = height / Constants.ImageMaxHeight
+                let resizingProportion = max(widthProportion, heightProportion)
+
+                let resizedSize = CGSizeMake(CGFloat(width/resizingProportion), CGFloat(height/resizingProportion))
+                self.mediaImageWidthConstraint?.updateOffset(resizedSize.width)
+                self.mediaImageHeightConstraint?.updateOffset(resizedSize.height)
+
+                self.mediaImageView.sd_setImageWithURL(NSURL(string: media.mediaUrl!))
+            } else {
+                self.mediaImageHeightConstraint?.updateOffset(0.0)
             }
         }
     }
@@ -79,14 +108,14 @@ class TweetTableViewCell: UITableViewCell {
         // Create wrapper views
         let leftWrapperView = self.createLeftWrapperView()
         let rightWrapperView = self.createRightWrapperView()
-        let imageView = self.createImageView()
         self.retweetedByView = self.createRetweetView()
         let dividerView = self.createDividerView()
+        self.mediaImageView = self.createMediaImageView()
         
         self.contentView.addSubview(leftWrapperView)
         self.contentView.addSubview(rightWrapperView)
-        self.contentView.addSubview(imageView)
         self.contentView.addSubview(self.retweetedByView)
+        self.contentView.addSubview(self.mediaImageView)
         self.contentView.addSubview(dividerView)
 
         // Make constraints
@@ -101,13 +130,15 @@ class TweetTableViewCell: UITableViewCell {
             make.top.equalTo(self.contentView).inset(Constants.TopPadding)
         }
 
-        imageView.snp_makeConstraints { (make) -> Void in
-            make.top.equalTo(rightWrapperView.snp_bottom)
-            make.left.right.equalTo(self.contentView)
+        self.mediaImageView.snp_makeConstraints { (make) -> Void in
+            make.top.equalTo(rightWrapperView.snp_bottom).offset(3.0)
+            make.centerX.equalTo(rightWrapperView)
+            self.mediaImageWidthConstraint = make.width.equalTo(Constants.ImageMaxWidth).constraint
+            self.mediaImageHeightConstraint = make.height.equalTo(Constants.ImageMaxHeight).constraint
         }
 
         self.retweetedByView.snp_makeConstraints { (make) -> Void in
-            self.retweetedByViewTopConstraint = make.top.equalTo(imageView.snp_bottom).offset(Constants.RetweetPadding).constraint
+            self.retweetedByViewTopConstraint = make.top.equalTo(self.mediaImageView.snp_bottom).offset(Constants.RetweetPadding).constraint
             make.left.right.equalTo(self.contentView)
         }
 
@@ -158,6 +189,7 @@ class TweetTableViewCell: UITableViewCell {
         let nameAndTimeView = createNameAndTimeView()
         rightWrapperView.addSubview(nameAndTimeView)
 
+        messageTextView.tweetDelegate = self
         messageTextView.scrollEnabled = false
         messageTextView.font = UIFont.SFRegular(14.0)
         messageTextView.textColor = UIColor.tweedGray()
@@ -239,8 +271,15 @@ class TweetTableViewCell: UITableViewCell {
         return retweetView
     }
 
-    func createImageView() -> UIView {
-        return UIView()
+    func createMediaImageView() -> UIImageView {
+        let imageView = UIImageView()
+        imageView.layer.masksToBounds = true
+        imageView.layer.cornerRadius = 4.0
+        imageView.userInteractionEnabled = true
+
+        let tapRecognizer = UITapGestureRecognizer(target: self, action: "mediaTapped:")
+        imageView.addGestureRecognizer(tapRecognizer)
+        return imageView
     }
     
     override func layoutSubviews() {
@@ -248,6 +287,31 @@ class TweetTableViewCell: UITableViewCell {
 
         self.contentView.layoutIfNeeded()
         profileImageView.layer.cornerRadius = profileImageView.bounds.size.width/2
+    }
+
+    // MARK: Action Methods
+
+    func mediaTapped(recognizer: UITapGestureRecognizer) {
+        let t = self.tweet!.originalTweet != nil ? self.tweet!.originalTweet! : self.tweet!
+
+        let media = t.media?.sort({ (media1: AnyObject, media2: AnyObject) -> Bool in
+            return ((media1 as! Media).id as! Int) < ((media2 as! Media).id as! Int)
+        }).first as! Media
+        self.delegate?.tweetTableViewCellDidTapMedia(self, media: media)
+    }
+
+    // MARK: TweetTextViewDelegate methods
+
+    func tweetTextViewDidTapMedia(textView: TweetTextView, media: Media) {
+        self.delegate?.tweetTableViewCellDidTapMedia(self, media: media)
+    }
+
+    func tweetTextViewDidTapMention(textView: TweetTextView, mention: Mention) {
+        self.delegate?.tweetTableViewCellDidTapMention(self, mention: mention)
+    }
+
+    func tweetTextViewDidTapUrl(textView: TweetTextView, url: String) {
+        self.delegate?.tweetTableViewCellDidTapUrl(self, url: url)
     }
 
 

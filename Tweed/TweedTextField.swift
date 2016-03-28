@@ -56,6 +56,10 @@ class TweedTextField: UITextField {
         self.setupLineView()
     }
 
+    required init?(coder aDecoder: NSCoder) {
+        fatalError("init(coder:) has not been implemented")
+    }
+
     func setupTextField() {
         self.font = UIFont.SFRegular(17.0)
         self.textColor = UIColor.whiteColor()
@@ -97,10 +101,6 @@ class TweedTextField: UITextField {
             make.bottom.left.right.equalTo(self)
             make.height.equalTo(1.0)
         }
-    }
-
-    required init?(coder aDecoder: NSCoder) {
-        fatalError("init(coder:) has not been implemented")
     }
 
     override func layoutSubviews() {

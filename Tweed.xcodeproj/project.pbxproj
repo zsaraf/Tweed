@@ -32,6 +32,14 @@
 		862A4A581CA852B4009B29F4 /* ViewProfileAlertViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 862A4A561CA852B4009B29F4 /* ViewProfileAlertViewController.swift */; };
 		862A4A5A1CA8719A009B29F4 /* SeshDotView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 862A4A591CA8719A009B29F4 /* SeshDotView.swift */; };
 		862A4A5C1CA875F3009B29F4 /* NSNumber+Tweed.swift in Sources */ = {isa = PBXBuildFile; fileRef = 862A4A5B1CA875F3009B29F4 /* NSNumber+Tweed.swift */; };
+		8678B6E81CA8D10100A2DA89 /* Url+CoreDataProperties.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8678B6E61CA8D10100A2DA89 /* Url+CoreDataProperties.swift */; };
+		8678B6E91CA8D10100A2DA89 /* Url.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8678B6E71CA8D10100A2DA89 /* Url.swift */; };
+		8678B6EB1CA8D37C00A2DA89 /* TweetTextView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8678B6EA1CA8D37C00A2DA89 /* TweetTextView.swift */; };
+		86BA65EB1CA8B5480023AC1D /* Mention+CoreDataProperties.swift in Sources */ = {isa = PBXBuildFile; fileRef = 86BA65E71CA8B5480023AC1D /* Mention+CoreDataProperties.swift */; };
+		86BA65EC1CA8B5480023AC1D /* Mention.swift in Sources */ = {isa = PBXBuildFile; fileRef = 86BA65E81CA8B5480023AC1D /* Mention.swift */; };
+		86BA65ED1CA8B5480023AC1D /* Media+CoreDataProperties.swift in Sources */ = {isa = PBXBuildFile; fileRef = 86BA65E91CA8B5480023AC1D /* Media+CoreDataProperties.swift */; };
+		86BA65EE1CA8B5480023AC1D /* Media.swift in Sources */ = {isa = PBXBuildFile; fileRef = 86BA65EA1CA8B5480023AC1D /* Media.swift */; };
+		86BA65F01CA8CBE90023AC1D /* TweedWebViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 86BA65EF1CA8CBE90023AC1D /* TweedWebViewController.swift */; };
 		86CD27411CA8968E0076E5AC /* FollowingCollectionViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 86CD27401CA8968E0076E5AC /* FollowingCollectionViewCell.swift */; };
 		86D299821CA5F87300AA8739 /* CFNetwork.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 86D2997A1CA5F87300AA8739 /* CFNetwork.framework */; };
 		86D299831CA5F87300AA8739 /* Foundation.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 86D2997B1CA5F87300AA8739 /* Foundation.framework */; };
@@ -187,6 +195,14 @@
 		862A4A561CA852B4009B29F4 /* ViewProfileAlertViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ViewProfileAlertViewController.swift; sourceTree = "<group>"; };
 		862A4A591CA8719A009B29F4 /* SeshDotView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SeshDotView.swift; sourceTree = "<group>"; };
 		862A4A5B1CA875F3009B29F4 /* NSNumber+Tweed.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "NSNumber+Tweed.swift"; sourceTree = "<group>"; };
+		8678B6E61CA8D10100A2DA89 /* Url+CoreDataProperties.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "Url+CoreDataProperties.swift"; sourceTree = "<group>"; };
+		8678B6E71CA8D10100A2DA89 /* Url.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Url.swift; sourceTree = "<group>"; };
+		8678B6EA1CA8D37C00A2DA89 /* TweetTextView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = TweetTextView.swift; sourceTree = "<group>"; };
+		86BA65E71CA8B5480023AC1D /* Mention+CoreDataProperties.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "Mention+CoreDataProperties.swift"; sourceTree = "<group>"; };
+		86BA65E81CA8B5480023AC1D /* Mention.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Mention.swift; sourceTree = "<group>"; };
+		86BA65E91CA8B5480023AC1D /* Media+CoreDataProperties.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "Media+CoreDataProperties.swift"; sourceTree = "<group>"; };
+		86BA65EA1CA8B5480023AC1D /* Media.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Media.swift; sourceTree = "<group>"; };
+		86BA65EF1CA8CBE90023AC1D /* TweedWebViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = TweedWebViewController.swift; sourceTree = "<group>"; };
 		86CD27401CA8968E0076E5AC /* FollowingCollectionViewCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = FollowingCollectionViewCell.swift; sourceTree = "<group>"; };
 		86D2997A1CA5F87300AA8739 /* CFNetwork.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = CFNetwork.framework; path = System/Library/Frameworks/CFNetwork.framework; sourceTree = SDKROOT; };
 		86D2997B1CA5F87300AA8739 /* Foundation.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Foundation.framework; path = System/Library/Frameworks/Foundation.framework; sourceTree = SDKROOT; };
@@ -541,6 +557,7 @@
 		86D299B21CA60B6400AA8739 /* Home */ = {
 			isa = PBXGroup;
 			children = (
+				8678B6EA1CA8D37C00A2DA89 /* TweetTextView.swift */,
 				8614E83D1CA5F6EC00DF48EA /* HomeViewController.swift */,
 				86D299B31CA60BA800AA8739 /* TweetTableViewCell.swift */,
 				86D299BA1CA7110700AA8739 /* TweedViewConstants.swift */,
@@ -608,6 +625,7 @@
 				86D299DE1CA737BA00AA8739 /* Sesh (All necessary for SeshConfirmationAnimationView) */,
 				86D299D21CA729F800AA8739 /* TweedTextField.swift */,
 				AF8883821CA745BD0097DCDA /* TweedBorderedButton.swift */,
+				86BA65EF1CA8CBE90023AC1D /* TweedWebViewController.swift */,
 			);
 			name = "Reusable Components";
 			sourceTree = "<group>";
@@ -650,6 +668,12 @@
 		AF8883761CA7340C0097DCDA /* NSManagedObjects */ = {
 			isa = PBXGroup;
 			children = (
+				8678B6E61CA8D10100A2DA89 /* Url+CoreDataProperties.swift */,
+				8678B6E71CA8D10100A2DA89 /* Url.swift */,
+				86BA65E71CA8B5480023AC1D /* Mention+CoreDataProperties.swift */,
+				86BA65E81CA8B5480023AC1D /* Mention.swift */,
+				86BA65E91CA8B5480023AC1D /* Media+CoreDataProperties.swift */,
+				86BA65EA1CA8B5480023AC1D /* Media.swift */,
 				AF615DC61CA862F700161B56 /* Tweet+CoreDataProperties.swift */,
 				AF615DC71CA862F700161B56 /* Tweet.swift */,
 				AF8883771CA734210097DCDA /* User+CoreDataProperties.swift */,
@@ -925,6 +949,7 @@
 				8614E83A1CA5F64000DF48EA /* DataManager.m in Sources */,
 				AF88837A1CA734210097DCDA /* User.swift in Sources */,
 				AF88837F1CA73AFB0097DCDA /* RecommendationTableViewCell.swift in Sources */,
+				86BA65EE1CA8B5480023AC1D /* Media.swift in Sources */,
 				86D299B71CA60C2100AA8739 /* UILabel+Tweed.swift in Sources */,
 				862A4A5A1CA8719A009B29F4 /* SeshDotView.swift in Sources */,
 				86D29A1B1CA7475F00AA8739 /* LoadingViewController.swift in Sources */,
@@ -932,11 +957,14 @@
 				86CD27411CA8968E0076E5AC /* FollowingCollectionViewCell.swift in Sources */,
 				86D299B01CA609A200AA8739 /* UIFont+Tweed.swift in Sources */,
 				8614E8071CA5F39600DF48EA /* AppDelegate.swift in Sources */,
+				8678B6EB1CA8D37C00A2DA89 /* TweetTextView.swift in Sources */,
+				86BA65F01CA8CBE90023AC1D /* TweedWebViewController.swift in Sources */,
 				86D299E91CA7384100AA8739 /* UIFont+Sesh.m in Sources */,
 				86D299E81CA7384100AA8739 /* UIColor+Sesh.m in Sources */,
 				86D299E11CA737E400AA8739 /* SeshProgressIndicator.m in Sources */,
 				86D29A171CA7434900AA8739 /* TweedAuthManager.m in Sources */,
 				86D299B41CA60BA800AA8739 /* TweetTableViewCell.swift in Sources */,
+				8678B6E91CA8D10100A2DA89 /* Url.swift in Sources */,
 				86D29A161CA7434900AA8739 /* AccessToken.m in Sources */,
 				AF8883791CA734210097DCDA /* User+CoreDataProperties.swift in Sources */,
 				86D299BE1CA714A500AA8739 /* FollowViewController.swift in Sources */,
@@ -946,7 +974,9 @@
 				86D299CC1CA71F3700AA8739 /* UIImage+ImageEffects.m in Sources */,
 				86D299DD1CA737AF00AA8739 /* SeshConfirmationAnimationView.m in Sources */,
 				862A4A381CA7845D009B29F4 /* SeshAlertView.m in Sources */,
+				8678B6E81CA8D10100A2DA89 /* Url+CoreDataProperties.swift in Sources */,
 				862A4A5C1CA875F3009B29F4 /* NSNumber+Tweed.swift in Sources */,
+				86BA65EC1CA8B5480023AC1D /* Mention.swift in Sources */,
 				862A4A421CA7851D009B29F4 /* SeshTopBarView.m in Sources */,
 				AFCDB7D01CA8D1C700D2B6A8 /* FollowingView.swift in Sources */,
 				86D299B91CA60D4500AA8739 /* UIColor+Tweed.swift in Sources */,
@@ -955,6 +985,7 @@
 				862A4A3F1CA78475009B29F4 /* SeshBlurWindow.m in Sources */,
 				86D299D31CA729F800AA8739 /* TweedTextField.swift in Sources */,
 				AF615DC81CA862F700161B56 /* Tweet+CoreDataProperties.swift in Sources */,
+				86BA65EB1CA8B5480023AC1D /* Mention+CoreDataProperties.swift in Sources */,
 				AF88837D1CA73AE60097DCDA /* RecommendationsView.swift in Sources */,
 				86D299C11CA7177000AA8739 /* TweedNetworking.swift in Sources */,
 				862A4A3B1CA7845D009B29F4 /* SeshAlertViewManager.m in Sources */,
@@ -963,6 +994,7 @@
 				862A4A451CA78533009B29F4 /* SeshIncreaseTapRadiusButton.m in Sources */,
 				862A4A4B1CA78573009B29F4 /* SeshButton.m in Sources */,
 				862A4A571CA852B4009B29F4 /* ViewProfileAlertView.swift in Sources */,
+				86BA65ED1CA8B5480023AC1D /* Media+CoreDataProperties.swift in Sources */,
 				862A4A4E1CA785BE009B29F4 /* UIApplication+SeshUtils.m in Sources */,
 				86D299BB1CA7110700AA8739 /* TweedViewConstants.swift in Sources */,
 				AF615DC91CA862F700161B56 /* Tweet.swift in Sources */,

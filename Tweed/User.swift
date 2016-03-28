@@ -32,7 +32,7 @@ class User: NSManagedObject {
         user!.location = userObject["location"] as? String
         user!.bio = userObject["description"] as? String
         user!.profileBackgroundColor = userObject["profile_background_color"] as? String
-        user!.profileBackgroundImageUrl = userObject["profile_background_image"] as? String
+        user!.profileBannerImageUrl = userObject["profile_banner_image"] as? String
         
         return user
     }
@@ -172,7 +172,7 @@ class User: NSManagedObject {
         user!.screenName = "rayfk"
         user!.name = "RaymondLong Kennedy"
         user!.profileImageUrl = "https://media.licdn.com/mpr/mpr/shrinknp_200_200/p/7/000/211/124/06ee517.jpg"
-        user!.profileBackgroundImageUrl = "http://www.f-covers.com/namecovers/image/i-love-my-life.jpg"
+        user!.profileBannerImageUrl = "http://www.f-covers.com/namecovers/image/i-love-my-life.jpg"
         user!.bio = "Hey my name is Raymond I love doing fun things and going out, and having fun, and run on sentences."
         user!.profileBackgroundColor = "FF55FF"
         user!.location = "Palo Alto, CA"

@@ -1,12 +1,35 @@
 <?xml version="1.0" encoding="UTF-8" standalone="yes"?>
-<model userDefinedModelVersionIdentifier="" type="com.apple.IDECoreDataModeler.DataModel" documentVersion="1.0" lastSavedToolsVersion="10171" systemVersion="15C50" minimumToolsVersion="Automatic">
+<model userDefinedModelVersionIdentifier="" type="com.apple.IDECoreDataModeler.DataModel" documentVersion="1.0" lastSavedToolsVersion="9525" systemVersion="14F27" minimumToolsVersion="Automatic">
+    <entity name="Media" representedClassName=".Media" syncable="YES">
+        <attribute name="endIdx" optional="YES" attributeType="Integer 32" defaultValueString="0" syncable="YES"/>
+        <attribute name="height" optional="YES" attributeType="Integer 32" defaultValueString="0" syncable="YES"/>
+        <attribute name="id" optional="YES" attributeType="Integer 64" defaultValueString="0" syncable="YES"/>
+        <attribute name="mediaUrl" optional="YES" attributeType="String" syncable="YES"/>
+        <attribute name="startIdx" optional="YES" attributeType="Integer 32" defaultValueString="0" syncable="YES"/>
+        <attribute name="width" optional="YES" attributeType="Integer 32" defaultValueString="0.0" syncable="YES"/>
+        <relationship name="tweet" optional="YES" maxCount="1" deletionRule="Nullify" destinationEntity="Tweet" inverseName="media" inverseEntity="Tweet" syncable="YES"/>
+    </entity>
+    <entity name="Mention" representedClassName=".Mention" syncable="YES">
+        <attribute name="id" optional="YES" attributeType="Integer 64" defaultValueString="0" syncable="YES"/>
+        <attribute name="name" optional="YES" attributeType="String" syncable="YES"/>
+        <attribute name="screenName" optional="YES" attributeType="String" syncable="YES"/>
+        <relationship name="tweet" optional="YES" maxCount="1" deletionRule="Nullify" destinationEntity="Tweet" inverseName="mentions" inverseEntity="Tweet" syncable="YES"/>
+    </entity>
     <entity name="Tweet" representedClassName=".Tweet" syncable="YES">
         <attribute name="createdAt" optional="YES" attributeType="Date" syncable="YES"/>
         <attribute name="id" optional="YES" attributeType="String" syncable="YES"/>
         <attribute name="text" optional="YES" attributeType="String" syncable="YES"/>
         <relationship name="copiedTweets" optional="YES" toMany="YES" deletionRule="Nullify" destinationEntity="Tweet" inverseName="originalTweet" inverseEntity="Tweet" syncable="YES"/>
+        <relationship name="media" optional="YES" toMany="YES" deletionRule="Nullify" destinationEntity="Media" inverseName="tweet" inverseEntity="Media" syncable="YES"/>
+        <relationship name="mentions" optional="YES" toMany="YES" deletionRule="Nullify" destinationEntity="Mention" inverseName="tweet" inverseEntity="Mention" syncable="YES"/>
         <relationship name="originalTweet" optional="YES" maxCount="1" deletionRule="Nullify" destinationEntity="Tweet" inverseName="copiedTweets" inverseEntity="Tweet" syncable="YES"/>
+        <relationship name="urls" optional="YES" toMany="YES" deletionRule="Nullify" destinationEntity="Url" inverseName="tweet" inverseEntity="Url" syncable="YES"/>
         <relationship name="user" optional="YES" maxCount="1" deletionRule="Nullify" destinationEntity="User" inverseName="tweets" inverseEntity="User" syncable="YES"/>
+    </entity>
+    <entity name="Url" representedClassName=".Url" syncable="YES">
+        <attribute name="fakeUrl" optional="YES" attributeType="String" syncable="YES"/>
+        <attribute name="realUrl" optional="YES" attributeType="String" syncable="YES"/>
+        <relationship name="tweet" optional="YES" maxCount="1" deletionRule="Nullify" destinationEntity="Tweet" inverseName="urls" inverseEntity="Tweet" syncable="YES"/>
     </entity>
     <entity name="User" representedClassName=".User" syncable="YES">
         <attribute name="bio" optional="YES" attributeType="String" syncable="YES"/>
@@ -18,14 +41,17 @@
         <attribute name="location" optional="YES" attributeType="String" syncable="YES"/>
         <attribute name="name" optional="YES" attributeType="String" syncable="YES"/>
         <attribute name="profileBackgroundColor" optional="YES" attributeType="String" syncable="YES"/>
-        <attribute name="profileBackgroundImageUrl" optional="YES" attributeType="String" syncable="YES"/>
+        <attribute name="profileBannerImageUrl" optional="YES" attributeType="String" syncable="YES"/>
         <attribute name="profileImageUrl" optional="YES" attributeType="String" syncable="YES"/>
         <attribute name="screenName" optional="YES" attributeType="String" syncable="YES"/>
         <attribute name="tweetCount" optional="YES" attributeType="Integer 32" defaultValueString="0" syncable="YES"/>
         <relationship name="tweets" optional="YES" toMany="YES" deletionRule="Nullify" destinationEntity="Tweet" inverseName="user" inverseEntity="Tweet" syncable="YES"/>
     </entity>
     <elements>
-        <element name="User" positionX="-63" positionY="-18" width="128" height="255"/>
-        <element name="Tweet" positionX="-54" positionY="81" width="128" height="135"/>
+        <element name="Media" positionX="241" positionY="72" width="128" height="148"/>
+        <element name="Mention" positionX="97" positionY="-63" width="128" height="103"/>
+        <element name="Tweet" positionX="-81" positionY="113" width="128" height="178"/>
+        <element name="User" positionX="-288" positionY="-18" width="128" height="255"/>
+        <element name="Url" positionX="90" positionY="90" width="128" height="88"/>
     </elements>
 </model>

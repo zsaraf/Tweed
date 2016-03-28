@@ -12,3 +12,4 @@ pod 'HexColors'
 pod 'TLYShyNavBar'
 pod "DGElasticPullToRefresh"
 pod 'UIScrollView-InfiniteScroll'
+pod 'JTSImageViewController'
