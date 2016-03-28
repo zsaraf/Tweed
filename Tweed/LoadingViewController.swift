@@ -11,6 +11,7 @@ import UIKit
 class LoadingViewController: UIViewController, FollowViewControllerDelegate {
     var loadingLabel: UILabel!
     var logoImageView: UIImageView!
+    var hasAuth = false
 
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -47,6 +48,7 @@ class LoadingViewController: UIViewController, FollowViewControllerDelegate {
                 self.presentOnboardingViewController()
             })
         } else {
+            self.hasAuth = true
             if User.getFollowingUsers()?.count > 0 {
                 Tweet.refreshTweets({ (success) -> Void in
                     let nvc = UINavigationController(rootViewController: HomeViewController())
@@ -59,7 +61,7 @@ class LoadingViewController: UIViewController, FollowViewControllerDelegate {
     override func viewDidAppear(animated: Bool) {
         super.viewDidAppear(animated)
 
-        if User.getFollowingUsers()?.count == 0 {
+        if User.getFollowingUsers()?.count == 0 && self.hasAuth {
             self.presentOnboardingViewController()
         }
     }
