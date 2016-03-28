@@ -51,7 +51,7 @@
 + (UIImage *)blurredImageWithRootView:(UIView *)rootView tintColor:(UIColor *)tintColor radius:(CGFloat)radius saturationDeltaFactor:(CGFloat)saturationDeltaFactor
 {
     UIGraphicsBeginImageContextWithOptions(rootView.bounds.size, NO, 0.0f);
-    [rootView drawViewHierarchyInRect:rootView.bounds afterScreenUpdates:YES];
+    [rootView drawViewHierarchyInRect:rootView.bounds afterScreenUpdates:NO];
     UIImage *im = UIGraphicsGetImageFromCurrentImageContext();
     return [im applyBlurWithRadius:radius tintColor:tintColor saturationDeltaFactor:saturationDeltaFactor maskImage:nil];
 }

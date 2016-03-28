@@ -103,4 +103,48 @@ class Tweet: NSManagedObject {
         return results as! [Tweet]
     }
 
+    class func refreshTweets(completionHandler: ((success: Bool) -> Void)?) {
+        TweedNetworking.refreshTweets({ (task, responseObject) in
+
+            self.parseResponse(responseObject)
+            completionHandler?(success: true)
+        }) { (task, error) in
+            completionHandler?(success: false)
+            print("Failed to refresh tweets with error: \(error.localizedDescription)")
+        }
+    }
+
+    class func loadMoreTweets(completionHandler: ((success: Bool) -> Void)?) {
+        TweedNetworking.loadMoreTweets({ (task, responseObject) in
+
+            self.parseResponse(responseObject)
+            completionHandler?(success: true)
+
+        }) { (task, error) in
+            completionHandler?(success: false)
+            print("Failed to load more tweets with error: \(error.localizedDescription)")
+        }
+        
+    }
+
+    class func parseResponse(responseObject: AnyObject?) {
+        // Get users and tweets
+        let users = responseObject!["twitter_users"] as! [[String: AnyObject]]
+        let tweets = responseObject!["tweets"] as! [[String: AnyObject]]
+
+        // Parse users first
+        for u in users {
+            let user = User.createOrUpdateUserWithObject(u)
+            user?.isFollowing = NSNumber(bool: true)
+
+        }
+
+        for t in tweets {
+            Tweet.createOrUpdateTweetWithObject(t)
+        }
+
+        // Save the shared context
+        DataManager.sharedInstance().saveContext(nil)
+    }
+
 }

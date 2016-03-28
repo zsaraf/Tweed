@@ -51,15 +51,9 @@ class FollowingCollectionViewCell: UICollectionViewCell {
         self.imageView.snp_makeConstraints { (make) -> Void in
             make.edges.equalTo(self.imageViewWrapper)
         }
-        self.imageView.layer.cornerRadius = (self.bounds.size.width * 0.7)/2.0
-    }
 
-    override func layoutSubviews() {
-        super.layoutSubviews()
-
-        self.imageView.layer.masksToBounds = true
-        imageView.layer.cornerRadius = imageViewWrapper.bounds.size.width/2.0
-        self.imageViewWrapper.layer.cornerRadius =  imageViewWrapper.bounds.size.width/2.0
+        // HACKY: layoutSubviews is not being called
+        self.imageView.layer.cornerRadius = ((UIScreen.mainScreen().bounds.size.height * 0.1) * 0.7)/2.0
     }
 
 }

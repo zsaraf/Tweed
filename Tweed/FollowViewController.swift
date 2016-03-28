@@ -24,7 +24,9 @@ class FollowViewController: UIViewController, UIViewControllerAnimatedTransition
 
     // Top bar view
     var topBarView: UIView!
+    var titleLabel: UILabel!
     var acceptButton: UIButton!
+    var cancelButton: UIButton!
 
     // Content view
     var contentView: UIView!
@@ -32,6 +34,10 @@ class FollowViewController: UIViewController, UIViewControllerAnimatedTransition
     var textField: TweedTextField!
     var errorLabel: UILabel!
     var tableView: UITableView!
+
+    // Help labels
+    var recommendationHelpLabel: UILabel!
+    var addHelpLabel: UILabel!
 
     // Data
     var addedHandles = Set<String>()
@@ -73,32 +79,24 @@ class FollowViewController: UIViewController, UIViewControllerAnimatedTransition
     func setupTopBarView() {
         self.topBarView = UIView()
 
-        let titleLabel = UILabel(font: UIFont.SFMedium(18.0)!, textColor: UIColor.whiteColor(), text: "Follow", textAlignment: .Center)
-        titleLabel.shadowColor = UIColor(white: 0.0, alpha: 0.8)
-        titleLabel.shadowOffset = CGSizeMake(0, 1)
-        self.topBarView.addSubview(titleLabel)
+        self.titleLabel = UILabel(font: UIFont.SFMedium(18.0)!, textColor: UIColor.whiteColor(), text: "Follow", textAlignment: .Center)
+        self.titleLabel.shadowColor = UIColor(white: 0.0, alpha: 0.8)
+        self.titleLabel.shadowOffset = CGSizeMake(0, 1)
+        self.topBarView.addSubview(self.titleLabel)
 
-        let cancelButton = self.topBarButton(UIImage(named: "cancel_circle")!, action: "cancel:")
-        cancelButton.layer.shadowColor = UIColor.blackColor().CGColor
-        cancelButton.layer.shadowOpacity = 0.8
-        cancelButton.layer.shadowOffset = CGSizeMake(0, 1)
-        cancelButton.layer.shadowRadius = 0.3
+        self.cancelButton = self.topBarButton(UIImage(named: "cancel_circle")!, action: "cancel:")
 
-        self.topBarView.addSubview(cancelButton)
+        self.topBarView.addSubview(self.cancelButton)
 
         self.acceptButton = self.topBarButton(UIImage(named: "check_circle")!, action: "accept:")
         self.acceptButton.alpha = 0.0
-        self.acceptButton.layer.shadowColor = UIColor.blackColor().CGColor
-        self.acceptButton.layer.shadowOpacity = 0.8
-        self.acceptButton.layer.shadowOffset = CGSizeMake(0, 1)
-        self.acceptButton.layer.shadowRadius = 0.3
         self.topBarView.addSubview(self.acceptButton)
 
-        titleLabel.snp_makeConstraints { (make) -> Void in
+        self.titleLabel.snp_makeConstraints { (make) -> Void in
             make.edges.equalTo(self.topBarView)
         }
 
-        cancelButton.snp_makeConstraints { (make) -> Void in
+        self.cancelButton.snp_makeConstraints { (make) -> Void in
             make.left.equalTo(self.topBarView).inset(20.0)
             make.height.width.equalTo(self.topBarView.snp_height).multipliedBy(0.6)
             make.centerY.equalTo(self.topBarView)
@@ -123,9 +121,10 @@ class FollowViewController: UIViewController, UIViewControllerAnimatedTransition
         let btn = UIButton(type: .Custom)
         btn.setImage(image, forState: .Normal)
         btn.addTarget(self, action: action, forControlEvents: .TouchUpInside)
-        btn.layer.shadowColor = UIColor(white: 0, alpha: 0.1).CGColor
+        btn.layer.shadowColor = UIColor.blackColor().CGColor
+        btn.layer.shadowOpacity = 0.8
         btn.layer.shadowOffset = CGSizeMake(0, 1)
-        btn.layer.shadowRadius = 2.0
+        btn.layer.shadowRadius = 0.3
         return btn
     }
 
@@ -133,6 +132,7 @@ class FollowViewController: UIViewController, UIViewControllerAnimatedTransition
         self.contentView = UIView()
         self.view.addSubview(self.contentView)
 
+        self.setupRecommendationsView()
         self.setupTextField()
         self.setupRecentlyAddedTableView()
 
@@ -143,16 +143,29 @@ class FollowViewController: UIViewController, UIViewControllerAnimatedTransition
         }
     }
 
-    func setupTextField() {
-        
+    func setupRecommendationsView() {
+        self.recommendationHelpLabel = UILabel(font: UIFont.SFRegular(15.0)!, textColor: UIColor.whiteColor(), text: "Recommended for you...", textAlignment: .Left)
+        self.contentView.addSubview(self.recommendationHelpLabel)
+
         self.reccomendationsView = RecommendationsView(recommendations: User.getRecommendedUsers()!, dataSource: self)
         self.contentView.addSubview(self.reccomendationsView)
+
+        self.recommendationHelpLabel.snp_makeConstraints { (make) -> Void in
+            make.top.equalTo(self.contentView).offset(20.0)
+            make.left.right.equalTo(self.contentView).inset(20.0)
+        }
+
         self.reccomendationsView.snp_makeConstraints { (make) in
-            make.top.equalTo(self.contentView).offset(20)
+            make.top.equalTo(recommendationHelpLabel.snp_bottom).offset(5)
             make.left.right.equalTo(self.contentView)
             make.height.equalTo(UIScreen.mainScreen().bounds.size.height * CGFloat(FollowViewConstants.RecommendationsHeightPercent));
         }
-        
+    }
+
+    func setupTextField() {
+        self.addHelpLabel = UILabel(font: UIFont.SFRegular(15.0)!, textColor: UIColor.whiteColor(), text: "Got someone in mind? Add them below.", textAlignment: .Left)
+        self.contentView.addSubview(self.addHelpLabel)
+
         self.textField = TweedTextField(frame: CGRectZero, icon: UIImage(named: "email_gray")!)
         self.textField.delegate = self
         self.textField.returnKeyType = .Done
@@ -166,8 +179,13 @@ class FollowViewController: UIViewController, UIViewControllerAnimatedTransition
         self.errorLabel.alpha = 0.0
         self.contentView.addSubview(self.errorLabel)
 
-        self.textField.snp_makeConstraints { (make) -> Void in
+        self.addHelpLabel.snp_makeConstraints { (make) -> Void in
             make.top.equalTo(self.reccomendationsView.snp_bottom).offset(20.0)
+            make.left.right.equalTo(self.contentView).inset(20.0)
+        }
+
+        self.textField.snp_makeConstraints { (make) -> Void in
+            make.top.equalTo(self.addHelpLabel.snp_bottom).offset(20)
             make.centerX.equalTo(self.contentView)
         }
 
@@ -275,10 +293,13 @@ class FollowViewController: UIViewController, UIViewControllerAnimatedTransition
                 user?.isFollowing = NSNumber(bool: true)
             }
             DataManager.sharedInstance().saveContext(nil)
-            animationView.completionBlock = { (Void) -> Void in
-                self.delegate?.followViewControllerDidFinish(self)
-            }
-            animationView.startAnimating()
+
+            Tweet.refreshTweets({ (success) -> Void in
+                animationView.completionBlock = { (Void) -> Void in
+                    self.delegate?.followViewControllerDidFinish(self)
+                }
+                animationView.startAnimating()
+            })
         }) { (task, error) -> Void in
             SeshAlertView.init(swiftWithTitle: "Error!", message: "We couldn't add your handles! Please check your internet connection and try again!", delegate: nil, cancelButtonTitle: nil, otherButtonTitles: ["Okay"]).show()
 

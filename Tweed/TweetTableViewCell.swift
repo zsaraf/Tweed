@@ -22,7 +22,7 @@ class TweetTableViewCell: UITableViewCell, TweetTextViewDelegate {
         static let TopPadding = 10.0
         static let BottomPadding = 10.0
         static let RetweetPadding = 10.0
-        static let ImageMaxWidth = Double(UIScreen.mainScreen().bounds.size.width) * (1 - TweedViewConstants.CellLeftContentInsetMultiplier)
+        static let ImageMaxWidth = Double(UIScreen.mainScreen().bounds.size.width) * (1 - TweedViewConstants.CellLeftContentInsetMultiplier - 0.05)
         static let ImageMaxHeight = Double(UIScreen.mainScreen().bounds.size.height)/4.0
     }
 
@@ -279,6 +279,8 @@ class TweetTableViewCell: UITableViewCell, TweetTextViewDelegate {
 
     func createMediaImageView() -> UIImageView {
         let imageView = UIImageView()
+        imageView.contentMode = .ScaleAspectFit
+        imageView.clipsToBounds = true
         imageView.layer.masksToBounds = true
         imageView.layer.cornerRadius = 4.0
         imageView.userInteractionEnabled = true

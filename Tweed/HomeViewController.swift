@@ -30,9 +30,6 @@ class HomeViewController: UIViewController, UITableViewDelegate, UITableViewData
         self.setupNavigationBar()
         self.setupTableView()
         self.setupFollowingView()
-
-        self.refreshTweets()
-
     }
     
     func setupNavigationBar() {
@@ -138,7 +135,6 @@ class HomeViewController: UIViewController, UITableViewDelegate, UITableViewData
             fvc.transitioningDelegate = nil
         }
         self.updateViewsWithCoreData()
-        self.refreshTweets()
     }
     
     // MARK: Private Methods
@@ -168,48 +164,17 @@ class HomeViewController: UIViewController, UITableViewDelegate, UITableViewData
         }
     }
     
-    func parseResponse(responseObject: AnyObject?) {
-        // Get users and tweets
-        let users = responseObject!["twitter_users"] as! [[String: AnyObject]]
-        let tweets = responseObject!["tweets"] as! [[String: AnyObject]]
-        
-        // Parse users first
-        for u in users {
-            let user = User.createOrUpdateUserWithObject(u)
-            user?.isFollowing = NSNumber(bool: true)
-            
-        }
-        
-        for t in tweets {
-            Tweet.createOrUpdateTweetWithObject(t)
-        }
-        
-        // Save the shared context
-        DataManager.sharedInstance().saveContext(nil)
-    }
-    
     func loadMoreTweets() {
-        TweedNetworking.loadMoreTweets({ (task, responseObject) in
-            
-            self.parseResponse(responseObject)
+        Tweet.loadMoreTweets { (success) -> Void in
             self.updateViewsWithCoreData()
             self.tableView.finishInfiniteScroll()
-            
-        }) { (task, error) in
-            print("Failed to load more tweets with error: \(error.localizedDescription)")
         }
-
     }
 
     func refreshTweets() {
-        TweedNetworking.refreshTweets({ (task, responseObject) in
-            
-            self.parseResponse(responseObject)
+        Tweet.refreshTweets { (success) -> Void in
             self.updateViewsWithCoreData()
             self.tableView.dg_stopLoading()
-            
-        }) { (task, error) in
-            print("Failed to refresh tweets with error: \(error.localizedDescription)")
         }
     }
 

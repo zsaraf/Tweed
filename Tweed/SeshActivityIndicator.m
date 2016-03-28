@@ -17,7 +17,7 @@
 - (instancetype)initWithFrame:(CGRect)frame
 {
     if (self = [super initWithFrame:frame]) {
-        _spinnerView = [[UIImageView alloc] initWithImage:[UIImage imageNamed:@"circle3.png"]];
+        _spinnerView = [[UIImageView alloc] initWithImage:[UIImage imageNamed:@"tweed_activityindicator"]];
         _spinnerView.backgroundColor = [UIColor clearColor];
         CGFloat spinnerSize = [UIScreen mainScreen].bounds.size.width/6.0;
         _spinnerView.bounds = CGRectMake(0, 0, spinnerSize, spinnerSize);

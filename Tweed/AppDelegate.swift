@@ -20,20 +20,7 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
         self.customizeAppearance()
 
         self.window = UIWindow(frame: UIScreen.mainScreen().bounds)
-
-        if TweedAuthManager.sharedManager().isValidSession() == false {
-            self.window?.rootViewController = LoadingViewController()
-            self.getAccessTokenWithCompletionHandler({ () -> Void in
-                let nvc = UINavigationController(rootViewController: HomeViewController())
-                
-                self.window?.rootViewController?.presentViewController(nvc, animated: true, completion: nil)
-            })
-            
-        } else {
-            let nvc = UINavigationController(rootViewController: HomeViewController())
-            self.window?.rootViewController = nvc
-        }
-        
+        self.window?.rootViewController = LoadingViewController()
         self.window?.makeKeyAndVisible()
 
         return true

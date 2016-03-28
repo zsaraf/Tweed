@@ -35,6 +35,14 @@
 		8678B6E81CA8D10100A2DA89 /* Url+CoreDataProperties.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8678B6E61CA8D10100A2DA89 /* Url+CoreDataProperties.swift */; };
 		8678B6E91CA8D10100A2DA89 /* Url.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8678B6E71CA8D10100A2DA89 /* Url.swift */; };
 		8678B6EB1CA8D37C00A2DA89 /* TweetTextView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8678B6EA1CA8D37C00A2DA89 /* TweetTextView.swift */; };
+		8678B6EF1CA8ECF400A2DA89 /* back_white.png in Resources */ = {isa = PBXBuildFile; fileRef = 8678B6EC1CA8ECF400A2DA89 /* back_white.png */; };
+		8678B6F01CA8ECF400A2DA89 /* back_white@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 8678B6ED1CA8ECF400A2DA89 /* back_white@2x.png */; };
+		8678B6F11CA8ECF400A2DA89 /* back_white@3x.png in Resources */ = {isa = PBXBuildFile; fileRef = 8678B6EE1CA8ECF400A2DA89 /* back_white@3x.png */; };
+		8678B6F31CA8F95200A2DA89 /* OnboardingViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8678B6F21CA8F95200A2DA89 /* OnboardingViewController.swift */; };
+		8678B6F81CA9002B00A2DA89 /* tweed_activityindicator.png in Resources */ = {isa = PBXBuildFile; fileRef = 8678B6F51CA9002B00A2DA89 /* tweed_activityindicator.png */; };
+		8678B6F91CA9002B00A2DA89 /* tweed_activityindicator@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 8678B6F61CA9002B00A2DA89 /* tweed_activityindicator@2x.png */; };
+		8678B6FA1CA9002B00A2DA89 /* tweed_activityindicator@3x.png in Resources */ = {isa = PBXBuildFile; fileRef = 8678B6F71CA9002B00A2DA89 /* tweed_activityindicator@3x.png */; };
+		8678B6FE1CA905E200A2DA89 /* logo.png in Resources */ = {isa = PBXBuildFile; fileRef = 8678B6FD1CA905E200A2DA89 /* logo.png */; };
 		86BA65EB1CA8B5480023AC1D /* Mention+CoreDataProperties.swift in Sources */ = {isa = PBXBuildFile; fileRef = 86BA65E71CA8B5480023AC1D /* Mention+CoreDataProperties.swift */; };
 		86BA65EC1CA8B5480023AC1D /* Mention.swift in Sources */ = {isa = PBXBuildFile; fileRef = 86BA65E81CA8B5480023AC1D /* Mention.swift */; };
 		86BA65ED1CA8B5480023AC1D /* Media+CoreDataProperties.swift in Sources */ = {isa = PBXBuildFile; fileRef = 86BA65E91CA8B5480023AC1D /* Media+CoreDataProperties.swift */; };
@@ -198,6 +206,14 @@
 		8678B6E61CA8D10100A2DA89 /* Url+CoreDataProperties.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "Url+CoreDataProperties.swift"; sourceTree = "<group>"; };
 		8678B6E71CA8D10100A2DA89 /* Url.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Url.swift; sourceTree = "<group>"; };
 		8678B6EA1CA8D37C00A2DA89 /* TweetTextView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = TweetTextView.swift; sourceTree = "<group>"; };
+		8678B6EC1CA8ECF400A2DA89 /* back_white.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = back_white.png; sourceTree = "<group>"; };
+		8678B6ED1CA8ECF400A2DA89 /* back_white@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "back_white@2x.png"; sourceTree = "<group>"; };
+		8678B6EE1CA8ECF400A2DA89 /* back_white@3x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "back_white@3x.png"; sourceTree = "<group>"; };
+		8678B6F21CA8F95200A2DA89 /* OnboardingViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = OnboardingViewController.swift; sourceTree = "<group>"; };
+		8678B6F51CA9002B00A2DA89 /* tweed_activityindicator.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = tweed_activityindicator.png; sourceTree = "<group>"; };
+		8678B6F61CA9002B00A2DA89 /* tweed_activityindicator@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "tweed_activityindicator@2x.png"; sourceTree = "<group>"; };
+		8678B6F71CA9002B00A2DA89 /* tweed_activityindicator@3x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "tweed_activityindicator@3x.png"; sourceTree = "<group>"; };
+		8678B6FD1CA905E200A2DA89 /* logo.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = logo.png; sourceTree = "<group>"; };
 		86BA65E71CA8B5480023AC1D /* Mention+CoreDataProperties.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "Mention+CoreDataProperties.swift"; sourceTree = "<group>"; };
 		86BA65E81CA8B5480023AC1D /* Mention.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Mention.swift; sourceTree = "<group>"; };
 		86BA65E91CA8B5480023AC1D /* Media+CoreDataProperties.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "Media+CoreDataProperties.swift"; sourceTree = "<group>"; };
@@ -467,6 +483,14 @@
 			name = "View Profile";
 			sourceTree = "<group>";
 		};
+		8678B6F41CA8F95700A2DA89 /* Onboarding */ = {
+			isa = PBXGroup;
+			children = (
+				8678B6F21CA8F95200A2DA89 /* OnboardingViewController.swift */,
+			);
+			name = Onboarding;
+			sourceTree = "<group>";
+		};
 		86D2998C1CA608A200AA8739 /* Resources */ = {
 			isa = PBXGroup;
 			children = (
@@ -484,6 +508,13 @@
 		86D2998D1CA608BB00AA8739 /* Icons */ = {
 			isa = PBXGroup;
 			children = (
+				8678B6FD1CA905E200A2DA89 /* logo.png */,
+				8678B6F51CA9002B00A2DA89 /* tweed_activityindicator.png */,
+				8678B6F61CA9002B00A2DA89 /* tweed_activityindicator@2x.png */,
+				8678B6F71CA9002B00A2DA89 /* tweed_activityindicator@3x.png */,
+				8678B6EC1CA8ECF400A2DA89 /* back_white.png */,
+				8678B6ED1CA8ECF400A2DA89 /* back_white@2x.png */,
+				8678B6EE1CA8ECF400A2DA89 /* back_white@3x.png */,
 				AFCDB7C91CA8B20B00D2B6A8 /* retweet.png */,
 				AFCDB7CA1CA8B20B00D2B6A8 /* retweet@2x.png */,
 				AFCDB7CB1CA8B20B00D2B6A8 /* retweet@3x.png */,
@@ -550,6 +581,7 @@
 				86D29A191CA7474D00AA8739 /* Loading */,
 				86D299BC1CA7148B00AA8739 /* Follow */,
 				86D299B21CA60B6400AA8739 /* Home */,
+				8678B6F41CA8F95700A2DA89 /* Onboarding */,
 			);
 			name = "View Controllers";
 			sourceTree = "<group>";
@@ -825,10 +857,12 @@
 				AF615DC51CA84CA800161B56 /* payment_check@2x.png in Resources */,
 				86D29A0D1CA7396600AA8739 /* plus_circle@2x.png in Resources */,
 				86D29A0E1CA7396600AA8739 /* plus_circle@3x.png in Resources */,
+				8678B6F11CA8ECF400A2DA89 /* back_white@3x.png in Resources */,
 				86D299C51CA71E5F00AA8739 /* plus_white.png in Resources */,
 				86D29A001CA7396600AA8739 /* cancel_circle.png in Resources */,
 				86D29A011CA7396600AA8739 /* cancel_circle@2x.png in Resources */,
 				86D29A0F1CA7396600AA8739 /* plus.png in Resources */,
+				8678B6FA1CA9002B00A2DA89 /* tweed_activityindicator@3x.png in Resources */,
 				86D299C71CA71E5F00AA8739 /* plus_white@3x.png in Resources */,
 				86D299A01CA6094600AA8739 /* Gotham-BlackItalic.otf in Resources */,
 				86D299A11CA6094600AA8739 /* Gotham-Bold.otf in Resources */,
@@ -837,12 +871,15 @@
 				86D299A21CA6094600AA8739 /* Gotham-BoldItalic.otf in Resources */,
 				86D299A31CA6094600AA8739 /* Gotham-Book.otf in Resources */,
 				86D29A0A1CA7396600AA8739 /* check@2x.png in Resources */,
+				8678B6F91CA9002B00A2DA89 /* tweed_activityindicator@2x.png in Resources */,
 				86D29A041CA7396600AA8739 /* cancel@2x.png in Resources */,
 				86D299A41CA6094600AA8739 /* Gotham-BookItalic.otf in Resources */,
 				86D299A51CA6094600AA8739 /* Gotham-Light.otf in Resources */,
+				8678B6FE1CA905E200A2DA89 /* logo.png in Resources */,
 				86D299D01CA721CA00AA8739 /* tweed_texture.png in Resources */,
 				86D29A031CA7396600AA8739 /* cancel.png in Resources */,
 				862A4A2D1CA77DCD009B29F4 /* circle3.png in Resources */,
+				8678B6F01CA8ECF400A2DA89 /* back_white@2x.png in Resources */,
 				86D29A091CA7396600AA8739 /* check.png in Resources */,
 				86D29A081CA7396600AA8739 /* check_circle@3x.png in Resources */,
 				86D299A61CA6094600AA8739 /* Gotham-LightItalic.otf in Resources */,
@@ -852,6 +889,7 @@
 				86D29A061CA7396600AA8739 /* check_circle.png in Resources */,
 				86D299A91CA6094600AA8739 /* Gotham-Thin.otf in Resources */,
 				86D299AA1CA6094600AA8739 /* Gotham-ThinItalic.otf in Resources */,
+				8678B6EF1CA8ECF400A2DA89 /* back_white.png in Resources */,
 				86D299AB1CA6094600AA8739 /* Gotham-Ultra.otf in Resources */,
 				86D299D81CA72C8300AA8739 /* email_gray.png in Resources */,
 				86D299C61CA71E5F00AA8739 /* plus_white@2x.png in Resources */,
@@ -861,6 +899,7 @@
 				86D29A111CA7396600AA8739 /* plus@3x.png in Resources */,
 				86D299AE1CA6094600AA8739 /* Gotham-XLightItalic.otf in Resources */,
 				86D29A0C1CA7396600AA8739 /* plus_circle.png in Resources */,
+				8678B6F81CA9002B00A2DA89 /* tweed_activityindicator.png in Resources */,
 				86D299DA1CA72C8300AA8739 /* email_gray@3x.png in Resources */,
 				86D29A101CA7396600AA8739 /* plus@2x.png in Resources */,
 				86D29A021CA7396600AA8739 /* cancel_circle@3x.png in Resources */,
@@ -955,6 +994,7 @@
 				86D29A1B1CA7475F00AA8739 /* LoadingViewController.swift in Sources */,
 				862A4A531CA78B0B009B29F4 /* AddedHandleTableViewCell.swift in Sources */,
 				86CD27411CA8968E0076E5AC /* FollowingCollectionViewCell.swift in Sources */,
+				8678B6F31CA8F95200A2DA89 /* OnboardingViewController.swift in Sources */,
 				86D299B01CA609A200AA8739 /* UIFont+Tweed.swift in Sources */,
 				8614E8071CA5F39600DF48EA /* AppDelegate.swift in Sources */,
 				8678B6EB1CA8D37C00A2DA89 /* TweetTextView.swift in Sources */,
