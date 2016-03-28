@@ -44,20 +44,34 @@ class LoadingViewController: UIViewController, FollowViewControllerDelegate {
 
         if TweedAuthManager.sharedManager().isValidSession() == false {
             (UIApplication.sharedApplication().delegate as! AppDelegate).getAccessTokenWithCompletionHandler({ () -> Void in
-                let blurredImage = UIImage.blurredImageWithRootView(self.view, tintColor: UIColor(white: 0, alpha: 0.3), radius: 12, saturationDeltaFactor: 1.1)
-                let fvc = OnboardingViewController(blurredImage: blurredImage)
-                fvc.delegate = self
-                fvc.modalPresentationStyle = .Custom
-                fvc.transitioningDelegate = fvc
-                self.presentViewController(fvc, animated: true) { () -> Void in
-                    fvc.transitioningDelegate = nil
-                }
+                self.presentOnboardingViewController()
             })
         } else {
-            Tweet.refreshTweets({ (success) -> Void in
-                let nvc = UINavigationController(rootViewController: HomeViewController())
-                self.presentViewController(nvc, animated: true, completion: nil)
-            })
+            if User.getFollowingUsers()?.count > 0 {
+                Tweet.refreshTweets({ (success) -> Void in
+                    let nvc = UINavigationController(rootViewController: HomeViewController())
+                    self.presentViewController(nvc, animated: true, completion: nil)
+                })
+            }
+        }
+    }
+
+    override func viewDidAppear(animated: Bool) {
+        super.viewDidAppear(animated)
+
+        if User.getFollowingUsers()?.count == 0 {
+            self.presentOnboardingViewController()
+        }
+    }
+
+    func presentOnboardingViewController() {
+        let blurredImage = UIImage.blurredImageWithRootView(self.view, tintColor: UIColor(white: 0, alpha: 0.3), radius: 12, saturationDeltaFactor: 1.1)
+        let fvc = OnboardingViewController(blurredImage: blurredImage)
+        fvc.delegate = self
+        fvc.modalPresentationStyle = .Custom
+        fvc.transitioningDelegate = fvc
+        self.presentViewController(fvc, animated: true) { () -> Void in
+            fvc.transitioningDelegate = nil
         }
     }
 
