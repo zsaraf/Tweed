@@ -118,6 +118,7 @@
 		AFCDB7CC1CA8B20B00D2B6A8 /* retweet.png in Resources */ = {isa = PBXBuildFile; fileRef = AFCDB7C91CA8B20B00D2B6A8 /* retweet.png */; };
 		AFCDB7CD1CA8B20B00D2B6A8 /* retweet@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = AFCDB7CA1CA8B20B00D2B6A8 /* retweet@2x.png */; };
 		AFCDB7CE1CA8B20B00D2B6A8 /* retweet@3x.png in Resources */ = {isa = PBXBuildFile; fileRef = AFCDB7CB1CA8B20B00D2B6A8 /* retweet@3x.png */; };
+		AFCDB7D01CA8D1C700D2B6A8 /* FollowingView.swift in Sources */ = {isa = PBXBuildFile; fileRef = AFCDB7CF1CA8D1C700D2B6A8 /* FollowingView.swift */; };
 		AFD802481CA7902C00375E4F /* SF-UI-Text-Medium.otf in Resources */ = {isa = PBXBuildFile; fileRef = AFD802471CA78F0300375E4F /* SF-UI-Text-Medium.otf */; };
 		C429FE23F637B9810327BB16 /* Pods.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = B808E2B0FC48822C25B15FCE /* Pods.framework */; };
 /* End PBXBuildFile section */
@@ -282,6 +283,7 @@
 		AFCDB7C91CA8B20B00D2B6A8 /* retweet.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = retweet.png; sourceTree = "<group>"; };
 		AFCDB7CA1CA8B20B00D2B6A8 /* retweet@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "retweet@2x.png"; sourceTree = "<group>"; };
 		AFCDB7CB1CA8B20B00D2B6A8 /* retweet@3x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "retweet@3x.png"; sourceTree = "<group>"; };
+		AFCDB7CF1CA8D1C700D2B6A8 /* FollowingView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = FollowingView.swift; sourceTree = "<group>"; };
 		AFD802471CA78F0300375E4F /* SF-UI-Text-Medium.otf */ = {isa = PBXFileReference; lastKnownFileType = file; path = "SF-UI-Text-Medium.otf"; sourceTree = "<group>"; };
 		B808E2B0FC48822C25B15FCE /* Pods.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		C8015E868E43487347046249 /* Pods.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = Pods.debug.xcconfig; path = "Pods/Target Support Files/Pods/Pods.debug.xcconfig"; sourceTree = "<group>"; };
@@ -543,6 +545,7 @@
 				86D299B31CA60BA800AA8739 /* TweetTableViewCell.swift */,
 				86D299BA1CA7110700AA8739 /* TweedViewConstants.swift */,
 				86CD27401CA8968E0076E5AC /* FollowingCollectionViewCell.swift */,
+				AFCDB7CF1CA8D1C700D2B6A8 /* FollowingView.swift */,
 			);
 			name = Home;
 			sourceTree = "<group>";
@@ -945,6 +948,7 @@
 				862A4A381CA7845D009B29F4 /* SeshAlertView.m in Sources */,
 				862A4A5C1CA875F3009B29F4 /* NSNumber+Tweed.swift in Sources */,
 				862A4A421CA7851D009B29F4 /* SeshTopBarView.m in Sources */,
+				AFCDB7D01CA8D1C700D2B6A8 /* FollowingView.swift in Sources */,
 				86D299B91CA60D4500AA8739 /* UIColor+Tweed.swift in Sources */,
 				86D299EA1CA7384100AA8739 /* UILabel+Sesh.m in Sources */,
 				862A4A511CA785CB009B29F4 /* UIWindow+Sesh.m in Sources */,

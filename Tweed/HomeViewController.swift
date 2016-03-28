@@ -11,6 +11,7 @@ import SnapKit
 import SDWebImage
 import TLYShyNavBar
 import DGElasticPullToRefresh
+import UIScrollView_InfiniteScroll
 
 class HomeViewController: UIViewController, UITableViewDelegate, UITableViewDataSource, UICollectionViewDataSource, UICollectionViewDelegate, FollowViewControllerDelegate, ViewProfileAlertViewDelegate {
     let tableView = UITableView()
@@ -92,6 +93,7 @@ class HomeViewController: UIViewController, UITableViewDelegate, UITableViewData
         }
 
         self.addPullToRefresh()
+        self.addInfiniteScroll()
     }
 
     // MARK: UICollectionViewDataSource
@@ -122,17 +124,7 @@ class HomeViewController: UIViewController, UITableViewDelegate, UITableViewData
         alertView.viewProfileDelegate = self
         alertView.show()
     }
-
-    func addPullToRefresh() {
-        let loadingView = DGElasticPullToRefreshLoadingViewCircle()
-        loadingView.tintColor = UIColor.whiteColor()
-        self.tableView.dg_addPullToRefreshWithActionHandler({
-            self.refreshTweets()
-
-            }, loadingView: loadingView)
-        self.tableView.dg_setPullToRefreshFillColor(UIColor.tweedBlue())
-        self.tableView.dg_setPullToRefreshBackgroundColor(UIColor.whiteColor())
-    }
+    
 
     // MARK: UITableViewDelegate & UITableViewDataSource methods
 
@@ -206,30 +198,63 @@ class HomeViewController: UIViewController, UITableViewDelegate, UITableViewData
         self.followingCollectionView.reloadData()
         self.tableView.reloadData()
     }
+    
+    func addPullToRefresh() {
+        let loadingView = DGElasticPullToRefreshLoadingViewCircle()
+        loadingView.tintColor = UIColor.whiteColor()
+        self.tableView.dg_addPullToRefreshWithActionHandler({
+            self.refreshTweets()
+            
+            }, loadingView: loadingView)
+        self.tableView.dg_setPullToRefreshFillColor(UIColor.tweedBlue())
+        self.tableView.dg_setPullToRefreshBackgroundColor(UIColor.whiteColor())
+    }
+    
+    func addInfiniteScroll() {
+        tableView.infiniteScrollIndicatorStyle = .Gray
+        self.tableView.addInfiniteScrollWithHandler { (scrollView) in
+            self.loadMoreTweets()
+        }
+    }
+    
+    func parseResponse(responseObject: AnyObject?) {
+        // Get users and tweets
+        let users = responseObject!["twitter_users"] as! [[String: AnyObject]]
+        let tweets = responseObject!["tweets"] as! [[String: AnyObject]]
+        
+        // Parse users first
+        for u in users {
+            let user = User.createOrUpdateUserWithObject(u)
+            user?.isFollowing = NSNumber(bool: true)
+            
+        }
+        
+        for t in tweets {
+            Tweet.createOrUpdateTweetWithObject(t)
+        }
+        
+        // Save the shared context
+        DataManager.sharedInstance().saveContext(nil)
+    }
+    
+    func loadMoreTweets() {
+        TweedNetworking.loadMoreTweets({ (task, responseObject) in
+            
+            self.parseResponse(responseObject)
+            self.updateViewsWithCoreData()
+            self.tableView.finishInfiniteScroll()
+            
+        }) { (task, error) in
+            print("Failed to load more tweets with error: \(error.localizedDescription)")
+        }
+
+    }
 
     func refreshTweets() {
         TweedNetworking.refreshTweets({ (task, responseObject) in
             
-            // Get users and tweets
-            let users = responseObject!["twitter_users"] as! [[String: AnyObject]]
-            let tweets = responseObject!["tweets"] as! [[String: AnyObject]]
-            
-            // Parse users first
-            for u in users {
-                let user = User.createOrUpdateUserWithObject(u)
-                user?.isFollowing = NSNumber(bool: true)
-                
-            }
-            
-            for t in tweets {
-                Tweet.createOrUpdateTweetWithObject(t)
-            }
-            
-            // Save the shared context
-            DataManager.sharedInstance().saveContext(nil)
-
+            self.parseResponse(responseObject)
             self.updateViewsWithCoreData()
-            
             self.tableView.dg_stopLoading()
             
         }) { (task, error) in

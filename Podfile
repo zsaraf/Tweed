@@ -11,3 +11,4 @@ pod 'NSDate+TimeAgo'
 pod 'HexColors'
 pod 'TLYShyNavBar'
 pod "DGElasticPullToRefresh"
+pod 'UIScrollView-InfiniteScroll'

@@ -69,6 +69,10 @@ class TweedNetworking: NSObject {
     static func refreshTweets(successHandler: TweedNetworkingSuccessHandler?, failureHandler: TweedNetworkingFailureHandler) {
         self.request("accounts/users/refresh/", method: .Post, params: [String: AnyObject](), successHandler: successHandler, failureHandler: failureHandler)
     }
+    
+    static func loadMoreTweets(successHandler: TweedNetworkingSuccessHandler?, failureHandler: TweedNetworkingFailureHandler) {
+        self.request("accounts/users/load_more/", method: .Post, params: [String: AnyObject](), successHandler: successHandler, failureHandler: failureHandler)
+    }
 
     static func editHandles(additions: [String], deletions: [String], successHandler: TweedNetworkingSuccessHandler?, failureHandler: TweedNetworkingFailureHandler) {
         self.request("accounts/follows/edit/", method: .Post, params: ["additions": additions, "deletions": deletions], successHandler: successHandler, failureHandler: failureHandler)
