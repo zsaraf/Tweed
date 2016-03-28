@@ -41,7 +41,7 @@ class TweetTableViewCell: UITableViewCell, TweetTextViewDelegate {
     var mediaImageTopConstraint: Constraint?
     
     // Retweet stuff
-    private let retweetedByLabel = UILabel(font: UIFont.SFRegular(12)!, textColor: UIColor.tweedLightGray(), text: "", textAlignment: .Center)
+    private let retweetedByLabel = UILabel(font: UIFont.SFRegular(12)!, textColor: UIColor.tweedGray(), text: "", textAlignment: .Center)
     private var retweetedByView: UIView!
     private var retweetedByViewTopConstraint: Constraint?
     private var heightConstraint: Constraint?
@@ -143,7 +143,8 @@ class TweetTableViewCell: UITableViewCell, TweetTextViewDelegate {
 
         self.retweetedByView.snp_makeConstraints { (make) -> Void in
             self.retweetedByViewTopConstraint = make.top.equalTo(self.mediaImageView.snp_bottom).offset(Constants.RetweetPadding).constraint
-            make.left.right.equalTo(self.contentView)
+            make.right.equalTo(self.contentView)
+            make.left.equalTo(rightWrapperView)
         }
 
         dividerView.snp_makeConstraints { (make) in
@@ -250,9 +251,11 @@ class TweetTableViewCell: UITableViewCell, TweetTextViewDelegate {
         let retweetView = UIView()
 
         let wrapperView = UIView()
-        let retweetedImage = UIImage(named: "retweet")?.imageWithRenderingMode(.AlwaysTemplate)
-        let retweetedImageView = UIImageView(image: retweetedImage)
-        retweetedImageView.tintColor = UIColor.tweedLightGray()
+        let retweetedImage = UIImage(named: "retweet")!
+        let resizedImage = UIImage(CGImage: retweetedImage.CGImage!, scale: 2.75, orientation: .Up)
+        let retweetedImageView = UIImageView(image: resizedImage)
+        retweetedImageView.contentMode = UIViewContentMode.ScaleAspectFit
+//        retweetedImageView.tintColor = UIColor.tweedLightGray()
         
         wrapperView.addSubview(retweetedImageView)
         wrapperView.addSubview(self.retweetedByLabel)
@@ -263,13 +266,13 @@ class TweetTableViewCell: UITableViewCell, TweetTextViewDelegate {
         
         self.retweetedByLabel.snp_makeConstraints { (make) in
             make.top.right.bottom.equalTo(wrapperView)
-            make.left.equalTo(retweetedImageView.snp_right).offset(Constants.TopPadding)
+            make.left.equalTo(retweetedImageView.snp_right).offset(Constants.TopPadding - 3)
         }
         
         retweetView.addSubview(wrapperView)
         wrapperView.snp_makeConstraints { (make) in
             make.top.bottom.equalTo(retweetView)
-            make.centerX.equalTo(retweetView)
+            make.left.equalTo(retweetView)
         }
         
         return retweetView
