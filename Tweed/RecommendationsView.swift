@@ -25,6 +25,10 @@ class RecommendationsView: UIView, UICollectionViewDelegate, UICollectionViewDat
             if (self.collectionView != nil) {
                 self.collectionView.reloadData()
             }
+            
+            if (self.recommendations.count == 0) {
+                self.loadingLabel.text = "We're out of recommendations!"
+            }
         }
     }
     
