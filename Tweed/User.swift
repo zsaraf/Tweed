@@ -106,7 +106,7 @@ class User: NSManagedObject {
         let results = self.getRecommendedUsers()
         
         for ru in results! {
-            DataManager.sharedInstance().deleteObject(ru, context: nil)
+            ru.isRecommended = NSNumber(bool: false)
         }
     }
     
