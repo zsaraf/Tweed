@@ -9,5 +9,5 @@
 import UIKit
 
 extension UIScrollView {
-//    func dg_stopScrollingAnimation() {}
+    func dg_stopScrollingAnimation() {}
 }

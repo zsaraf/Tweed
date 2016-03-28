@@ -57,14 +57,14 @@ class TweedTextField: UITextField {
     }
 
     func setupTextField() {
-        self.font = UIFont.SFRegular(15.0)
-        self.textColor = UIColor.tweedBlue()
+        self.font = UIFont.SFRegular(17.0)
+        self.textColor = UIColor.whiteColor()
         self.attributedPlaceholder = NSAttributedString(string: "Enter username handle", attributes: [NSForegroundColorAttributeName: self.textColor!, NSFontAttributeName: self.font!])
     }
 
     func setupLeftIconView() {
         self.leftIconView.contentMode = .ScaleAspectFit
-        self.leftIconView.tintColor = UIColor.tweedBlue()
+        self.leftIconView.tintColor = UIColor.whiteColor()
 
         let iconWrapperView = UIView()
         iconWrapperView.addSubview(self.leftIconView)
@@ -90,7 +90,7 @@ class TweedTextField: UITextField {
     }
 
     func setupLineView() {
-        self.lineView.backgroundColor = UIColor.tweedBlue()
+        self.lineView.backgroundColor = UIColor.whiteColor()
         self.addSubview(self.lineView)
 
         self.lineView.snp_makeConstraints { (make) -> Void in
@@ -110,7 +110,7 @@ class TweedTextField: UITextField {
     }
 
     override func intrinsicContentSize() -> CGSize {
-        return CGSizeMake(UIScreen.mainScreen().bounds.size.width * 0.7, UIScreen.mainScreen().bounds.size.height * 0.04)
+        return CGSizeMake(UIScreen.mainScreen().bounds.size.width * 0.8, UIScreen.mainScreen().bounds.size.height * 0.04)
     }
 
 }

@@ -9,18 +9,19 @@
 import UIKit
 
 class AddedHandleTableViewCell: UITableViewCell {
-    let addedHandleLabel = UILabel(font: UIFont.SFRegular(13.0)!, textColor: UIColor.grayColor(), text: "", textAlignment: .Center)
+    let addedHandleLabel = UILabel(font: UIFont.SFRegular(15.0)!, textColor: UIColor.whiteColor(), text: "", textAlignment: .Center)
 
     override init(style: UITableViewCellStyle, reuseIdentifier: String?) {
         super.init(style: style, reuseIdentifier: reuseIdentifier)
 
         self.backgroundColor = UIColor.clearColor()
+        self.selectionStyle = .None
 
         self.contentView.addSubview(self.addedHandleLabel)
 
         self.addedHandleLabel.snp_makeConstraints { (make) -> Void in
             make.left.right.equalTo(self.contentView)
-            make.top.bottom.equalTo(self.contentView).inset(5)
+            make.top.bottom.equalTo(self.contentView).inset(3)
         }
 
     }

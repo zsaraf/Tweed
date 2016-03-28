@@ -46,10 +46,14 @@ class TweetTableViewCell: UITableViewCell {
         // Create wrapper views
         let leftWrapperView = self.createLeftWrapperView()
         let rightWrapperView = self.createRightWrapperView()
+        let imageView = self.createImageView()
+        let retweetView = self.createRetweetView()
         let dividerView = self.createDividerView()
         
         self.contentView.addSubview(leftWrapperView)
         self.contentView.addSubview(rightWrapperView)
+        self.contentView.addSubview(imageView)
+        self.contentView.addSubview(retweetView)
         self.contentView.addSubview(dividerView)
 
         // Make constraints
@@ -62,12 +66,22 @@ class TweetTableViewCell: UITableViewCell {
             make.left.equalTo(leftWrapperView.snp_right).offset(Constants.TopPadding)
             make.right.equalTo(self.contentView)
             make.top.equalTo(self.contentView).inset(Constants.TopPadding)
-            make.bottom.equalTo(dividerView.snp_top).offset(-Constants.TopPadding)
         }
-        
+
+        imageView.snp_makeConstraints { (make) -> Void in
+            make.top.equalTo(rightWrapperView.snp_bottom)
+            make.left.right.equalTo(self.contentView)
+        }
+
+        retweetView.snp_makeConstraints { (make) -> Void in
+            make.top.equalTo(imageView.snp_bottom)
+            make.left.right.equalTo(self.contentView)
+        }
+
         dividerView.snp_makeConstraints { (make) in
             make.left.equalTo(leftWrapperView.snp_right).offset(Constants.TopPadding)
             make.bottom.right.equalTo(self.contentView)
+            make.top.equalTo(retweetView.snp_bottom)
             make.height.equalTo(3 / UIScreen.mainScreen().scale)
         }
     }
@@ -161,6 +175,14 @@ class TweetTableViewCell: UITableViewCell {
         }
         
         return nameAndTimeView
+    }
+
+    func createRetweetView() -> UIView {
+        return UIView()
+    }
+
+    func createImageView() -> UIView {
+        return UIView()
     }
     
     override func layoutSubviews() {

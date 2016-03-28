@@ -153,7 +153,7 @@ class FollowViewController: UIViewController, UIViewControllerAnimatedTransition
 
         NSNotificationCenter.defaultCenter().addObserver(self, selector: "textFieldDidChange:", name: "UITextFieldTextDidChangeNotification", object: self.textField)
 
-        self.errorLabel = UILabel(font: UIFont.SFRegular(14.0)!, textColor: UIColor.grayColor(), text: "User not found", textAlignment: .Center)
+        self.errorLabel = UILabel(font: UIFont.SFRegular(14.0)!, textColor: UIColor.whiteColor(), text: "User not found", textAlignment: .Center)
         self.errorLabel.alpha = 0.0
         self.contentView.addSubview(self.errorLabel)
 
@@ -197,16 +197,7 @@ class FollowViewController: UIViewController, UIViewControllerAnimatedTransition
         let blurredImageView = UIImageView(image: self.blurredImage)
         self.view.addSubview(blurredImageView)
 
-        let tweedPatternView = UIView()
-        tweedPatternView.alpha = 0.4
-        tweedPatternView.backgroundColor = UIColor(patternImage: UIImage(named: "tweed_texture")!)
-        self.view.addSubview(tweedPatternView)
-
         blurredImageView.snp_makeConstraints { (make) -> Void in
-            make.edges.equalTo(self.view)
-        }
-
-        tweedPatternView.snp_makeConstraints { (make) -> Void in
             make.edges.equalTo(self.view)
         }
     }
@@ -227,7 +218,7 @@ class FollowViewController: UIViewController, UIViewControllerAnimatedTransition
     }
 
     func tableView(tableView: UITableView, viewForHeaderInSection section: Int) -> UIView? {
-        let label = UILabel(font: UIFont.SFMedium(15.0)!, textColor: UIColor.grayColor(), text: "Recently Added:", textAlignment: .Center)
+        let label = UILabel(font: UIFont.SFMedium(17.0)!, textColor: UIColor.whiteColor(), text: "Pending Follows:", textAlignment: .Center)
         label.backgroundColor = UIColor.clearColor()
 
         return label

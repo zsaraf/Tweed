@@ -14,11 +14,12 @@ class FollowingCollectionViewCell: UICollectionViewCell {
 
     var user: User? {
         didSet {
-            imageView.sd_setImageWithURL(NSURL(string: user!.profileImageUrl!))
+            imageView.sd_setImageWithURL(NSURL(string: user!.bigProfileImageUrl()))
         }
     }
 
     let imageView = UIImageView()
+    let imageViewWrapper = UIView()
 
     override init(frame: CGRect) {
         super.init(frame: frame)
@@ -31,21 +32,34 @@ class FollowingCollectionViewCell: UICollectionViewCell {
     }
 
     func setupViews() {
-        imageView.layer.masksToBounds = true
-        imageView.contentMode = .ScaleAspectFill
-        self.contentView.addSubview(imageView)
+        self.imageViewWrapper.layer.shadowColor = UIColor(white: 0.0, alpha: 1.0).CGColor
+        self.imageViewWrapper.layer.shadowOffset = CGSizeMake(0, 1)
+        self.imageViewWrapper.layer.shadowOpacity = 0.3
+        self.imageViewWrapper.layer.shadowRadius = 3.0
+        self.contentView.addSubview(self.imageViewWrapper)
 
-        imageView.snp_makeConstraints { (make) -> Void in
+        self.imageView.layer.masksToBounds = true
+        self.imageView.clipsToBounds = true
+        self.imageView.contentMode = .ScaleAspectFill
+        self.imageViewWrapper.addSubview(imageView)
+
+        self.imageViewWrapper.snp_makeConstraints { (make) -> Void in
             make.width.height.equalTo(self.contentView.snp_width).multipliedBy(0.7)
             make.center.equalTo(self.contentView)
         }
-        imageView.layer.cornerRadius = (self.bounds.size.width * 0.7)/2.0
+
+        self.imageView.snp_makeConstraints { (make) -> Void in
+            make.edges.equalTo(self.imageViewWrapper)
+        }
+        self.imageView.layer.cornerRadius = (self.bounds.size.width * 0.7)/2.0
     }
 
     override func layoutSubviews() {
         super.layoutSubviews()
 
-        imageView.layer.cornerRadius = imageView.bounds.size.width/2.0
+        self.imageView.layer.masksToBounds = true
+        imageView.layer.cornerRadius = imageViewWrapper.bounds.size.width/2.0
+        self.imageViewWrapper.layer.cornerRadius =  imageViewWrapper.bounds.size.width/2.0
     }
 
 }

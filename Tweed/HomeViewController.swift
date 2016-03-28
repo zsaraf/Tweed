@@ -11,6 +11,7 @@ import SnapKit
 import SDWebImage
 import TLYShyNavBar
 import DGElasticPullToRefresh
+import SVPullToRefresh
 
 class HomeViewController: UIViewController, UITableViewDelegate, UITableViewDataSource, UICollectionViewDataSource, UICollectionViewDelegate, FollowViewControllerDelegate, ViewProfileAlertViewDelegate {
     let tableView = UITableView()
@@ -54,11 +55,15 @@ class HomeViewController: UIViewController, UITableViewDelegate, UITableViewData
         self.followingCollectionView = UICollectionView(frame: CGRectMake(0, 0, UIScreen.mainScreen().bounds.size.width, itemSize), collectionViewLayout: layout)
         self.followingCollectionView.delegate = self
         self.followingCollectionView.dataSource = self
+        self.followingCollectionView.layer.shadowColor = UIColor.blackColor().CGColor
+        self.followingCollectionView.layer.shadowRadius = 3.0
+        self.followingCollectionView.layer.shadowOpacity = 0.3
+        self.followingCollectionView.layer.shadowOffset = CGSizeMake(0, 2)
         self.followingCollectionView.showsHorizontalScrollIndicator = false
         self.followingCollectionView.showsVerticalScrollIndicator = false
         self.followingCollectionView.alwaysBounceHorizontal = true
         self.followingCollectionView.registerClass(FollowingCollectionViewCell.self, forCellWithReuseIdentifier: FollowingCollectionViewCell.Identifier)
-        self.followingCollectionView.backgroundColor = UIColor.tweedBlue()
+        self.followingCollectionView.backgroundColor = UIColor(white: 0.9, alpha: 1.0)
 
         self.shyNavBarManager.extensionView = self.followingCollectionView
     }
@@ -68,8 +73,9 @@ class HomeViewController: UIViewController, UITableViewDelegate, UITableViewData
         self.tableView.dataSource = self
         self.tableView.estimatedRowHeight = 60.0
         self.tableView.rowHeight = UITableViewAutomaticDimension
-        self.tableView.separatorInset = UIEdgeInsetsMake(0, UIScreen.mainScreen().bounds.size.width * CGFloat(TweedViewConstants.CellLeftContentInsetMultiplier), 0, 0)
         self.tableView.separatorStyle = .None
+        self.tableView.separatorColor = UIColor.clearColor()
+        self.tableView.backgroundColor = UIColor.whiteColor()
         self.view.addSubview(self.tableView)
 
         self.shyNavBarManager.scrollView = self.tableView
@@ -77,9 +83,8 @@ class HomeViewController: UIViewController, UITableViewDelegate, UITableViewData
         self.tableView.snp_makeConstraints { (make) -> Void in
             make.edges.equalTo(self.view)
         }
-        
+
         self.addPullToRefresh()
-        
     }
 
     // MARK: UICollectionViewDataSource
@@ -90,14 +95,6 @@ class HomeViewController: UIViewController, UITableViewDelegate, UITableViewData
         cell.user = user
         return cell
     }
-//    
-//    override func viewDidLayoutSubviews() {
-//        if let rect = self.navigationController?.navigationBar.frame {
-//            var y = rect.size.height + rect.origin.y
-//            y += self.followingCollectionView.bounds.size.height
-//            self.tableView.contentInset = UIEdgeInsetsMake(y, 0, 0, 0)
-//        }
-//    }
     
     deinit {
         self.tableView.dg_removePullToRefresh()
@@ -110,7 +107,15 @@ class HomeViewController: UIViewController, UITableViewDelegate, UITableViewData
     func collectionView(collectionView: UICollectionView, numberOfItemsInSection section: Int) -> Int {
         return self.following.count
     }
-    
+
+    func collectionView(collectionView: UICollectionView, didSelectItemAtIndexPath indexPath: NSIndexPath) {
+        let user = self.following[indexPath.row]
+
+        let alertView = ViewProfileAlertView(user: user)
+        alertView.viewProfileDelegate = self
+        alertView.show()
+    }
+
     func addPullToRefresh() {
         let loadingView = DGElasticPullToRefreshLoadingViewCircle()
         loadingView.tintColor = UIColor.whiteColor()
@@ -119,7 +124,7 @@ class HomeViewController: UIViewController, UITableViewDelegate, UITableViewData
 
             }, loadingView: loadingView)
         self.tableView.dg_setPullToRefreshFillColor(UIColor.tweedBlue())
-        self.tableView.dg_setPullToRefreshBackgroundColor(self.tableView.backgroundColor!)
+        self.tableView.dg_setPullToRefreshBackgroundColor(UIColor.whiteColor())
     }
 
     // MARK: UITableViewDelegate & UITableViewDataSource methods
@@ -156,7 +161,7 @@ class HomeViewController: UIViewController, UITableViewDelegate, UITableViewData
 
     func addFollows(button: UIButton) {
         let rootView = self.navigationController!.view
-        let blurredImage = UIImage.blurredImageWithRootView(rootView, tintColor: UIColor(white: 1, alpha: 0.1), radius: 6, saturationDeltaFactor: 1.2)
+        let blurredImage = UIImage.blurredImageWithRootView(rootView, tintColor: UIColor(white: 0, alpha: 0.5), radius: 12, saturationDeltaFactor: 1.1)
 
         let fvc = FollowViewController(blurredImage: blurredImage)
         fvc.delegate = self

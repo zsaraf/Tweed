@@ -29,7 +29,7 @@ class RecommendationsView: UIView, UICollectionViewDelegate, UICollectionViewDat
     }
     
     var collectionView: UICollectionView!
-    private var loadingLabel = UILabel(font: UIFont.SFRegular(18)!, textColor: UIColor.tweedGray(), text: "Loading...", textAlignment: .Left)
+    private var loadingLabel = UILabel(font: UIFont.SFRegular(18)!, textColor: UIColor.whiteColor(), text: "Loading...", textAlignment: .Left)
     
     private var dataSource: FollowViewController?
     

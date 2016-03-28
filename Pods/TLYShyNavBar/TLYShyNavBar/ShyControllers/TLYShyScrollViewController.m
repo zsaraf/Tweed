@@ -35,11 +35,15 @@
     if (normalizedY > -FLT_EPSILON && !UIEdgeInsetsEqualToEdgeInsets(insets, self.scrollView.contentInset))
     {
         CGFloat delta = insets.top - self.scrollView.contentInset.top;
-        [self.scrollView tly_setInsets:insets preserveOffset:intelligently];
-        
+        if ((intelligently || fabs(delta + 60.f) > FLT_EPSILON) && self.scrollView.tag == 0)
+        {
+            [self.scrollView tly_setInsets:insets preserveOffset:intelligently];
+        }
+
         return delta;
     }
-    
+
+
     if (normalizedY < -FLT_EPSILON)
     {        
         CGRect frame = self.scrollView.frame;
