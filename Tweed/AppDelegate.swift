@@ -53,7 +53,14 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
         UINavigationBar.appearance().titleTextAttributes = [NSFontAttributeName: UIFont.SFMedium(17.0)!, NSForegroundColorAttributeName: UIColor.whiteColor()]
         UINavigationBar.appearance().opaque = true
         UINavigationBar.appearance().barTintColor = UIColor.tweedBlue()
-//        UINavigationBar.appearance().translucent = false
+        UINavigationBar.appearance().translucent = false
+        
+        UINavigationBar.appearance().setBackgroundImage(
+            UIImage(),
+            forBarPosition: .Any,
+            barMetrics: .Default)
+        
+        UINavigationBar.appearance().shadowImage = UIImage()
     }
 
     func applicationWillResignActive(application: UIApplication) {

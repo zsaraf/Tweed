@@ -129,5 +129,10 @@ class RecommendationsView: UIView, UICollectionViewDelegate, UICollectionViewDat
         
     }
     
+    func profilePictureTapped(user: User, cell: UICollectionViewCell) {
+        let alertView = ViewProfileAlertView(user: user, hidesFollowButton: true)
+        alertView.show()
+    }
+    
     
 }

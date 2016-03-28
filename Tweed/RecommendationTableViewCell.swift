@@ -12,6 +12,7 @@ import SnapKit
 
 protocol RecommendationTableViewCellDelegate: class {
     func followButtonHit(screenName: String, cell: UICollectionViewCell)
+    func profilePictureTapped(user: User, cell: UICollectionViewCell)
 }
 
 class RecommendationTableViewCell: UICollectionViewCell {
@@ -68,6 +69,7 @@ class RecommendationTableViewCell: UICollectionViewCell {
         leftContentView.layer.shadowRadius = 1.0
         leftContentView.layer.shadowOpacity = 0.5
         leftContentView.layer.shadowOffset = CGSize(width: 0.0, height: 1.0)
+        leftContentView.addGestureRecognizer(UITapGestureRecognizer(target: self, action: "profilePictureTapped"))
         wrapperView.addSubview(leftContentView)
         leftContentView.snp_makeConstraints { (make) in
             make.left.top.bottom.equalTo(wrapperView).inset(10)
@@ -148,9 +150,11 @@ class RecommendationTableViewCell: UICollectionViewCell {
     // Private Methods
     
     func followButtonHit(sender: UIButton) {
-        if (self.delegate != nil) {
-            self.delegate?.followButtonHit((self.user?.screenName)!, cell: self)
-        }
+        self.delegate?.followButtonHit((self.user?.screenName)!, cell: self)
+    }
+    
+    func profilePictureTapped() {
+        self.delegate?.profilePictureTapped(self.user!, cell: self)
     }
     
 }

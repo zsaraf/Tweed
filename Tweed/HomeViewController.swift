@@ -22,7 +22,7 @@ class HomeViewController: UIViewController, UITableViewDelegate, UITableViewData
     override func viewDidLoad() {
         super.viewDidLoad()
 
-        self.view.backgroundColor = UIColor.whiteColor()
+        self.view.backgroundColor = UIColor.tweedBlue()
         self.automaticallyAdjustsScrollViewInsets = false
 
         self.setupNavigationBar()
@@ -30,8 +30,16 @@ class HomeViewController: UIViewController, UITableViewDelegate, UITableViewData
         self.setupTableView()
 
         self.refreshTweets()
+
     }
 
+    override func viewDidLayoutSubviews() {
+        if let rect = self.navigationController?.navigationBar.frame {
+            let y = rect.size.height + rect.origin.y
+            self.tableView.contentInset = UIEdgeInsetsMake(y, 0, 0, 0)
+        }
+    }
+    
     func setupNavigationBar() {
         self.title = "Timeline"
 
@@ -62,7 +70,7 @@ class HomeViewController: UIViewController, UITableViewDelegate, UITableViewData
         self.followingCollectionView.showsVerticalScrollIndicator = false
         self.followingCollectionView.alwaysBounceHorizontal = true
         self.followingCollectionView.registerClass(FollowingCollectionViewCell.self, forCellWithReuseIdentifier: FollowingCollectionViewCell.Identifier)
-        self.followingCollectionView.backgroundColor = UIColor(white: 0.9, alpha: 1.0)
+        self.followingCollectionView.backgroundColor = UIColor.tweedBlue()
 
         self.shyNavBarManager.extensionView = self.followingCollectionView
     }
@@ -110,7 +118,7 @@ class HomeViewController: UIViewController, UITableViewDelegate, UITableViewData
     func collectionView(collectionView: UICollectionView, didSelectItemAtIndexPath indexPath: NSIndexPath) {
         let user = self.following[indexPath.row]
 
-        let alertView = ViewProfileAlertView(user: user)
+        let alertView = ViewProfileAlertView(user: user, hidesFollowButton: false)
         alertView.viewProfileDelegate = self
         alertView.show()
     }
@@ -151,7 +159,7 @@ class HomeViewController: UIViewController, UITableViewDelegate, UITableViewData
 
     func tableView(tableView: UITableView, didSelectRowAtIndexPath indexPath: NSIndexPath) {
         let user = self.tweets[indexPath.row].user!
-        let alertView = ViewProfileAlertView(user: user)
+        let alertView = ViewProfileAlertView(user: user, hidesFollowButton: false)
         alertView.viewProfileDelegate = self
         alertView.show()
     }

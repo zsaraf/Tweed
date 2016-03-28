@@ -16,8 +16,8 @@ class ViewProfileAlertView: SeshAlertView, ViewProfileAlertViewControllerDelegat
     var user: User?
     weak var viewProfileDelegate: ViewProfileAlertViewDelegate?
 
-    init(user: User) {
-        let alertViewController = ViewProfileAlertViewController(user: user)
+    init(user: User, hidesFollowButton: Bool) {
+        let alertViewController = ViewProfileAlertViewController(user: user, hidesFollowButton: hidesFollowButton)
 
         super.init(fromWindow: UIApplication.sharedApplication().keyWindow, customAlertViewController: alertViewController, xProportion: 0.9, yProportion: 0.6)
 

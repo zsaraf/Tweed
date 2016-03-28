@@ -18,6 +18,7 @@ protocol ViewProfileAlertViewControllerDelegate: class {
 class ViewProfileAlertViewController: SeshAlertViewController {
     // Data
     let user: User
+    let hidesFollowButton: Bool
 
     // Views
     let imageWrapperView = UIView()
@@ -35,8 +36,9 @@ class ViewProfileAlertViewController: SeshAlertViewController {
         static let FontSize = CGFloat(17.0)
     }
 
-    init(user: User) {
+    init(user: User, hidesFollowButton: Bool) {
         self.user = user
+        self.hidesFollowButton = hidesFollowButton
         super.init(title: "", buttonItems: [], customView: customView)
     }
 
@@ -186,7 +188,7 @@ class ViewProfileAlertViewController: SeshAlertViewController {
         unfollowButton.setTitle("Unfollow", forState: .Normal)
         unfollowButton.addTarget(self, action: "unfollow:", forControlEvents: .TouchUpInside)
         customContentView.addSubview(unfollowButton)
-
+        
         // Setup constraints
 
         coverImageView.snp_makeConstraints { (make) -> Void in
@@ -216,6 +218,7 @@ class ViewProfileAlertViewController: SeshAlertViewController {
             make.top.equalTo(handleLabel.snp_bottom).offset(10)
         }
 
+        
         countsViewWrapper.snp_makeConstraints { (make) -> Void in
             make.left.right.equalTo(customContentView)
             make.top.equalTo(bioLabel.snp_bottom)
@@ -229,6 +232,13 @@ class ViewProfileAlertViewController: SeshAlertViewController {
         unfollowButton.snp_makeConstraints { (make) -> Void in
             make.bottom.equalTo(customContentView).inset(Constants.HorizontalInset)
             make.centerX.equalTo(customContentView)
+        }
+        
+        if (self.hidesFollowButton) {
+            countsViewWrapper.snp_updateConstraints(closure: { (make) in
+                make.bottom.equalTo(customContentView).inset(Constants.HorizontalInset)
+            })
+            unfollowButton.hidden = true
         }
 
         return customContentView

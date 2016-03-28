@@ -28,6 +28,7 @@ class TweetTableViewCell: UITableViewCell {
     private let retweetedByLabel = UILabel(font: UIFont.SFRegular(12)!, textColor: UIColor.tweedLightGray(), text: "", textAlignment: .Center)
     private var retweetedByView: UIView!
     private var retweetedByViewTopConstraint: Constraint?
+    private var heightConstraint: Constraint?
     
     var tweet: Tweet? {
         didSet {
@@ -35,9 +36,7 @@ class TweetTableViewCell: UITableViewCell {
             // IS it a retweet?
             if (tweet?.originalTweet != nil) {
                 self.retweetedByViewTopConstraint?.updateOffset(Constants.TopPadding)
-                self.retweetedByView.snp_updateConstraints(closure: { (make) in
-                    make.height.equalTo(self.retweetedByView.snp_height)
-                })
+                self.heightConstraint?.uninstall()
                 
                 self.messageTextView.text = (self.tweet?.originalTweet?.text)!
                 self.dateLabel.text = self.tweet?.originalTweet?.createdAt?.timeAgo()
@@ -49,8 +48,9 @@ class TweetTableViewCell: UITableViewCell {
             } else {
                 
                 // No, it's not a retweet
-                self.retweetedByView.snp_updateConstraints(closure: { (make) in
-                    make.height.equalTo(0)
+                self.heightConstraint?.uninstall()
+                self.retweetedByView.snp_makeConstraints(closure: { (make) in
+                    self.heightConstraint = make.height.equalTo(0).constraint
                 })
                 self.retweetedByViewTopConstraint?.updateOffset(0)
                 
