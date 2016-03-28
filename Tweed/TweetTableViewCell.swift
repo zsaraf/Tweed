@@ -38,6 +38,7 @@ class TweetTableViewCell: UITableViewCell, TweetTextViewDelegate {
     // Constraints
     var mediaImageWidthConstraint: Constraint?
     var mediaImageHeightConstraint: Constraint?
+    var mediaImageTopConstraint: Constraint?
     
     // Retweet stuff
     private let retweetedByLabel = UILabel(font: UIFont.SFRegular(12)!, textColor: UIColor.tweedLightGray(), text: "", textAlignment: .Center)
@@ -52,12 +53,6 @@ class TweetTableViewCell: UITableViewCell, TweetTextViewDelegate {
                 self.retweetedByViewTopConstraint?.updateOffset(Constants.TopPadding)
                 self.heightConstraint?.uninstall()
                 
-                self.messageTextView.text = (self.tweet?.originalTweet?.text)!
-                self.dateLabel.text = self.tweet?.originalTweet?.createdAt?.timeAgo()
-                self.nameLabel.text = self.tweet?.originalTweet?.user?.displayName()
-                self.handleLabel.text = "@" + (self.tweet?.originalTweet?.user?.screenName)!
-                self.profileImageView.sd_setImageWithURL(NSURL(string: (self.tweet?.originalTweet?.user?.biggerProfileImageUrl())!))
-
                 self.retweetedByLabel.text = (self.tweet?.user?.displayName())!
 
                 t = self.tweet!.originalTweet!
@@ -93,10 +88,12 @@ class TweetTableViewCell: UITableViewCell, TweetTextViewDelegate {
                 let resizedSize = CGSizeMake(CGFloat(width/resizingProportion), CGFloat(height/resizingProportion))
                 self.mediaImageWidthConstraint?.updateOffset(resizedSize.width)
                 self.mediaImageHeightConstraint?.updateOffset(resizedSize.height)
+                self.mediaImageTopConstraint?.updateOffset(Constants.TopPadding)
 
                 self.mediaImageView.sd_setImageWithURL(NSURL(string: media.mediaUrl!))
             } else {
                 self.mediaImageHeightConstraint?.updateOffset(0.0)
+                self.mediaImageTopConstraint?.updateOffset(0)
             }
         }
     }
@@ -138,7 +135,7 @@ class TweetTableViewCell: UITableViewCell, TweetTextViewDelegate {
         }
 
         self.mediaImageView.snp_makeConstraints { (make) -> Void in
-            make.top.equalTo(rightWrapperView.snp_bottom).offset(3.0)
+            self.mediaImageTopConstraint = make.top.equalTo(rightWrapperView.snp_bottom).offset(Constants.TopPadding).constraint
             make.centerX.equalTo(rightWrapperView)
             self.mediaImageWidthConstraint = make.width.equalTo(Constants.ImageMaxWidth).constraint
             self.mediaImageHeightConstraint = make.height.equalTo(Constants.ImageMaxHeight).constraint

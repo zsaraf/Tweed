@@ -14,7 +14,7 @@ import DGElasticPullToRefresh
 import UIScrollView_InfiniteScroll
 import JTSImageViewController
 
-class HomeViewController: UIViewController, UITableViewDelegate, UITableViewDataSource, FollowViewControllerDelegate, ViewProfileAlertViewDelegate, TweetTableViewCellDelegate {
+class HomeViewController: UIViewController, UITableViewDelegate, UITableViewDataSource, FollowViewControllerDelegate, ViewProfileAlertViewDelegate, TweetTableViewCellDelegate, JTSImageViewControllerDismissalDelegate {
 
     let tableView = UITableView()
 
@@ -264,6 +264,7 @@ class HomeViewController: UIViewController, UITableViewDelegate, UITableViewData
 
         let imageViewer = JTSImageViewController(imageInfo: info, mode: .Image, backgroundStyle: .Scaled)
         imageViewer.showFromViewController(self, transition: .FromOriginalPosition)
+        imageViewer.dismissalDelegate = self
     }
 
     func tweetTableViewCellDidTapMention(cell: TweetTableViewCell, mention: Mention) {
@@ -274,6 +275,12 @@ class HomeViewController: UIViewController, UITableViewDelegate, UITableViewData
     func tweetTableViewCellDidTapUrl(cell: TweetTableViewCell, url: String) {
         let webVC = TweedWebViewController(startingUrl: url)
         self.navigationController?.pushViewController(webVC, animated: true)
+    }
+    
+    // MARK: JTSImageViewControllerDismissalDelegate Methods
+    
+    func imageViewerDidDismiss(imageViewer: JTSImageViewController!) {
+        
     }
 
 }
