@@ -39,7 +39,13 @@ class Tweet: NSManagedObject {
         }
         
         tweet!.id = String(tweetObject["id"] as! Int)
-        let user = User.getUserWithId(String(tweetObject["user_id"] as! Int))
+        
+        var user: User?
+        if (tweetObject["user_id"] == nil) {
+            user = User.createOrUpdateUserWithObject(tweetObject["user"] as! [String: AnyObject])
+        } else {
+            user = User.getUserWithId(String(tweetObject["user_id"] as! Int))
+        }
         if (user == nil) {
             print("Couldn't find the user for the tweet")
         }
@@ -47,8 +53,8 @@ class Tweet: NSManagedObject {
         tweet!.text = tweetObject["text"] as? String
         tweet!.createdAt = NSDate.twitterDateFromString(tweetObject["created_at"] as! String)
         
-        if (tweetObject["original_tweet"] != nil) {
-            
+        if ((tweetObject["original_tweet"] as? [String: AnyObject]) != nil) {
+            tweet!.originalTweet = self.createOrUpdateTweetWithObject(tweetObject["original_tweet"] as! [String: AnyObject])
         }
         
         return tweet

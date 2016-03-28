@@ -115,6 +115,9 @@
 		AF88837D1CA73AE60097DCDA /* RecommendationsView.swift in Sources */ = {isa = PBXBuildFile; fileRef = AF88837C1CA73AE60097DCDA /* RecommendationsView.swift */; };
 		AF88837F1CA73AFB0097DCDA /* RecommendationTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = AF88837E1CA73AFB0097DCDA /* RecommendationTableViewCell.swift */; };
 		AF8883831CA745BD0097DCDA /* TweedBorderedButton.swift in Sources */ = {isa = PBXBuildFile; fileRef = AF8883821CA745BD0097DCDA /* TweedBorderedButton.swift */; };
+		AFCDB7CC1CA8B20B00D2B6A8 /* retweet.png in Resources */ = {isa = PBXBuildFile; fileRef = AFCDB7C91CA8B20B00D2B6A8 /* retweet.png */; };
+		AFCDB7CD1CA8B20B00D2B6A8 /* retweet@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = AFCDB7CA1CA8B20B00D2B6A8 /* retweet@2x.png */; };
+		AFCDB7CE1CA8B20B00D2B6A8 /* retweet@3x.png in Resources */ = {isa = PBXBuildFile; fileRef = AFCDB7CB1CA8B20B00D2B6A8 /* retweet@3x.png */; };
 		AFD802481CA7902C00375E4F /* SF-UI-Text-Medium.otf in Resources */ = {isa = PBXBuildFile; fileRef = AFD802471CA78F0300375E4F /* SF-UI-Text-Medium.otf */; };
 		C429FE23F637B9810327BB16 /* Pods.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = B808E2B0FC48822C25B15FCE /* Pods.framework */; };
 /* End PBXBuildFile section */
@@ -276,6 +279,9 @@
 		AF88837C1CA73AE60097DCDA /* RecommendationsView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = RecommendationsView.swift; sourceTree = "<group>"; };
 		AF88837E1CA73AFB0097DCDA /* RecommendationTableViewCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = RecommendationTableViewCell.swift; sourceTree = "<group>"; };
 		AF8883821CA745BD0097DCDA /* TweedBorderedButton.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = TweedBorderedButton.swift; sourceTree = "<group>"; };
+		AFCDB7C91CA8B20B00D2B6A8 /* retweet.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = retweet.png; sourceTree = "<group>"; };
+		AFCDB7CA1CA8B20B00D2B6A8 /* retweet@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "retweet@2x.png"; sourceTree = "<group>"; };
+		AFCDB7CB1CA8B20B00D2B6A8 /* retweet@3x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "retweet@3x.png"; sourceTree = "<group>"; };
 		AFD802471CA78F0300375E4F /* SF-UI-Text-Medium.otf */ = {isa = PBXFileReference; lastKnownFileType = file; path = "SF-UI-Text-Medium.otf"; sourceTree = "<group>"; };
 		B808E2B0FC48822C25B15FCE /* Pods.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		C8015E868E43487347046249 /* Pods.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = Pods.debug.xcconfig; path = "Pods/Target Support Files/Pods/Pods.debug.xcconfig"; sourceTree = "<group>"; };
@@ -460,6 +466,9 @@
 		86D2998D1CA608BB00AA8739 /* Icons */ = {
 			isa = PBXGroup;
 			children = (
+				AFCDB7C91CA8B20B00D2B6A8 /* retweet.png */,
+				AFCDB7CA1CA8B20B00D2B6A8 /* retweet@2x.png */,
+				AFCDB7CB1CA8B20B00D2B6A8 /* retweet@3x.png */,
 				AF615DC21CA84CA800161B56 /* payment_check.png */,
 				AF615DC31CA84CA800161B56 /* payment_check@2x.png */,
 				862A4A2C1CA77DCD009B29F4 /* circle3.png */,
@@ -796,6 +805,8 @@
 				86D299C71CA71E5F00AA8739 /* plus_white@3x.png in Resources */,
 				86D299A01CA6094600AA8739 /* Gotham-BlackItalic.otf in Resources */,
 				86D299A11CA6094600AA8739 /* Gotham-Bold.otf in Resources */,
+				AFCDB7CE1CA8B20B00D2B6A8 /* retweet@3x.png in Resources */,
+				AFCDB7CC1CA8B20B00D2B6A8 /* retweet.png in Resources */,
 				86D299A21CA6094600AA8739 /* Gotham-BoldItalic.otf in Resources */,
 				86D299A31CA6094600AA8739 /* Gotham-Book.otf in Resources */,
 				86D29A0A1CA7396600AA8739 /* check@2x.png in Resources */,
@@ -826,6 +837,7 @@
 				86D299DA1CA72C8300AA8739 /* email_gray@3x.png in Resources */,
 				86D29A101CA7396600AA8739 /* plus@2x.png in Resources */,
 				86D29A021CA7396600AA8739 /* cancel_circle@3x.png in Resources */,
+				AFCDB7CD1CA8B20B00D2B6A8 /* retweet@2x.png in Resources */,
 				8614E8141CA5F39600DF48EA /* LaunchScreen.storyboard in Resources */,
 				8614E8111CA5F39600DF48EA /* Assets.xcassets in Resources */,
 				AF615DC41CA84CA800161B56 /* payment_check.png in Resources */,

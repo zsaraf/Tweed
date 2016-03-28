@@ -11,7 +11,6 @@ import SnapKit
 import SDWebImage
 import TLYShyNavBar
 import DGElasticPullToRefresh
-import SVPullToRefresh
 
 class HomeViewController: UIViewController, UITableViewDelegate, UITableViewDataSource, UICollectionViewDataSource, UICollectionViewDelegate, FollowViewControllerDelegate, ViewProfileAlertViewDelegate {
     let tableView = UITableView()
