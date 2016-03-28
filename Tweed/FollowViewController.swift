@@ -364,7 +364,7 @@ class FollowViewController: UIViewController, UIViewControllerAnimatedTransition
 
             self.topBarViewTopConstraint?.updateOffset(UIApplication.sharedApplication().statusBarFrame.size.height)
             self.contentViewLeftConstraint?.updateOffset(0)
-            UIView.animateWithDuration(0.5, delay: 0.0, usingSpringWithDamping: 0.5, initialSpringVelocity: 0.4, options: UIViewAnimationOptions(), animations: { () -> Void in
+            UIView.animateWithDuration(0.7, delay: 0.0, usingSpringWithDamping: 0.7, initialSpringVelocity: 0.2, options: UIViewAnimationOptions(), animations: { () -> Void in
                 self.view.layoutIfNeeded()
             }, completion: { (success: Bool) -> Void in
                 self.textField.becomeFirstResponder()
