@@ -86,7 +86,6 @@ class TweetTableViewCell: UITableViewCell, TweetTextViewDelegate {
                 let resizingProportion = max(widthProportion, heightProportion)
 
                 let resizedSize = CGSizeMake(CGFloat(width/resizingProportion), CGFloat(height/resizingProportion))
-                print(resizedSize)
                 self.mediaImageWidthConstraint?.updateOffset(resizedSize.width)
                 self.mediaImageHeightConstraint?.updateOffset(resizedSize.height)
                 self.mediaImageTopConstraint?.updateOffset(Constants.TopPadding)

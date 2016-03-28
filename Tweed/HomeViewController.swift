@@ -98,8 +98,9 @@ class HomeViewController: UIViewController, UITableViewDelegate, UITableViewData
     }
 
     func tableView(tableView: UITableView, didSelectRowAtIndexPath indexPath: NSIndexPath) {
-        let user = self.tweets[indexPath.row].user!
-        let alertView = ViewProfileAlertView(user: user, hidesFollowButton: false)
+        let tweet = self.tweets[indexPath.row]
+        let user = tweet.originalTweet != nil ? tweet.originalTweet?.user! : tweet.user!
+        let alertView = ViewProfileAlertView(user: user!, hidesFollowButton: false)
         alertView.viewProfileDelegate = self
         alertView.show()
     }
