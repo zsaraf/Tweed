@@ -114,6 +114,8 @@ class User: NSManagedObject {
         
         TweedNetworking.getSuggestions({ (task, responseObject) in
             
+            print("Found \((responseObject as! [AnyObject]).count) recommendations");
+            
             // Remove all the old ones
             self.removeAllRecommendedUsers()
             
@@ -131,7 +133,7 @@ class User: NSManagedObject {
             }
             
         }) { (task, error) in
-            print("error")
+            print("Error refreshing recommended users.")
         }
     }
     
