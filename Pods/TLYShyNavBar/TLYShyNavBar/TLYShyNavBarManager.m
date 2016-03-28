@@ -220,7 +220,7 @@ static void * const kTLYShyNavBarManagerKVOContext = (void*)&kTLYShyNavBarManage
 
 - (BOOL)_shouldHandleScrolling
 {
-    if (self.disable)
+    if (self.disable || self.scrollView.tag == 1)
     {
         return NO;
     }

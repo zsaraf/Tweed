@@ -151,6 +151,10 @@ class User: NSManagedObject {
         return (self.profileImageUrl?.stringByReplacingOccurrencesOfString("_normal", withString: ""))!
     }
     
+    func biggerProfileImageUrl() -> String {
+        return (self.profileImageUrl?.stringByReplacingOccurrencesOfString("_normal", withString: "_bigger"))!
+    }
+    
     class func testUser() -> User? {
         let moc = DataManager.sharedInstance().managedObjectContext!!
         var user: User?

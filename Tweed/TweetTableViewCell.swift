@@ -51,6 +51,13 @@ class TweetTableViewCell: UITableViewCell, TweetTextViewDelegate {
             if tweet?.originalTweet != nil {
                 self.retweetedByViewTopConstraint?.updateOffset(Constants.TopPadding)
                 self.heightConstraint?.uninstall()
+                
+                self.messageTextView.text = (self.tweet?.originalTweet?.text)!
+                self.dateLabel.text = self.tweet?.originalTweet?.createdAt?.timeAgo()
+                self.nameLabel.text = self.tweet?.originalTweet?.user?.displayName()
+                self.handleLabel.text = "@" + (self.tweet?.originalTweet?.user?.screenName)!
+                self.profileImageView.sd_setImageWithURL(NSURL(string: (self.tweet?.originalTweet?.user?.biggerProfileImageUrl())!))
+
                 self.retweetedByLabel.text = (self.tweet?.user?.displayName())!
 
                 t = self.tweet!.originalTweet!

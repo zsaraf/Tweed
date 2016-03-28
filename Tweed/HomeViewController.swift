@@ -14,12 +14,12 @@ import DGElasticPullToRefresh
 import UIScrollView_InfiniteScroll
 import JTSImageViewController
 
-class HomeViewController: UIViewController, UITableViewDelegate, UITableViewDataSource, UICollectionViewDataSource, UICollectionViewDelegate, FollowViewControllerDelegate, ViewProfileAlertViewDelegate, TweetTableViewCellDelegate {
+class HomeViewController: UIViewController, UITableViewDelegate, UITableViewDataSource, FollowViewControllerDelegate, ViewProfileAlertViewDelegate, TweetTableViewCellDelegate {
+
     let tableView = UITableView()
-    var followingCollectionView: UICollectionView!
 
     private var tweets = Tweet.getAllTweets()
-    private var following = User.getFollowingUsers()!
+    private var followingView: FollowingView!
     
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -28,18 +28,11 @@ class HomeViewController: UIViewController, UITableViewDelegate, UITableViewData
         self.automaticallyAdjustsScrollViewInsets = false
 
         self.setupNavigationBar()
-        self.setupCollectionView()
         self.setupTableView()
+        self.setupFollowingView()
 
         self.refreshTweets()
 
-    }
-
-    override func viewDidLayoutSubviews() {
-        if let rect = self.navigationController?.navigationBar.frame {
-            let y = rect.size.height + rect.origin.y
-            self.tableView.contentInset = UIEdgeInsetsMake(y, 0, 0, 0)
-        }
     }
     
     func setupNavigationBar() {
@@ -52,30 +45,6 @@ class HomeViewController: UIViewController, UITableViewDelegate, UITableViewData
         self.navigationItem.rightBarButtonItem = UIBarButtonItem(customView: addFollowsButton)
     }
 
-    func setupCollectionView() {
-        let layout = UICollectionViewFlowLayout()
-        layout.scrollDirection = .Horizontal
-        layout.minimumLineSpacing = 0
-        layout.minimumInteritemSpacing = 0
-        let itemSize = UIScreen.mainScreen().bounds.size.height * 0.1
-        layout.itemSize = CGSize(width: itemSize, height: itemSize)
-        layout.sectionInset = UIEdgeInsetsZero
-
-        self.followingCollectionView = UICollectionView(frame: CGRectMake(0, 0, UIScreen.mainScreen().bounds.size.width, itemSize), collectionViewLayout: layout)
-        self.followingCollectionView.delegate = self
-        self.followingCollectionView.dataSource = self
-        self.followingCollectionView.layer.shadowColor = UIColor.blackColor().CGColor
-        self.followingCollectionView.layer.shadowRadius = 3.0
-        self.followingCollectionView.layer.shadowOpacity = 0.3
-        self.followingCollectionView.layer.shadowOffset = CGSizeMake(0, 2)
-        self.followingCollectionView.showsHorizontalScrollIndicator = false
-        self.followingCollectionView.showsVerticalScrollIndicator = false
-        self.followingCollectionView.alwaysBounceHorizontal = true
-        self.followingCollectionView.registerClass(FollowingCollectionViewCell.self, forCellWithReuseIdentifier: FollowingCollectionViewCell.Identifier)
-        self.followingCollectionView.backgroundColor = UIColor.tweedBlue()
-
-        self.shyNavBarManager.extensionView = self.followingCollectionView
-    }
 
     func setupTableView() {
         self.tableView.delegate = self
@@ -96,36 +65,16 @@ class HomeViewController: UIViewController, UITableViewDelegate, UITableViewData
         self.addPullToRefresh()
         self.addInfiniteScroll()
     }
-
-    // MARK: UICollectionViewDataSource
-
-    func collectionView(collectionView: UICollectionView, cellForItemAtIndexPath indexPath: NSIndexPath) -> UICollectionViewCell {
-        let cell = collectionView.dequeueReusableCellWithReuseIdentifier(FollowingCollectionViewCell.Identifier, forIndexPath: indexPath) as! FollowingCollectionViewCell
-        let user = self.following[indexPath.row]
-        cell.user = user
-        return cell
+    
+    func setupFollowingView() {
+        self.followingView = FollowingView(following: User.getFollowingUsers()!, profileAlertViewDelegate: self)
+        self.followingView.frame = CGRectMake(0, 0, UIScreen.mainScreen().bounds.size.width, UIScreen.mainScreen().bounds.size.height * 0.15)
+        self.shyNavBarManager.extensionView = self.followingView
     }
     
     deinit {
         self.tableView.dg_removePullToRefresh()
-    }
-
-    func numberOfSectionsInCollectionView(collectionView: UICollectionView) -> Int {
-        return 1
-    }
-
-    func collectionView(collectionView: UICollectionView, numberOfItemsInSection section: Int) -> Int {
-        return self.following.count
-    }
-
-    func collectionView(collectionView: UICollectionView, didSelectItemAtIndexPath indexPath: NSIndexPath) {
-        let user = self.following[indexPath.row]
-
-        let alertView = ViewProfileAlertView(user: user, hidesFollowButton: false)
-        alertView.viewProfileDelegate = self
-        alertView.show()
-    }
-    
+    }    
 
     // MARK: UITableViewDelegate & UITableViewDataSource methods
 
@@ -197,8 +146,7 @@ class HomeViewController: UIViewController, UITableViewDelegate, UITableViewData
     func updateViewsWithCoreData() {
         // Assign tweets and resume operations as normal
         self.tweets = Tweet.getAllTweets()
-        self.following = User.getFollowingUsers()!
-        self.followingCollectionView.reloadData()
+        self.followingView.refreshCollectionView(User.getFollowingUsers()!)
         self.tableView.reloadData()
     }
     

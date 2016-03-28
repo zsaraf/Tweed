@@ -234,12 +234,12 @@ public class DGElasticPullToRefreshView: UIView {
         let bezierPath = UIBezierPath()
         let animating = isAnimating()
         
-        bezierPath.moveToPoint(CGPoint(x: 0.0, y: 0.0))
+        bezierPath.moveToPoint(CGPoint(x: 0.0, y: -1.0))
         bezierPath.addLineToPoint(CGPoint(x: 0.0, y: l3ControlPointView.dg_center(animating).y))
         bezierPath.addCurveToPoint(l1ControlPointView.dg_center(animating), controlPoint1: l3ControlPointView.dg_center(animating), controlPoint2: l2ControlPointView.dg_center(animating))
         bezierPath.addCurveToPoint(r1ControlPointView.dg_center(animating), controlPoint1: cControlPointView.dg_center(animating), controlPoint2: r1ControlPointView.dg_center(animating))
         bezierPath.addCurveToPoint(r3ControlPointView.dg_center(animating), controlPoint1: r1ControlPointView.dg_center(animating), controlPoint2: r2ControlPointView.dg_center(animating))
-        bezierPath.addLineToPoint(CGPoint(x: width, y: 0.0))
+        bezierPath.addLineToPoint(CGPoint(x: width, y: -1.0))
         
         bezierPath.closePath()
         
