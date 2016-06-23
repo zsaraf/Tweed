@@ -279,6 +279,7 @@ class TweetTableViewCell: UITableViewCell, TweetTextViewDelegate {
 
     func createMediaImageView() -> UIImageView {
         let imageView = UIImageView()
+        imageView.backgroundColor = UIColor.lightGrayColor()
         imageView.contentMode = .ScaleAspectFit
         imageView.clipsToBounds = true
         imageView.layer.masksToBounds = true
